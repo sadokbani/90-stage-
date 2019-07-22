@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategorieService} from '../service/categorie.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {mimeType} from '../../../session/signup/mime-type.validator';
-import {isUndefined} from "util";
+import {isUndefined} from 'util';
 
 @Component({
   selector: 'app-update-categorie',
@@ -44,14 +44,14 @@ export class UpdateCategorieComponent implements OnInit {
 
   updateCategorie() {
     this.route.params.subscribe(params => {
-      if (isUndefined(this.angForm.value.image.type)){
-        this.ps.updateCategorie(this.angForm.value.CategorieNom, this.angForm.value.CategorieDescription, this.angForm.value.CategoriePriority ,params.id);
-      }
-      else {
-        this.ps.updateCategorieImage(this.angForm.value.CategorieNom, this.angForm.value.CategorieDescription, this.angForm.value.CategoriePriority , this.angForm.value.image,params.id);
+      if (isUndefined(this.angForm.value.image.type)) {
+        this.ps.updateCategorie(this.angForm.value.CategorieNom, this.angForm.value.CategorieDescription,
+          this.angForm.value.CategoriePriority , params.id);
+      } else {
+        this.ps.updateCategorieImage(this.angForm.value.CategorieNom, this.angForm.value.CategorieDescription,
+          this.angForm.value.CategoriePriority , this.angForm.value.image, params.id);
       }
 
-      // this.ps.updateCategorie(CategorieNom, CategorieDescription, CategoriePriority , CategorieImage, params.id);
 
     });
   }
@@ -61,13 +61,13 @@ export class UpdateCategorieComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.ps.editCategorie(params['id']).subscribe(res => {
         console.log(res);
-        this.imagePreview=res.CategorieImage;
+        this.imagePreview = res.CategorieImage;
         this.categorie = res;
         this.angForm.setValue({
-          CategorieNom:res.CategorieNom,
-          CategorieDescription:res.CategorieDescription,
-          CategoriePriority:res.CategoriePriority,
-          image:res.CategorieImage
+          CategorieNom: res.CategorieNom,
+          CategorieDescription: res.CategorieDescription,
+          CategoriePriority: res.CategoriePriority,
+          image: res.CategorieImage
         });
       });
     });

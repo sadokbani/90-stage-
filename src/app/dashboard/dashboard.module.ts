@@ -34,6 +34,9 @@ import { ArchiveComponent } from './users/archive/archive.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { CreateCategorieComponent } from './categorie/create-categorie/create-categorie.component';
 import { UpdateCategorieComponent } from './categorie/update-categorie/update-categorie.component';
+import { SouscategorieComponent } from './souscategorie/souscategorie.component';
+import { CreateSouscategorieComponent } from './souscategorie/create-souscategorie/create-souscategorie.component';
+import { UpdateSouscategorieComponent } from './souscategorie/update-souscategorie/update-souscategorie.component';
 
 @NgModule({
   imports: [
@@ -64,6 +67,6 @@ import { UpdateCategorieComponent } from './categorie/update-categorie/update-ca
     MatTabsModule,MatMenuModule,
     RouterModule.forChild(DashboardRoutes)
   ],
-  declarations: [DashboardComponent, UsersComponent, ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent, CreateCategorieComponent, UpdateCategorieComponent]
+  declarations: [DashboardComponent, UsersComponent, ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent, CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, CreateSouscategorieComponent, UpdateSouscategorieComponent]
 })
 export class DashboardModule {}

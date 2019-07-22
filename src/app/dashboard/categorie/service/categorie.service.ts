@@ -43,18 +43,7 @@ export class CategorieService {
       .http
       .get<any>(`${this.uri}/edit/${id}`);
   }
-  // updateCategorie( CategorieNom, CategorieDescription, CategoriePriority , CategorieImage, id) {
-  //   const obj = {
-  //     CategorieNom,
-  //     CategorieDescription,
-  //     CategoriePriority,
-  //     CategorieImage
-  //   };
-  //   this
-  //     .http
-  //     .post(`${this.uri}/update/${id}`, obj)
-  //     .subscribe(res => console.log('Done'));
-  // }
+
 
   updateCategorieImage(CategorieNom, CategorieDescription, CategoriePriority , image:File, id){
     const clientData = new FormData();

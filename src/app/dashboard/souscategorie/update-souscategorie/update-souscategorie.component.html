@@ -1,0 +1,68 @@
+
+
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">nom de la sous catégorie</label>
+        <input type="text" class="form-control"
+               formControlName="SousCategorieNom"
+               #sousCategorieNom
+               [(ngModel)] = "souscategorie.SousCategorieNom"/>
+      </div>
+      <div *ngIf="angForm.controls['SousCategorieNom'].invalid && (angForm.controls['SousCategorieNom'].dirty || angForm.controls['SousCategorieNom'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['SousCategorieNom'].errors.required">
+          Le nom de la sous catégorie est requis.
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-md-4">
+          nom de catégorie</label>
+
+
+        <mat-select class="form-control " [(value)]=selected
+
+                    #CategorieNom>
+
+          <mat-option *ngFor="let cat of cate" [value]=cat.CategorieNom>
+
+            {{cat.CategorieNom}}
+          </mat-option>
+
+        </mat-select>
+        <p>Vous avez sélectionné: {{selected}}</p>
+
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-md-4">Priorité de catégorie</label>
+        <input type="number" class="form-control"
+               formControlName="SousCategoriePriority"
+               #SousCategoriePriority
+               [(ngModel)] = "souscategorie.Priority"
+        />
+      </div>
+      <div *ngIf="angForm.controls['SousCategoriePriority'].invalid && (angForm.controls['SousCategoriePriority'].dirty || angForm.controls['SousCategoriePriority'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['SousCategoriePriority'].errors.required">
+          La priorité de catégorie est requise.
+        </div>
+      </div>
+
+
+
+
+      <div class="form-group">
+        <button (click) = "updateSousCategorie(sousCategorieNom.value, CategorieNom.value, SousCategoriePriority.value)" type="submit" class="btn btn-primary"
+                [disabled]="angForm.invalid" >
+          Modifier la categorie
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

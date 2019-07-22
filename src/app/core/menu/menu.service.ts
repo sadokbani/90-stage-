@@ -40,6 +40,12 @@ const MENUITEMS = [
     icon: 'bookmark'
   },
   {
+    state: 'souscategories',
+    name: 'Sous Categorie ',
+    type: 'link',
+    icon: 'bookmark'
+  },
+  {
     state: 'http://primer.nyasha.me/docs',
     name: 'DOCS',
     type: 'extTabLink',

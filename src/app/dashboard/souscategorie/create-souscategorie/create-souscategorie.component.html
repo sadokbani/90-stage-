@@ -1,0 +1,69 @@
+
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">nom de sous catégorie</label>
+        <input type="text" class="form-control"
+               formControlName="SousCategorieNom"
+               #SousCategorieNom />
+      </div>
+      <div *ngIf="angForm.controls['SousCategorieNom'].invalid && (angForm.controls['SousCategorieNom'].dirty || angForm.controls['SousCategorieNom'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['SousCategorieNom'].errors.required">
+
+          Un nom de sous catégorie est requis.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">La priorité de sous catégorie</label>
+        <input type="number" class="form-control"
+               formControlName="SousCategoriePriority"
+               #SousCategoriePriority
+        />
+      </div>
+      <div *ngIf="angForm.controls['SousCategoriePriority'].invalid && (angForm.controls['SousCategoriePriority'].dirty || angForm.controls['SousCategoriePriority'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['SousCategoriePriority'].errors.required">
+          La priorité de sous catégorie est requise sous forme de numéro .
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-4">
+          nom de catégorie</label>
+
+
+        <mat-select class="form-control " [(value)]="selected"
+                    formControlName="CategorieNom"
+                    #CategorieNom>
+
+          <mat-option *ngFor="let cat of categories" [value]=cat.CategorieNom>
+            {{cat.CategorieNom}}
+          </mat-option>
+
+        </mat-select>
+        <p>Vous avez sélectionné: {{selected}}</p>
+
+      </div>
+      <div *ngIf="angForm.controls['CategorieNom'].invalid && (angForm.controls['CategorieNom'].dirty || angForm.controls['CategorieNom'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['CategorieNom'].errors.required">
+          Un nom de catégorie est requis.
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="form-group">
+        <button (click) = "addSousCategorie(SousCategorieNom.value,CategorieNom.value, SousCategoriePriority.value)" type="submit" class="btn btn-primary"
+                [disabled]="angForm.pristine || angForm.invalid" >
+          Créer une sous catégorie
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

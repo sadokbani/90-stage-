@@ -1,17 +1,14 @@
 
 <div style="margin: 30px">
+  <div>
 
-  <nav class="navbar navbar-expand-sm bg-light">
-    <div class="container-fluid">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a routerLink="/categories/create" class="nav-link" routerLinkActive="active">
-            Créer une catégorie
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <button color="primary" routerLink="/categories/create" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Categorie</button>
+
+    <button  routerLink="/archiveCategories" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
+
+  </div>
+
+
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>

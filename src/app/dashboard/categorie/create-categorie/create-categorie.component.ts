@@ -32,7 +32,8 @@ export class CreateCategorieComponent implements OnInit {
     });
   }
   addCategorie( ) {
-    this.ps.addCategorie( this.angForm.value.CategorieNom, this.angForm.value.CategorieDescription, this.angForm.value.CategoriePriority, this.angForm.value.image);
+    this.ps.addCategorie( this.angForm.value.CategorieNom, this.angForm.value.CategorieDescription,
+      this.angForm.value.CategoriePriority, this.angForm.value.image);
   }
 
   onImagePicked(event: Event) {

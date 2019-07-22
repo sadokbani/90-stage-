@@ -15,6 +15,7 @@ let Categorie = new Schema({
   CategoriePriority: {
     type: Number
   },
+    valide: { type: Number, default: 1},
   CategorieImage: { type: String,}
 },
 
