@@ -1,0 +1,73 @@
+
+<div style="margin: 30px">
+
+  <nav class="navbar navbar-expand-sm bg-light">
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a routerLink="/categories/create" class="nav-link" routerLinkActive="active">
+            Créer une catégorie
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+
+
+
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de la categorie </th>
+        <td mat-cell *matCellDef="let row"> {{row.CategorieNom}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description  </th>
+        <td mat-cell *matCellDef="let row"> {{row.CategorieDescription}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Priorité </th>
+        <td mat-cell *matCellDef="let row"> {{row.CategoriePriority}} </td>
+      </ng-container>
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
+        <td mat-cell *matCellDef="let row">
+          <div class="image-preview pb-1" >
+            <img style="width: 90px; height: 90px; margin: 10px" src="{{row.CategorieImage}}">
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Modifier </th>
+        <td mat-cell *matCellDef="let row" > <a [routerLink]="['/categories/edit', row._id]" ><mat-icon>launch</mat-icon></a></td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Supprimer </th>
+        <td mat-cell *matCellDef="let row" >
+          <button mat-icon-button color="warn" (click) = "delete(row._id)"><mat-icon>delete_outline</mat-icon></button></td>
+      </ng-container>
+
+
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
