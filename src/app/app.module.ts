@@ -13,7 +13,7 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { AgmCoreModule } from '@agm/core';
 
 import {
@@ -103,6 +103,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatProgressBarModule,
     FlexLayoutModule,
     BidiModule,
+    MatTooltipModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOURAPIKEY'
     }),

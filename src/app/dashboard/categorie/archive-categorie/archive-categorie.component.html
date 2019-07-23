@@ -1,14 +1,9 @@
 
 <div style="margin: 30px">
   <div>
-
-    <button color="primary" routerLink="/categories/create" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Categorie</button>
-
-    <button   matTooltip="Consulter l'archive des categories" routerLink="/archive_categorie" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
-
+    <button matTooltip="Consulter la liste des catégories"routerLink="/categorie" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>undo</mat-icon>
+      Retour au categories</button>
   </div>
-
-
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
@@ -21,23 +16,23 @@
 
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> NOM DE CATEGORIE </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de la categorie </th>
         <td mat-cell *matCellDef="let row"> {{row.CategorieNom}} </td>
       </ng-container>
 
 
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPTION  </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description  </th>
         <td mat-cell *matCellDef="let row"> {{row.CategorieDescription}} </td>
       </ng-container>
 
 
       <ng-container matColumnDef="priority">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> PRIORITE </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Priorité </th>
         <td mat-cell *matCellDef="let row"> {{row.CategoriePriority}} </td>
       </ng-container>
       <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> IMAGE </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
         <td mat-cell *matCellDef="let row">
           <div class="image-preview pb-1" >
             <img style="width: 90px; height: 90px; margin: 10px" src="{{row.CategorieImage}}">
@@ -46,12 +41,16 @@
       </ng-container>
 
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTIONS </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td  *matCellDef="let row" >
-          <button matTooltip="Modifier la categorie"  mat-icon-button [routerLink]="['/categories/edit', row._id]" ><mat-icon>launch</mat-icon> </button>
-          <button  matTooltip="Archiver la categorie" mat-icon-button color="warn" (click) = "archiver_categorie(row._id)"><mat-icon>delete_outline</mat-icon></button>
+
+          <button matTooltip="Vous allez restaurer cette catégorie " mat-icon-button  matTooltip="Restaurer Categorie"
+                style=" float: left;"(click)="restaurer(row._id)" confirm="Are you sure, ?"  confirm-settings="{size: 'sm'}"><mat-icon >undo</mat-icon></button>
+          <button matTooltip="Vous allez supprimer cette catégorie definitivement" mat-icon-button color="warn" style=" float: left;" (click) = "delete(row._id)"><mat-icon>delete_outline</mat-icon></button>
         </td>
+
       </ng-container>
+
 
 
 

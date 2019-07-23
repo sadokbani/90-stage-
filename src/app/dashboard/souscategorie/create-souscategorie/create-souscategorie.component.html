@@ -43,10 +43,11 @@
 
 
       <div class="form-group">
-        <button (click) = "addSousCategorie(angForm.value.SousCategorieNom,angForm.value.CategorieNom,angForm.value.SousCategoriePriority)" type="submit" mat-raised-button color="primary"
-                [disabled]="angForm.pristine || angForm.invalid" >
+        <button  matTooltip="Info about the action" style="float:right" (click) = "addSousCategorie(angForm.value.SousCategorieNom,angForm.value.CategorieNom,angForm.value.SousCategoriePriority)" type="submit" mat-raised-button color="primary"
+                [disabled]="angForm.pristine || angForm.invalid "  >
           Créer une sous catégorie
         </button>
+        <br>
       </div>
     </form>
     </mat-card-content>

@@ -1,13 +1,11 @@
-// product.route.js
+
 const multer=require("multer");
 const express = require('express');
 const app = express();
 const categoriesRoutes = express.Router();
 
-// Require Product model in our routes module
-let Categorie = require('../models/Categorie');
 
-// Defined store route
+let Categorie = require('../models/Categorie');
 
 const MIME_TYPE_MAP = {
   "image/png": "png",
@@ -64,6 +62,45 @@ categoriesRoutes.route('/').get(function (req, res) {
     }
   });
 });
+categoriesRoutes.route('/archive').get(function (req, res) {
+  Categorie.find({valide: 0},function (err,categories){
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(categories);
+    }
+  });
+});
+
+
+categoriesRoutes.put("/restaurer_categorie/:id", (req, res, next) => {
+
+  Categorie.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, categories) {
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(categories);
+    }
+  });
+});
+
+
+
+categoriesRoutes.put("/archiver_categorie/:id", (req, res, next) => {
+
+  Categorie.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, categories) {
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(categories);
+    }
+  });
+});
+
+
 
 // Defined edit route
 categoriesRoutes.route('/edit/:id').get(function (req, res) {

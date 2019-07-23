@@ -3,7 +3,7 @@
 
     <button color="primary" routerLink="/souscategories/create" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Sous Categorie</button>
 
-    <button  routerLink="/archivesousCategories" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
+    <button matTooltip="consulter l'archive des sous catégories" routerLink="/archive_souscategorie" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
 
   </div>
 
@@ -35,15 +35,15 @@
     </ng-container>
 
 
-    <ng-container matColumnDef="update">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Modifier </th>
-      <td mat-cell *matCellDef="let row" > <a [routerLink]="['/editSC', row._id]" ><mat-icon>launch</mat-icon></a></td>
-    </ng-container>
 
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> effacer </th>
-      <td mat-cell *matCellDef="let row" >
-        <button mat-icon-button color="warn" (click) = "delete(row._id)"><mat-icon>delete_outline</mat-icon></button></td>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTIONS </th>
+      <td  *matCellDef="let row" >
+        <button matTooltip="modifier cette sous categorie" mat-icon-button [routerLink]="['/editSC', row._id]" ><mat-icon>launch</mat-icon> </button>
+        <button matTooltip="Vous allez archiver cette sous catégorie " mat-icon-button color="warn"  (click) = "archiver(row._id)"><mat-icon>delete_outline</mat-icon></button>
+      </td>
+
     </ng-container>
 
 

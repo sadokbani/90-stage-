@@ -38,6 +38,18 @@ export class CategorieService {
       .http
       .get(`${this.uri}`);
   }
+  getCategoriearchive() {
+    return this
+      .http
+      .get(`${this.uri}/archive`);
+  }
+
+  restaurerCategorie(id) {
+    return this.http.put(`${this.uri}/restaurer_categorie/${id}`,null);
+  }
+  archiverCategorie(id) {
+    return this.http.put(`${this.uri}/archiver_categorie/${id}`,null);
+  }
   editCategorie(id) {
     return this
       .http
