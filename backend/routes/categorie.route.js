@@ -55,7 +55,7 @@ categoriesRoutes.post(
 );
 
 categoriesRoutes.route('/').get(function (req, res) {
-  Categorie.find(function (err,categories){
+  Categorie.find({valide: 1},function (err,categories){
     if(err){
       console.log(err);
     }

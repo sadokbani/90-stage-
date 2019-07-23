@@ -1,7 +1,7 @@
 
-<div style="margin: 30px">
-<div class="card">
-  <div class="card-body">
+<div style="margin-left: 20%; margin-right: 20%; margin-top: 5%">
+  <mat-card>
+    <mat-card-content>
     <form [formGroup]="angForm" novalidate>
 
 
@@ -46,12 +46,12 @@
         <img [src]="imagePreview" [alt]="angForm.value.title">
       </div>
       <div class="form-group">
-        <button (click) = "addCategorie()" type="submit" class="btn btn-primary"
+        <button (click) = "addCategorie()" type="submit" mat-raised-button
                 [disabled]="angForm.pristine || angForm.invalid" >
           Créer une catégorie
         </button>
       </div>
     </form>
-  </div>
-</div>
+    </mat-card-content>
+  </mat-card>
 </div>
