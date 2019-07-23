@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CategorieService} from '../service/categorie.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {CustomValidators} from 'ng2-validation';
 import {mimeType} from '../../../session/signup/mime-type.validator';
 
 @Component({

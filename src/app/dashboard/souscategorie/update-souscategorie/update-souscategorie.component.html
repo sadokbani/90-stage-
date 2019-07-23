@@ -4,61 +4,54 @@
 <div class="card">
   <div class="card-body">
     <form [formGroup]="angForm" novalidate>
-      <div class="form-group">
-        <label class="col-md-4">nom de la sous catégorie</label>
-        <input type="text" class="form-control"
-               formControlName="SousCategorieNom"
-               #sousCategorieNom
-               [(ngModel)] = "souscategorie.SousCategorieNom"/>
-      </div>
-      <div *ngIf="angForm.controls['SousCategorieNom'].invalid && (angForm.controls['SousCategorieNom'].dirty || angForm.controls['SousCategorieNom'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['SousCategorieNom'].errors.required">
-          Le nom de la sous catégorie est requis.
-        </div>
+
+      <div class="pb-1">
+        <label class="col-md-4">
+          nom de sous catégorie</label>
+        <mat-form-field style="width: 100%">
+          <input matInput  [(ngModel)] = "souscategorie.SousCategorieNom" type="text" [formControl]="angForm.controls['SousCategorieNom']">
+          <mat-error *ngIf="angForm.controls['SousCategorieNom'].hasError('required') && angForm.controls['SousCategorieNom'].touched" class="mat-text-warn"> Un nom de sous catégorie est requis.</mat-error>
+        </mat-form-field>
+
       </div>
 
 
 
-      <div class="form-group">
+
+      <div class="pb-1">
         <label class="col-md-4">
           nom de catégorie</label>
+        <br>
+        <mat-form-field>
 
+          <mat-select [(value)]="selected"
 
-        <mat-select class="form-control " [(value)]=selected
+                      #CategorieNom>
 
-                    #CategorieNom>
+            <mat-option *ngFor="let cat of cate" [value]=cat.CategorieNom>
+              {{cat.CategorieNom}}
+            </mat-option>
 
-          <mat-option *ngFor="let cat of cate" [value]=cat.CategorieNom>
-
-            {{cat.CategorieNom}}
-          </mat-option>
-
-        </mat-select>
+          </mat-select>
+        </mat-form-field>
         <p>Vous avez sélectionné: {{selected}}</p>
 
+
       </div>
 
 
+
+
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput   [(ngModel)] = "souscategorie.Priority" type="number" [formControl]="angForm.controls['SousCategoriePriority']">
+          <mat-error *ngIf="angForm.controls['SousCategoriePriority'].hasError('required') && angForm.controls['SousCategoriePriority'].touched" class="mat-text-warn">  La priorité de sous catégorie est requise sous forme de numéro .</mat-error>
+        </mat-form-field>
+
+      </div>
 
       <div class="form-group">
-        <label class="col-md-4">Priorité de catégorie</label>
-        <input type="number" class="form-control"
-               formControlName="SousCategoriePriority"
-               #SousCategoriePriority
-               [(ngModel)] = "souscategorie.Priority"
-        />
-      </div>
-      <div *ngIf="angForm.controls['SousCategoriePriority'].invalid && (angForm.controls['SousCategoriePriority'].dirty || angForm.controls['SousCategoriePriority'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['SousCategoriePriority'].errors.required">
-          La priorité de catégorie est requise.
-        </div>
-      </div>
-
-
-
-
-      <div class="form-group">
-        <button (click) = "updateSousCategorie(sousCategorieNom.value, CategorieNom.value, SousCategoriePriority.value)" type="submit" class="btn btn-primary"
+        <button (click) = "updateSousCategorie(angForm.value.SousCategorieNom, CategorieNom.value, angForm.value.SousCategoriePriority)" type="submit" class="btn btn-primary"
                 [disabled]="angForm.invalid" >
           Modifier la categorie
         </button>

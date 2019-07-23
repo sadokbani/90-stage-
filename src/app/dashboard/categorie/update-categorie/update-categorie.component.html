@@ -1,43 +1,36 @@
-
+<div style="margin: 30px">
 <div class="card">
   <div class="card-body">
     <form [formGroup]="angForm" novalidate>
-      <div class="form-group">
-        <label class="col-md-4">nom de la catégorie</label>
-        <input type="text" class="form-control"
-               formControlName="CategorieNom"
-               #CategorieNom
-               [(ngModel)] = "categorie.CategorieNom"/>
+
+
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput  [(ngModel)] = "categorie.CategorieNom" type="text" [formControl]="angForm.controls['CategorieNom']">
+          <mat-error *ngIf="angForm.controls['CategorieNom'].hasError('required') && angForm.controls['CategorieNom'].touched" class="mat-text-warn">  Le nom de la catégorie est requis.</mat-error>
+        </mat-form-field>
+
       </div>
-      <div *ngIf="angForm.controls['CategorieNom'].invalid && (angForm.controls['CategorieNom'].dirty || angForm.controls['CategorieNom'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['CategorieNom'].errors.required">
-          Le nom de la catégorie est requis.
-        </div>
+
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+
+          <input matInput  [(ngModel)] = " categorie.CategorieDescription" type="text" [formControl]="angForm.controls['CategorieDescription']">
+          <mat-error *ngIf="angForm.controls['CategorieDescription'].hasError('required') && angForm.controls['CategorieDescription'].touched" class="mat-text-warn">   La description de la catégorie est obligatoire.</mat-error>
+        </mat-form-field>
+
       </div>
-      <div class="form-group">
-        <label class="col-md-4">description de la catégorie  </label>
-        <textarea class="form-control" rows = 7 cols = "5"
-                  formControlName="CategorieDescription"
-                  #CategorieDescription [(ngModel)] = " categorie.CategorieDescription"></textarea>
+
+
+
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput   [(ngModel)] = "categorie.CategoriePriority" type="number" [formControl]="angForm.controls['CategoriePriority']">
+          <mat-error *ngIf="angForm.controls['CategoriePriority'].hasError('required') && angForm.controls['CategoriePriority'].touched" class="mat-text-warn"> La priorité de catégorie est requise.</mat-error>
+        </mat-form-field>
+
       </div>
-      <div *ngIf="angForm.controls['CategorieDescription'].invalid && (angForm.controls['CategorieDescription'].dirty || angForm.controls['CategorieDescription'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['CategorieDescription'].errors.required">
-          La description de la catégorie est obligatoire.
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-4">Priorité de catégorie</label>
-        <input type="number" class="form-control"
-               formControlName="CategoriePriority"
-               #CategoriePriority
-               [(ngModel)] = "categorie.CategoriePriority"
-        />
-      </div>
-      <div *ngIf="angForm.controls['CategoriePriority'].invalid && (angForm.controls['CategoriePriority'].dirty || angForm.controls['CategoriePriority'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['CategoriePriority'].errors.required">
-          La priorité de catégorie est requise.
-        </div>
-      </div>
+
       <div class="pb-1">
         <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
         <input type="file" class="form-control" hidden
@@ -46,7 +39,7 @@
 
       </div>
       <div class="image-preview pb-1" *ngIf="imagePreview !== '' && imagePreview ">
-        <img [src]="imagePreview" [alt]="angForm.value.title">
+        <img style="width: 150px;height: 100px" [src]="imagePreview" [alt]="angForm.value.title">
       </div>
 
       <div class="form-group">
@@ -57,4 +50,5 @@
       </div>
     </form>
   </div>
+</div>
 </div>
