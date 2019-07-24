@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 import * as screenfull from 'screenfull';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,16 @@ export class HeaderComponent {
   @Output()
   toggleNotificationSidenav = new EventEmitter<void>();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   fullScreenToggle(): void {
     if (screenfull.enabled) {
       screenfull.toggle();
     }
+  }
+
+  signout(){
+    sessionStorage.removeItem('admin');
+    this.router.navigate(['session/signin']);
   }
 }

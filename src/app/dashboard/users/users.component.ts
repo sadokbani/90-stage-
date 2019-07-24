@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource, MatPaginator} from '@angular/material';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {MatSort, MatTableDataSource, MatPaginator, MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Router} from '@angular/router';
 import {UserService} from './service/user.service';
 
@@ -13,12 +13,14 @@ export class UsersComponent implements OnInit {
   deletev = false;
   displayedColumns: string[] = ['imagePath', 'nom', 'email', 'nombreJeton', 'role', 'dateCreation', 'update', 'delete'];
   dataSource= new MatTableDataSource<any>();
-
+  animal: string='sad';
+  name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router: Router,
-              private userService: UserService) { }
+              private userService: UserService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.refrechUsers();
@@ -45,18 +47,54 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  archive(id){
-    console.log(id);
-    this.userService.archiveUser(id).subscribe(
-      data =>{
-        this.refrechUsers();
-      }
-    );
-  }
 
+
+  clear(){
+    this.value='';
+
+  }
   update(id, role){
     if(role == 2)this.router.navigate(['/client', id]);
     if(role == 1)this.router.navigate(['/commercant', id]);
 
+  }
+
+
+  openDialog(id): void {
+    const dialogRef = this.dialog.open(UserAlert, {
+      width: '250px',
+      data: {id: id}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.refrechUsers();
+    });
+  }
+}
+
+
+@Component({
+  selector: 'user-alert',
+  templateUrl: 'userAlert.html',
+})
+export class UserAlert {
+
+  constructor(private userService: UserService,
+    public dialogRef: MatDialogRef<UserAlert>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  archive(){
+    // console.log(id);
+    this.userService.archiveUser(this.data.id).subscribe(
+      data =>{
+        console.log(data);
+        this.dialogRef.close();
+      }
+    );
   }
 }

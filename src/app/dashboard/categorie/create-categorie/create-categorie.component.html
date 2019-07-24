@@ -43,7 +43,7 @@
 
       </div>
       <div class="image-preview pb-1" *ngIf="imagePreview !== '' && imagePreview ">
-        <img [src]="imagePreview" [alt]="angForm.value.title">
+        <img style="width: 150px;height: 100px" [src]="imagePreview" [alt]="angForm.value.title">
       </div>
       <div class="form-group">
         <button (click) = "addCategorie()" type="submit" mat-raised-button

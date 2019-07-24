@@ -16,6 +16,7 @@ import {SessionService} from '../session.service';
 export class SigninComponent implements OnInit {
   public form: FormGroup;
   hide = true;
+  islogin = false;
   constructor(private fb: FormBuilder, private router: Router,
               private sessionService: SessionService) {}
 
@@ -27,14 +28,21 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
-    this.sessionService.loginCommercant(this.form.value).subscribe(
-      data => {
-        console.log(data);
-        localStorage.setItem('token', data.toString());
-        this.router.navigate(['']);
-      },
-      error => {console.log(error)}
-    );
+    // console.log(this.form.value);
+    // this.sessionService.loginCommercant(this.form.value).subscribe(
+    //   data => {
+    //     console.log(data);
+    //     localStorage.setItem('token', data.toString());
+    //     this.router.navigate(['']);
+    //   },
+    //   error => {console.log(error)}
+    // );
+    if(this.form.value.email == 'admin@gmail.com' && this.form.value.password=='admin'){
+      sessionStorage.setItem('admin', '0');
+      this.router.navigate(['']);
+    }
+    else {
+      this.islogin=true;
+    }
   }
 }

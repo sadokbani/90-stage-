@@ -18,7 +18,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
-import { UsersComponent } from './users/users.component';
+import {UserAlert, UsersComponent} from './users/users.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatCheckboxModule, MatDatepickerModule,
@@ -67,6 +67,7 @@ import { UpdateSouscategorieComponent } from './souscategorie/update-souscategor
     MatTabsModule,MatMenuModule,
     RouterModule.forChild(DashboardRoutes)
   ],
-  declarations: [DashboardComponent, UsersComponent, ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent, CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, CreateSouscategorieComponent, UpdateSouscategorieComponent]
+  declarations: [UserAlert,DashboardComponent, UsersComponent, ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent, CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, CreateSouscategorieComponent, UpdateSouscategorieComponent],
+  entryComponents:[UserAlert]
 })
 export class DashboardModule {}
