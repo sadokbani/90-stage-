@@ -23,12 +23,50 @@ souscategoriesRoutes.route('/add').post(function (req, res) {
 
 // Defined get data(index or listing) route
 souscategoriesRoutes.route('/').get(function (req, res) {
-  SousCategorie.find(function (err,souscategories){
+  SousCategorie.find({valide: 1},function (err,souscategories){
     if(err){
       console.log(err);
     }
     else {
       res.json(souscategories);
+    }
+  });
+});
+
+souscategoriesRoutes.route('/archive').get(function (req, res) {
+  SousCategorie.find({valide: 0},function (err,souscategorie){
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(souscategorie);
+    }
+  });
+});
+
+
+souscategoriesRoutes.put("/restaurer_souscategorie/:id", (req, res, next) => {
+
+  SousCategorie.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, souscategorie) {
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(souscategorie);
+    }
+  });
+});
+
+
+
+souscategoriesRoutes.put("/archiver_souscategorie/:id", (req, res, next) => {
+
+  SousCategorie.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, souscategorie) {
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(souscategorie);
     }
   });
 });

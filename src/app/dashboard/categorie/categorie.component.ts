@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+
 import {CategorieService} from './service/categorie.service';
 import {Router} from '@angular/router';
 
@@ -23,7 +24,7 @@ export class Categories {
 
 export class CategorieComponent implements OnInit {
 
-  displayedColumns: string[] = [ 'name', 'description', 'priority', 'image', 'update', 'delete'];
+  displayedColumns: string[] = [ 'name', 'description', 'priority', 'image', 'action'];
   dataSource = new MatTableDataSource<Categories>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -43,8 +44,8 @@ export class CategorieComponent implements OnInit {
       }
     );
   }
-  delete(id) {
-    this.categorieService.delete(id).subscribe(res => {
+  archiver_categorie(id) {
+    this.categorieService.archiverCategorie(id).subscribe(res => {
       this.refrechCategories();
     });
   }

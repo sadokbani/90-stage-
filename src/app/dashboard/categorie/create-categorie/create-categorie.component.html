@@ -18,7 +18,7 @@
       <div class="pb-1">
         <mat-form-field style="width: 100%">
 
-          <input matInput  placeholder="nom de la catégorie" type="text" [formControl]="angForm.controls['CategorieDescription']">
+          <input matInput  placeholder="Description de la catégorie" type="text" [formControl]="angForm.controls['CategorieDescription']">
           <mat-error *ngIf="angForm.controls['CategorieDescription'].hasError('required') && angForm.controls['CategorieDescription'].touched" class="mat-text-warn">   La description de la catégorie est obligatoire.</mat-error>
         </mat-form-field>
 
@@ -28,7 +28,7 @@
 
             <div class="pb-1">
         <mat-form-field style="width: 100%">
-          <input matInput  placeholder="nom de la catégorie" type="number" [formControl]="angForm.controls['CategoriePriority']">
+          <input matInput  placeholder="Priorité" type="number" [formControl]="angForm.controls['CategoriePriority']">
           <mat-error *ngIf="angForm.controls['CategoriePriority'].hasError('required') && angForm.controls['CategoriePriority'].touched" class="mat-text-warn"> La priorité de catégorie est requise.</mat-error>
         </mat-form-field>
 
@@ -36,20 +36,25 @@
 
 
       <div class="pb-1">
-        <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+        <button mat-stroked-button type="button" (click)="filePicker.click()">Selection une image</button>
         <input hidden type="file" class="form-control"
 
                #filePicker (change)="onImagePicked($event)">
 
       </div>
       <div class="image-preview pb-1" *ngIf="imagePreview !== '' && imagePreview ">
+<<<<<<< HEAD
         <img style="width: 150px;height: 100px" [src]="imagePreview" [alt]="angForm.value.title">
+=======
+        <img style="width: 300px ; height: 200px " [src]="imagePreview" [alt]="angForm.value.title">
+>>>>>>> d1b3670b882adfdab1dd37b43f0900a1c644613a
       </div>
       <div class="form-group">
-        <button (click) = "addCategorie()" type="submit" mat-raised-button
+        <button style="float:right" (click) = "addCategorie()" type="submit" mat-raised-button
                 [disabled]="angForm.pristine || angForm.invalid" >
           Créer une catégorie
         </button>
+        <br>
       </div>
     </form>
     </mat-card-content>

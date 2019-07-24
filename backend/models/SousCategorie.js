@@ -11,7 +11,7 @@ let Categorie = new Schema({
   CategorieNom: {
     type: String
   },
-
+    valide: { type: Number, default: 1},
     Priority: {
     type: Number
   },

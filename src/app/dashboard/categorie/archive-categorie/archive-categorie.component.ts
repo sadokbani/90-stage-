@@ -2,32 +2,29 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-
-import {SouscategorieService} from './service/souscategorie.service';
+import {CategorieService} from '../service/categorie.service';
 import {Router} from '@angular/router';
-
 
 export class Categories {
   constructor (
     public  id: string,
     public  name: string,
-    public categoriename: string,
+    public  description: string,
     public  priority: number, ) {}
 }
-
 @Component({
-  selector: 'app-souscategorie',
-  templateUrl: './souscategorie.component.html',
-  styleUrls: ['./souscategorie.component.scss']
+  selector: 'app-archive-categorie',
+  templateUrl: './archive-categorie.component.html',
+  styleUrls: ['./archive-categorie.component.scss']
 })
-export class SouscategorieComponent implements OnInit {
+export class ArchiveCategorieComponent implements OnInit {
 
-  displayedColumns: string[] = [ 'name', 'categoriename', 'priority', 'action'];
+  displayedColumns: string[] = [ 'name', 'description', 'priority', 'image', 'action'];
   dataSource = new MatTableDataSource<Categories>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private  categorieService: SouscategorieService, private router: Router ) {
+  constructor(private  categorieService: CategorieService, private router: Router ) {
   }
   ngOnInit() {
     this.refrechCategories();
@@ -35,18 +32,24 @@ export class SouscategorieComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   refrechCategories() {
-    this.categorieService.getSousCategorie().subscribe(
+    this.categorieService.getCategoriearchive().subscribe(
       response => {
         this.dataSource.data = response as Categories[];
 
       }
     );
   }
-
-  archiver(id) {
-    this.categorieService.archiverSousCategorie(id).subscribe(res => {
+  delete(id) {
+    this.categorieService.delete(id).subscribe(res => {
       this.refrechCategories();
     });
+  }
+  restaurer(id){
+    this.categorieService.restaurerCategorie(id).subscribe(
+      data => {
+        this.refrechCategories();
+      }
+    );
   }
 
   applyFilter(filterValue: string) {
@@ -57,3 +60,6 @@ export class SouscategorieComponent implements OnInit {
     }
   }
 }
+
+
+

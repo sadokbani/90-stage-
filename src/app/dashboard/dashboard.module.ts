@@ -37,7 +37,9 @@ import { UpdateCategorieComponent } from './categorie/update-categorie/update-ca
 import { SouscategorieComponent } from './souscategorie/souscategorie.component';
 import { CreateSouscategorieComponent } from './souscategorie/create-souscategorie/create-souscategorie.component';
 import { UpdateSouscategorieComponent } from './souscategorie/update-souscategorie/update-souscategorie.component';
-
+import { ArchiveCategorieComponent } from './categorie/archive-categorie/archive-categorie.component';
+import { ArchiveSouscategorieComponent } from './souscategorie/archive-souscategorie/archive-souscategorie.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   imports: [
     CommonModule,
@@ -51,8 +53,8 @@ import { UpdateSouscategorieComponent } from './souscategorie/update-souscategor
     MatButtonModule,
     MatCheckboxModule,
     MatNativeDateModule,
-    MatDatepickerModule,MatGridListModule,
-    MatSelectModule,MatToolbarModule,
+    MatDatepickerModule, MatGridListModule,
+    MatSelectModule, MatToolbarModule,
     MatRadioModule,
     MatInputModule,
     PerfectScrollbarModule,
@@ -60,14 +62,18 @@ import { UpdateSouscategorieComponent } from './souscategorie/update-souscategor
     MatSidenavModule,
     MatListModule,
     MatCardModule,
+    MatTabsModule, MatMenuModule,
+    MatTooltipModule,
     MatExpansionModule,
     MatBadgeModule,
     MatBottomSheetModule,
     MatDialogModule,
+
     MatTabsModule,MatMenuModule,
     RouterModule.forChild(DashboardRoutes)
   ],
-  declarations: [UserAlert,DashboardComponent, UsersComponent, ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent, CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, CreateSouscategorieComponent, UpdateSouscategorieComponent],
+  declarations: [UserAlert,DashboardComponent,ArchiveSouscategorieComponent, UsersComponent, ArchiveCategorieComponent,ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent, CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, CreateSouscategorieComponent, UpdateSouscategorieComponent],
   entryComponents:[UserAlert]
+
 })
 export class DashboardModule {}

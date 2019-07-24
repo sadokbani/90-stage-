@@ -24,6 +24,19 @@ export class SouscategorieService {
       .http
       .get(`${this.uri}`);
   }
+
+  getSousCategoriearchive() {
+    return this
+      .http
+      .get(`${this.uri}/archive`);
+  }
+
+  restaurerSousCategorie(id) {
+    return this.http.put(`${this.uri}/restaurer_souscategorie/${id}`,null);
+  }
+  archiverSousCategorie(id) {
+    return this.http.put(`${this.uri}/archiver_souscategorie/${id}`,null);
+  }
   editCategorie(id) {
     return this
       .http

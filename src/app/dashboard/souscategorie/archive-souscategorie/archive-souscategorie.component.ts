@@ -3,7 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
-import {SouscategorieService} from './service/souscategorie.service';
+import {SouscategorieService} from '../service/souscategorie.service';
 import {Router} from '@angular/router';
 
 
@@ -16,12 +16,11 @@ export class Categories {
 }
 
 @Component({
-  selector: 'app-souscategorie',
-  templateUrl: './souscategorie.component.html',
-  styleUrls: ['./souscategorie.component.scss']
+  selector: 'app-archive-souscategorie',
+  templateUrl: './archive-souscategorie.component.html',
+  styleUrls: ['./archive-souscategorie.component.scss']
 })
-export class SouscategorieComponent implements OnInit {
-
+export class ArchiveSouscategorieComponent implements OnInit {
   displayedColumns: string[] = [ 'name', 'categoriename', 'priority', 'action'];
   dataSource = new MatTableDataSource<Categories>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,18 +34,25 @@ export class SouscategorieComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   refrechCategories() {
-    this.categorieService.getSousCategorie().subscribe(
+    this.categorieService.getSousCategoriearchive().subscribe(
       response => {
         this.dataSource.data = response as Categories[];
 
       }
     );
   }
-
-  archiver(id) {
-    this.categorieService.archiverSousCategorie(id).subscribe(res => {
+  delete(id) {
+    this.categorieService.delete(id).subscribe(res => {
       this.refrechCategories();
     });
+  }
+
+  restaurer(id) {
+    this.categorieService.restaurerSousCategorie(id).subscribe(
+      data => {
+        this.refrechCategories();
+      }
+    );
   }
 
   applyFilter(filterValue: string) {
