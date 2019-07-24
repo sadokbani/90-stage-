@@ -11,7 +11,7 @@ import {UserService} from './service/user.service';
 export class UsersComponent implements OnInit {
   value= '';
   deletev = false;
-  displayedColumns: string[] = ['imagePath', 'nom', 'email', 'nombreJeton', 'role', 'dateCreation', 'update', 'delete'];
+  displayedColumns: string[] = ['imagePath', 'nom', 'email', 'nombreJeton', 'role', 'dateCreation', 'actions'];
   dataSource= new MatTableDataSource<any>();
   animal: string='sad';
   name: string;

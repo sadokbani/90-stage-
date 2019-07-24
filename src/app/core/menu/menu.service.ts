@@ -31,7 +31,7 @@ const MENUITEMS = [
     state: 'users',
     name: 'Utilisateurs ',
     type: 'link',
-    icon: 'bookmark'
+    icon: 'supervised_user_circle'
   },
   {
     state: 'categorie',
@@ -45,12 +45,12 @@ const MENUITEMS = [
     type: 'link',
     icon: 'bookmark'
   },
-  {
-    state: 'http://primer.nyasha.me/docs',
-    name: 'DOCS',
-    type: 'extTabLink',
-    icon: 'local_library'
-  }
+  // {
+  //   state: 'http://primer.nyasha.me/docs',
+  //   name: 'DOCS',
+  //   type: 'extTabLink',
+  //   icon: 'local_library'
+  // }
 ];
 
 @Injectable()
