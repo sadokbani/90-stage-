@@ -31,13 +31,13 @@ import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import { ClientComponent } from './users/client/client.component';
 import { CommercantComponent } from './users/commercant/commercant.component';
 import { ArchiveComponent } from './users/archive/archive.component';
-import { CategorieComponent } from './categorie/categorie.component';
+import { CategorieComponent, alert_categorie } from './categorie/categorie.component';
 import { CreateCategorieComponent } from './categorie/create-categorie/create-categorie.component';
 import { UpdateCategorieComponent } from './categorie/update-categorie/update-categorie.component';
 import { SouscategorieComponent } from './souscategorie/souscategorie.component';
 import { CreateSouscategorieComponent } from './souscategorie/create-souscategorie/create-souscategorie.component';
 import { UpdateSouscategorieComponent } from './souscategorie/update-souscategorie/update-souscategorie.component';
-import { ArchiveCategorieComponent } from './categorie/archive-categorie/archive-categorie.component';
+import { ArchiveCategorieComponent , alert_supp_categorie } from './categorie/archive-categorie/archive-categorie.component';
 import { ArchiveSouscategorieComponent } from './souscategorie/archive-souscategorie/archive-souscategorie.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
@@ -69,11 +69,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatBottomSheetModule,
     MatDialogModule,
 
-    MatTabsModule,MatMenuModule,
+    MatTabsModule, MatMenuModule,
     RouterModule.forChild(DashboardRoutes)
   ],
-  declarations: [UserAlert,DashboardComponent,ArchiveSouscategorieComponent, UsersComponent, ArchiveCategorieComponent,ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent, CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, CreateSouscategorieComponent, UpdateSouscategorieComponent],
-  entryComponents:[UserAlert]
+  declarations: [alert_supp_categorie , alert_categorie, UserAlert, DashboardComponent, ArchiveSouscategorieComponent, UsersComponent, ArchiveCategorieComponent, ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent,
+    CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, CreateSouscategorieComponent,
+    UpdateSouscategorieComponent],
+  entryComponents:[UserAlert, alert_categorie, alert_supp_categorie],
+
 
 })
 export class DashboardModule {}

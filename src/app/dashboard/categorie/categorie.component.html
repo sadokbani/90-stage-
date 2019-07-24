@@ -49,7 +49,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTIONS </th>
         <td  *matCellDef="let row" >
           <button matTooltip="Modifier la categorie"  mat-icon-button [routerLink]="['/categories/edit', row._id]" ><mat-icon>launch</mat-icon> </button>
-          <button  matTooltip="Archiver la categorie" mat-icon-button color="warn" (click) = "archiver_categorie(row._id)"><mat-icon>delete_outline</mat-icon></button>
+          <button  matTooltip="Archiver la categorie" mat-icon-button color="warn" (click) = "openDialog(row._id)"><mat-icon>delete_outline</mat-icon></button>
         </td>
       </ng-container>
 

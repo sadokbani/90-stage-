@@ -45,8 +45,8 @@
         <td  *matCellDef="let row" >
 
           <button matTooltip="Vous allez restaurer cette catégorie " mat-icon-button  matTooltip="Restaurer Categorie"
-                style=" float: left;"(click)="restaurer(row._id)" confirm="Are you sure, ?"  confirm-settings="{size: 'sm'}"><mat-icon >undo</mat-icon></button>
-          <button matTooltip="Vous allez supprimer cette catégorie definitivement" mat-icon-button color="warn" style=" float: left;" (click) = "delete(row._id)"><mat-icon>delete_outline</mat-icon></button>
+                style=" float: left;"(click)="restaurer(row._id)"   ><mat-icon >undo</mat-icon></button>
+          <button matTooltip="Vous allez supprimer cette catégorie definitivement" mat-icon-button color="warn" style=" float: left;" (click) = "openDialog(row._id)"><mat-icon>delete_outline</mat-icon></button>
         </td>
 
       </ng-container>
