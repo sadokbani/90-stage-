@@ -30,7 +30,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import { ClientComponent } from './users/client/client.component';
 import { CommercantComponent } from './users/commercant/commercant.component';
-import { ArchiveComponent } from './users/archive/archive.component';
+import {ArchiveComponent, UserAlertRest, UserAlertSupp} from './users/archive/archive.component';
 import { CategorieComponent, alert_categorie } from './categorie/categorie.component';
 import { CreateCategorieComponent } from './categorie/create-categorie/create-categorie.component';
 import { UpdateCategorieComponent } from './categorie/update-categorie/update-categorie.component';
@@ -79,10 +79,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTabsModule, MatMenuModule,
     RouterModule.forChild(DashboardRoutes)
   ],
-  declarations: [ alert_rest_sous_categorie, alert_supp_sous_categorie, alert_sous_categorie, alert_rest_categorie, alert_categorie, alert_supp_categorie , alert_categorie, UserAlert, DashboardComponent, ArchiveSouscategorieComponent, UsersComponent, ArchiveCategorieComponent, ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent,
+  declarations: [ UserAlertRest,UserAlertSupp,alert_rest_sous_categorie, alert_supp_sous_categorie, alert_sous_categorie, alert_rest_categorie, alert_categorie, alert_supp_categorie , alert_categorie, UserAlert, DashboardComponent, ArchiveSouscategorieComponent, UsersComponent, ArchiveCategorieComponent, ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent,
     CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, CreateSouscategorieComponent,
     UpdateSouscategorieComponent],
-  entryComponents: [alert_rest_sous_categorie, alert_supp_sous_categorie, alert_sous_categorie, alert_rest_categorie, UserAlert, alert_categorie, alert_supp_categorie],
+  entryComponents: [UserAlertRest,UserAlertSupp,alert_rest_sous_categorie, alert_supp_sous_categorie, alert_sous_categorie, alert_rest_categorie, UserAlert, alert_categorie, alert_supp_categorie],
 
 
 })

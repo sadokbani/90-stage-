@@ -62,7 +62,7 @@ export class UsersComponent implements OnInit {
 
   openDialog(id): void {
     const dialogRef = this.dialog.open(UserAlert, {
-      width: '250px',
+      width: '22%',
       data: {id: id}
     });
 
