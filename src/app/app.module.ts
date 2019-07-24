@@ -28,7 +28,8 @@ import {
   MatListModule,
   MatSlideToggleModule,
   MatSelectModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatBadgeModule,
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BidiModule } from '@angular/cdk/bidi';
@@ -104,6 +105,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FlexLayoutModule,
     BidiModule,
     MatTooltipModule,
+    MatBadgeModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOURAPIKEY'
     }),

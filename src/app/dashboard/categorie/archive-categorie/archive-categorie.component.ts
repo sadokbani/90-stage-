@@ -5,7 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {CategorieService} from '../service/categorie.service';
 import {Router} from '@angular/router';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import { MatDialog,} from '@angular/material';
+import { MatDialog, } from '@angular/material';
 export class Categories {
   constructor (
     public  id: string,
@@ -40,18 +40,8 @@ export class ArchiveCategorieComponent implements OnInit {
       }
     );
   }
-  delete(id) {
-    this.categorieService.delete(id).subscribe(res => {
-      this.refrechCategories();
-    });
-  }
-  restaurer(id){
-    this.categorieService.restaurerCategorie(id).subscribe(
-      data => {
-        this.refrechCategories();
-      }
-    );
-  }
+
+
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -71,12 +61,24 @@ export class ArchiveCategorieComponent implements OnInit {
       this.refrechCategories();
     });
   }
+  openDialog_rest(id): void {
+    const dialogRef = this.dialog.open(alert_rest_categorie, {
+
+      data: {id: id}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.refrechCategories();
+    });
+  }
 }
 
 @Component({
   selector: 'app-alert_archive_categorie',
   templateUrl: 'alert_archive_categorie.html',
 })
+
 export class alert_supp_categorie {
 
   constructor(private categorieService: CategorieService,
@@ -89,6 +91,29 @@ export class alert_supp_categorie {
 
   delete() {
     this.categorieService.delete(this.data.id).subscribe(
+      data => {
+        console.log(data);
+        this.dialogRef.close();
+      }
+    );
+  }
+};
+@Component({
+  selector: 'app-alert_rest_categorie',
+  templateUrl: 'alert_restauration_categorie.html',
+})
+export class alert_rest_categorie {
+
+  constructor(private categorieService: CategorieService,
+              public dialogRef: MatDialogRef<alert_rest_categorie>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  restaurer() {
+    this.categorieService.restaurerCategorie(this.data.id).subscribe(
       data =>{
         console.log(data);
         this.dialogRef.close();
@@ -96,5 +121,4 @@ export class alert_supp_categorie {
     );
   }
 }
-
 

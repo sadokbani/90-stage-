@@ -34,8 +34,13 @@
 
       <ng-container matColumnDef="priority">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> PRIORITE </th>
-        <td mat-cell *matCellDef="let row"> {{row.CategoriePriority}} </td>
-      </ng-container>
+        <td mat-cell *matCellDef="let row"  >
+          <p>
+            <span matBadge="{{row.CategoriePriority}}" matBadgeColor="warn" style="align-content: center"></span>
+          </p>
+
+        </td>
+      </ng-container><
       <ng-container matColumnDef="image">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> IMAGE </th>
         <td mat-cell *matCellDef="let row">
