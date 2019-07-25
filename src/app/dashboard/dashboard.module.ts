@@ -37,9 +37,9 @@ import {
 
   CreateCategorieComponent
 } from './categorie/create-categorie/create-categorie.component';
-import {HistoriqueAchatsComponentis} from './historique-achats/historique-achats.component';
+
 import { UpdateCategorieComponent } from './categorie/update-categorie/update-categorie.component';
-import {alert_sous_categorie, , SouscategorieComponent} from './souscategorie/souscategorie.component';
+import {alert_sous_categorie,  SouscategorieComponent} from './souscategorie/souscategorie.component';
 import { CreateSouscategorieComponent , create_alert_souscategorie } from './souscategorie/create-souscategorie/create-souscategorie.component';
 import { UpdateSouscategorieComponent } from './souscategorie/update-souscategorie/update-souscategorie.component';
 import {
