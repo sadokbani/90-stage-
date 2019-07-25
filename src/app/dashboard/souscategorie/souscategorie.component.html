@@ -19,18 +19,18 @@
 
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> NOM DE SOUS CATEGORIE </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de sous categorie </th>
       <td mat-cell *matCellDef="let row"> {{row.SousCategorieNom}} </td>
     </ng-container>
 
     <ng-container matColumnDef="categoriename">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> NOM DE CATEGORIE </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de categorie </th>
       <td mat-cell *matCellDef="let row"> {{row.CategorieNom}} </td>
     </ng-container>
 
 
     <ng-container matColumnDef="priority">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> LA PRIORITE DE SOUS CATEGORIE </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> La priorite de sous categorie</th>
       <td mat-cell *matCellDef="let row">
 
         <p>
@@ -43,7 +43,7 @@
 
 
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTIONS </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
       <td  *matCellDef="let row" >
         <button matTooltip="modifier cette sous categorie" mat-icon-button [routerLink]="['/editSC', row._id]" ><mat-icon>edit</mat-icon> </button>
         <button matTooltip="Vous allez archiver cette sous catégorie " mat-icon-button color="warn"  (click) = "openDialog(row._id)"><mat-icon>archive</mat-icon></button>

@@ -21,19 +21,19 @@
 
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> NOM DE CATEGORIE </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de categorie </th>
         <td mat-cell *matCellDef="let row"> {{row.CategorieNom}} </td>
       </ng-container>
 
 
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPTION  </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
         <td mat-cell *matCellDef="let row"> {{row.CategorieDescription}} </td>
       </ng-container>
 
 
       <ng-container matColumnDef="priority">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> PRIORITE </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Priorite</th>
         <td mat-cell *matCellDef="let row"  >
           <p>
             <span matBadge="{{row.CategoriePriority}}" matBadgeColor="warn" style="align-content: center"></span>
@@ -42,7 +42,7 @@
         </td>
       </ng-container><
       <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> IMAGE </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
         <td mat-cell *matCellDef="let row">
           <div class="image-preview pb-1" >
             <img style="width: 90px; height: 90px; margin: 10px" src="{{row.CategorieImage}}">
@@ -51,7 +51,7 @@
       </ng-container>
 
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTIONS </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td  *matCellDef="let row" >
           <button matTooltip="Modifier la categorie"  mat-icon-button [routerLink]="['/categories/edit', row._id]" ><mat-icon>edit</mat-icon> </button>
           <button  matTooltip="Archiver la categorie" mat-icon-button color="warn" (click) = "openDialog(row._id)"><mat-icon>archive</mat-icon></button>

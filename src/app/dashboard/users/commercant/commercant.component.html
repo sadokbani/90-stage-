@@ -9,15 +9,14 @@
           <div class="pb-1">
             <mat-form-field style="width: 100%">
               <input matInput placeholder="Nom" type="text" [formControl]="form.controls['nom']">
-              <mat-error *ngIf="form.controls['nom'].hasError('required') && form.controls['nom'].touched" class="mat-text-warn">You
-                must include an nom.</mat-error>
+              <mat-error *ngIf="form.controls['nom'].hasError('required') && form.controls['nom'].touched" class="mat-text-warn">Vous devez inclure le nom.</mat-error>
             </mat-form-field>
 
           </div>
 
 
           <div class="pb-1">
-            <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+            <button mat-stroked-button type="button" (click)="filePicker.click()">Selectioner une image</button>
             <input type="file" #filePicker (change)="onImagePicked($event)">
             <!--<mat-error class="mat-text-warn">You must include confirm image.</mat-error>-->
           </div>
@@ -27,10 +26,9 @@
           <div class="pb-1">
             <mat-form-field style="width: 100%">
               <input matInput placeholder="Email address" type="email" [formControl]="form.controls['email']">
-              <mat-error *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="mat-text-warn">You
-                must include an email address.</mat-error>
-              <mat-error *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched" class="mat-text-warn">You
-                must include a valid email address.</mat-error>
+              <mat-error *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="mat-text-warn">
+                Vous devez inclure une addresse email.</mat-error>
+              <mat-error *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched" class="mat-text-warn">Vous devez inclure une adresse email valide.</mat-error>
             </mat-form-field>
 
           </div>
@@ -39,7 +37,7 @@
               <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" [formControl]="form.controls['password']">
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               <mat-error *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
-                         class="mat-text-warn">You must include password.</mat-error>
+                         class="mat-text-warn">Vous devez inclure un mot de passe.</mat-error>
             </mat-form-field>
 
           </div>
@@ -48,9 +46,8 @@
               <input matInput placeholder="Confirm Password" [formControl]="form.controls['confirmPassword']" [type]="hide1 ? 'password' : 'text'">
               <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
               <mat-error *ngIf="form.controls['confirmPassword'].hasError('required') && form.controls['confirmPassword'].touched"
-                         class="mat-text-warn">You must include confirm password.</mat-error>
-              <mat-error *ngIf="form.controls['confirmPassword'].errors?.equalTo" class="mat-text-warn">Passwords do not
-                math.</mat-error>
+                         class="mat-text-warn">Vous devez inclure le mot de passe de confirmation.</mat-error>
+              <mat-error *ngIf="form.controls['confirmPassword'].errors?.equalTo" class="mat-text-warn">Les mots de passe ne correspondent pas.</mat-error>
             </mat-form-field>
 
           </div>
