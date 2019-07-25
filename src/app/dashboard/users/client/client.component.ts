@@ -72,18 +72,23 @@ export class ClientComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.id == -1){
-      this.userService.addClient(this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password, this.form.value.image);
-    }
-    else {
+    if (this.form.valid){
+      if(this.id == -1){
+        this.userService.addClient(this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password, this.form.value.image);
+      }
+      else {
 
-       if (isUndefined(this.form.value.image.type)){
-         this.userService.updateClient(this.id,this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password);
-       }
-       else {
-         this.userService.updateClientImage(this.id,this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password, this.form.value.image);
-       }
+        if (isUndefined(this.form.value.image.type)){
+          this.userService.updateClient(this.id,this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password);
+        }
+        else {
+          this.userService.updateClientImage(this.id,this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password, this.form.value.image);
+        }
 
+      }
+    } else {
+      alert('votre formulaire est invalide !');
     }
+
   }
 }
