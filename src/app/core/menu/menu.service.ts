@@ -23,9 +23,9 @@ export interface Menu {
 const MENUITEMS = [
   {
     state: '/',
-    name: 'Home',
+    name: 'Accueil',
     type: 'link',
-    icon: 'explore'
+    icon: 'dashboard'
   },
   {
     state: 'users',
@@ -43,7 +43,7 @@ const MENUITEMS = [
     state: 'souscategories',
     name: 'Sous Categorie ',
     type: 'link',
-    icon: 'bookmark'
+    icon: 'class'
   },
   // {
   //   state: 'http://primer.nyasha.me/docs',

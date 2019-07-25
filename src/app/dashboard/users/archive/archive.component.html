@@ -1,5 +1,5 @@
 <div style="margin: 30px">
-
+  <button matTooltip="Retour au liste des clients"  routerLink="/users" style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon>Retour au liste des clients</button>
 
   <mat-form-field>
     <input [(ngModel)]="value" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" autocomplete="off">
@@ -53,15 +53,13 @@
       <!--</ng-container>-->
 
 
-      <ng-container matColumnDef="update">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Update </th>
-        <td mat-cell *matCellDef="let row" > <button mat-icon-button (click)="restaurer(row._id)"><mat-icon>undo</mat-icon></button></td>
-      </ng-container>
-
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> delete </th>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td mat-cell *matCellDef="let row" >
-          <button mat-icon-button color="warn" (click)="delete(row._id)"><mat-icon>delete_outline</mat-icon></button></td>
+          <button matTooltip="Vous allez restaurer ce client " mat-icon-button (click)="restaurer(row._id)"><mat-icon>undo</mat-icon></button>
+          <button matTooltip="Vous allez supprimer ce client definitivement" mat-icon-button color="warn" (click)="delete(row._id)"><mat-icon>delete_outline</mat-icon></button>
+        </td>
+
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

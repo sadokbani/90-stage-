@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -30,6 +29,7 @@ import {
   MatSelectModule,
   MatProgressBarModule,
   MatBadgeModule,
+
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BidiModule } from '@angular/cdk/bidi';
@@ -44,7 +44,7 @@ import {
   AuthLayoutComponent,
   AccordionAnchorDirective,
   AccordionLinkDirective,
-  AccordionDirective
+  AccordionDirective,
 } from './core';
 
 import { AppRoutes } from './app.routing';

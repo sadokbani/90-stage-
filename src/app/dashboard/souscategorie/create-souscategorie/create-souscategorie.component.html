@@ -1,6 +1,8 @@
 <div style="margin-left: 20%; margin-right: 20%; margin-top: 5%">
   <mat-card>
     <mat-card-content>
+      <button matTooltip=" Retour au liste des sous categories, toutes les modification seront perdues" routerLink="/souscategories" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>undo</mat-icon>
+        Retour au liste des sous categories</button>
     <form [formGroup]="angForm" novalidate>
 
       <div class="pb-1">
@@ -43,8 +45,8 @@
 
 
       <div class="form-group">
-        <button  matTooltip="Info about the action" style="float:right" (click) = "addSousCategorie(angForm.value.SousCategorieNom,angForm.value.CategorieNom,angForm.value.SousCategoriePriority)" type="submit" mat-raised-button color="primary"
-                [disabled]="angForm.pristine || angForm.invalid "  >
+        <button  style="float:right" (click) = "addSousCategorie(angForm.value.SousCategorieNom,angForm.value.CategorieNom,angForm.value.SousCategoriePriority)" type="submit" mat-raised-button color="primary"
+                 >
           Créer une sous catégorie
         </button>
         <br>

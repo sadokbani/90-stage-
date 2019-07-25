@@ -11,7 +11,7 @@ import {UserService} from '../service/user.service';
 export class ArchiveComponent implements OnInit {
   value= '';
   deletev = false;
-  displayedColumns: string[] = ['imagePath', 'nom', 'email', 'nombreJeton', 'role', 'dateCreation', 'update', 'delete'];
+  displayedColumns: string[] = ['imagePath', 'nom', 'email', 'nombreJeton', 'role', 'dateCreation', 'actions' ];
   dataSource= new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

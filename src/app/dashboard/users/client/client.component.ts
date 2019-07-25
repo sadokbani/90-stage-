@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CustomValidators} from 'ng2-validation';
 import {mimeType} from '../../../session/signup/mime-type.validator';
 import {UserService} from '../service/user.service';
 import {isUndefined} from 'util';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {create_alert_categorie} from '../../categorie/create-categorie/create-categorie.component';
 
 
 
@@ -24,7 +26,7 @@ export class ClientComponent implements OnInit {
   id: number;
   hide = true;
   hide1 = true;
-  constructor(private fb: FormBuilder,  private route: ActivatedRoute,private router: Router,
+  constructor(private fb: FormBuilder,  private route: ActivatedRoute,private router: Router, public dialog: MatDialog ,
               private userService: UserService) { }
 
   ngOnInit() {
@@ -70,7 +72,14 @@ export class ClientComponent implements OnInit {
     };
     reader.readAsDataURL(file);
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(create_alert_categorie, {
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
   onSubmit(){
     if (this.form.valid){
       if(this.id == -1){
@@ -87,8 +96,25 @@ export class ClientComponent implements OnInit {
 
       }
     } else {
-      alert('votre formulaire est invalide !');
+      this.openDialog();
     }
 
+  }
+}
+
+
+@Component({
+  selector: 'app-createalertuser',
+  templateUrl: 'create-user-alert.html',
+})
+export class create_user_alert {
+
+  constructor(
+    public dialogRef: MatDialogRef<create_user_alert>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

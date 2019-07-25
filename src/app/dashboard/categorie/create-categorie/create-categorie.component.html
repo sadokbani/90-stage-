@@ -2,6 +2,8 @@
 <div style="margin-left: 20%; margin-right: 20%; margin-top: 5%">
   <mat-card>
     <mat-card-content>
+      <button matTooltip=" Retour au liste des categories, toutes les modification seront perdues" routerLink="/categorie" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>undo</mat-icon>
+        Retour au liste des categories</button>
     <form [formGroup]="angForm" novalidate>
 
 
@@ -43,17 +45,17 @@
 
       </div>
       <div class="image-preview pb-1" *ngIf="imagePreview !== '' && imagePreview ">
-
         <img style="width: 300px ; height: 200px " [src]="imagePreview" [alt]="angForm.value.title">
-
       </div>
-      <div class="form-group">
-        <button style="float:right" (click) = "addCategorie()" type="submit" mat-raised-button
-                [disabled]="angForm.pristine || angForm.invalid" >
+      <div class="form-group" >
+        <button style="float:right" (click) = "addCategorie()"  type="submit" mat-raised-button color="primary"  >
           Créer une catégorie
         </button>
         <br>
       </div>
+
+
+
     </form>
     </mat-card-content>
   </mat-card>

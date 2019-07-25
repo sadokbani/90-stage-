@@ -45,8 +45,8 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTIONS </th>
       <td  *matCellDef="let row" >
-        <button matTooltip="modifier cette sous categorie" mat-icon-button [routerLink]="['/editSC', row._id]" ><mat-icon>launch</mat-icon> </button>
-        <button matTooltip="Vous allez archiver cette sous catégorie " mat-icon-button color="warn"  (click) = "openDialog(row._id)"><mat-icon>delete_outline</mat-icon></button>
+        <button matTooltip="modifier cette sous categorie" mat-icon-button [routerLink]="['/editSC', row._id]" ><mat-icon>edit</mat-icon> </button>
+        <button matTooltip="Vous allez archiver cette sous catégorie " mat-icon-button color="warn"  (click) = "openDialog(row._id)"><mat-icon>archive</mat-icon></button>
       </td>
 
     </ng-container>

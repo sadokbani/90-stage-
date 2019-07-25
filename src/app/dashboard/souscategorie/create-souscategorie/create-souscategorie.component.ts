@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {SouscategorieService} from '../service/souscategorie.service';
 import {CategorieService} from '../../categorie/service/categorie.service';
+import {create_alert_categorie} from '../../categorie/create-categorie/create-categorie.component';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 
 
 class Categorie {
@@ -26,7 +28,7 @@ export class CreateSouscategorieComponent implements OnInit {
   hide1 = true;
   categories: Categorie[];
 
-  constructor(private fb: FormBuilder, private router: Router, private ps: SouscategorieService, private  ps2: CategorieService ) {
+  constructor(private fb: FormBuilder, private router: Router, private ps: SouscategorieService, private  ps2: CategorieService , public dialog: MatDialog) {
     this.createForm();
   }
 
@@ -39,9 +41,20 @@ export class CreateSouscategorieComponent implements OnInit {
       SousCategorieImage: '',
     });
   }
-  addSousCategorie( SousCategorieNom, CategorieNom, Priority ) {
-    this.ps.addSousCategorie( SousCategorieNom, CategorieNom, Priority);
+  openDialog(): void {
+    const dialogRef = this.dialog.open(create_alert_souscategorie, {
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  addSousCategorie( SousCategorieNom, CategorieNom, Priority ) {
+    if(this.angForm.valid) {
+      this.ps.addSousCategorie(SousCategorieNom, CategorieNom, Priority);
+    } else {
+      this.openDialog();
+    }
   }
 
   ngOnInit() {
@@ -51,5 +64,20 @@ export class CreateSouscategorieComponent implements OnInit {
   }
 
 
+}
+@Component({
+  selector: 'app-createalertsouscategorie',
+  templateUrl: 'create-alert-souscategorie.html',
+})
+export class create_alert_souscategorie {
+
+  constructor(
+    public dialogRef: MatDialogRef<create_alert_souscategorie>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }
 
