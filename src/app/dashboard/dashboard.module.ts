@@ -37,6 +37,7 @@ import {
 
   CreateCategorieComponent
 } from './categorie/create-categorie/create-categorie.component';
+import {HistoriqueAchatsComponentis} from './historique-achats/historique-achats.component';
 import { UpdateCategorieComponent } from './categorie/update-categorie/update-categorie.component';
 import {alert_sous_categorie, , SouscategorieComponent} from './souscategorie/souscategorie.component';
 import { CreateSouscategorieComponent , create_alert_souscategorie } from './souscategorie/create-souscategorie/create-souscategorie.component';
@@ -51,6 +52,7 @@ import {
   ArchiveSouscategorieComponent
 } from './souscategorie/archive-souscategorie/archive-souscategorie.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HistoriqueAchatsComponent } from './historique-achats/historique-achats.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -84,8 +86,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     RouterModule.forChild(DashboardRoutes)
   ],
   declarations: [create_user_alert, create_alert_souscategorie, create_alert_categorie, UserAlertRest, UserAlertSupp , alert_rest_sous_categorie, alert_supp_sous_categorie, alert_sous_categorie, alert_rest_categorie, alert_categorie, alert_supp_categorie , alert_categorie, UserAlert, DashboardComponent, ArchiveSouscategorieComponent, UsersComponent, ArchiveCategorieComponent, ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent,
-    CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, CreateSouscategorieComponent,
-    UpdateSouscategorieComponent],
+    CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, HistoriqueAchatsComponent, CreateSouscategorieComponent,
+    UpdateSouscategorieComponent,
+    HistoriqueAchatsComponent],
   entryComponents: [create_user_alert , create_alert_souscategorie,
     create_alert_souscategorie , create_alert_categorie , UserAlertRest, UserAlertSupp, alert_rest_sous_categorie, alert_supp_sous_categorie, alert_sous_categorie,
     alert_rest_categorie, UserAlert, alert_categorie, alert_supp_categorie],

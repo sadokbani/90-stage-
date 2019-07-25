@@ -13,6 +13,7 @@ import {UpdateSouscategorieComponent} from './souscategorie/update-souscategorie
 import {SouscategorieComponent} from './souscategorie/souscategorie.component';
 import { ArchiveCategorieComponent} from './categorie/archive-categorie/archive-categorie.component';
 import {ArchiveSouscategorieComponent} from './souscategorie/archive-souscategorie/archive-souscategorie.component';
+import {HistoriqueAchatsComponent} from './historique-achats/historique-achats.component';
 
 export const DashboardRoutes: Routes = [
   {path: '', component: DashboardComponent},
@@ -28,4 +29,5 @@ export const DashboardRoutes: Routes = [
   {path: 'editSC/:id', component: UpdateSouscategorieComponent },
   {path: 'archive_categorie', component:  ArchiveCategorieComponent },
   {path: 'archive_souscategorie', component: ArchiveSouscategorieComponent },
+  {path: 'historique', component: HistoriqueAchatsComponent },
 ];

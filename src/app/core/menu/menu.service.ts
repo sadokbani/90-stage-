@@ -45,6 +45,12 @@ const MENUITEMS = [
     type: 'link',
     icon: 'class'
   },
+  {
+    state: 'historique',
+    name: "Historique d'achat ",
+    type: 'link',
+    icon: 'update'
+  },
   // {
   //   state: 'http://primer.nyasha.me/docs',
   //   name: 'DOCS',
