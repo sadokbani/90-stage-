@@ -45,7 +45,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date d'achat </th>
         <td mat-cell *matCellDef="let row"  >
 
-          {{row.Date}}
+          {{row.Date|date}}
 
         </td>
       </ng-container>

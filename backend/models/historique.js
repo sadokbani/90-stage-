@@ -15,8 +15,8 @@ let historique = new Schema({
       type: String
     },
     Remise: { type: String},
-    Date: { type: Date,},
-    Etat: {type : String,}
+    Date: { type: Date,default: Date.now},
+    Etat: {type : Number,default: 1}
 },
 
   {

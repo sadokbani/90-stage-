@@ -11,11 +11,12 @@ export class HistoriqueServiceService {
   constructor(private http: HttpClient,
               private router: Router) { }
 
-  addhistorique( Utilisateur, Promotion, Coupon , Remise, Etat) {
+  addhistorique( Utilisateur, Promotion, Coupon , Date, Remise, Etat) {
     const obj = new FormData();
     obj.append('Utilisateur', Utilisateur);
     obj.append('Promotion', Promotion);
     obj.append('Coupon', Coupon);
+    obj.append('Date', Date);
     obj.append('Remise', Remise);
    // obj.append('Date', Date);
     obj.append('Etat', Etat);
