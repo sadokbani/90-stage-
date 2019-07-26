@@ -35,18 +35,10 @@ export class HistoriqueAchatsComponent implements OnInit {
   dataSource = new MatTableDataSource<Historique>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  cate: Historique[];
-  souscategorie: any = {};
+
   constructor(private  historiqueService: HistoriqueServiceService, private router: Router, public dialog: MatDialog ) {
   }
-etat(): boolean
-{this.historiqueService.gethistorique().subscribe(
-  (data: Historique[]) =>{
-    this.souscategorie = data;
-    }) ;
-if (this.souscategorie.Etat = 0) { return false;
-  } else if (this.souscategorie.Etat = 1 ) {return true ; }
-}
+
   ngOnInit() {
     this.refrechHistorique();
     this.dataSource.paginator = this.paginator;

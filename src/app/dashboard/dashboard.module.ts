@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
+
 import {
-  MatButtonModule, MatDialogModule, MatGridListModule, MatIconModule,
+  MatButtonModule, MatChip, MatDialogModule, MatGridListModule, MatIconModule,
   MatListModule, MatMenuModule,
   MatPaginatorModule,
   MatSidenavModule,
@@ -15,7 +16,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-
+import {MatChipsModule} from '@angular/material';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
 import {UserAlert, UsersComponent} from './users/users.component';
@@ -81,6 +82,8 @@ import { HistoriqueAchatsComponent } from './historique-achats/historique-achats
     MatBadgeModule,
     MatBottomSheetModule,
     MatDialogModule,
+    MatChipsModule,
+
 
     MatTabsModule, MatMenuModule,
     RouterModule.forChild(DashboardRoutes)
