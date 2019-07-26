@@ -6,6 +6,7 @@ import {CategorieService} from '../service/categorie.service';
 import {Router} from '@angular/router';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { MatDialog, } from '@angular/material';
+import swal from "sweetalert2";
 export class Categories {
   constructor (
     public  id: string,
@@ -51,74 +52,55 @@ export class ArchiveCategorieComponent implements OnInit {
     }
   }
   openDialog(id): void {
-    const dialogRef = this.dialog.open(alert_supp_categorie, {
-
-      data: {id: id}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.refrechCategories();
-    });
+    swal.fire({
+      title: 'voulez-vous vraiment supprimer cette catégorie',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'oui'
+    }).then((result) => {
+      if (result.value){
+        this.categorieService.delete(id).subscribe(
+          data => {
+            console.log(data);
+            swal.fire(
+              'cette categorie a été supprimer',
+              '',
+              'success'
+            )
+            this.refrechCategories();
+          }
+        ) ; }
+    }) ;
   }
   openDialog_rest(id): void {
-    const dialogRef = this.dialog.open(alert_rest_categorie, {
-
-      data: {id: id}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.refrechCategories();
-    });
+    swal.fire({
+      title: 'voulez-vous vraiment restaurer cette  catégorie',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'oui'
+    }).then((result) => {
+      if (result.value){
+        this.categorieService.restaurerCategorie(id).subscribe(
+          data => {
+            console.log(data);
+            swal.fire(
+              'cette  categorie a été restauré',
+              '',
+              'success'
+            )
+            this.refrechCategories();
+          }
+        ) ; }
+    }) ;
   }
 }
 
-@Component({
-  selector: 'app-alert_archive_categorie',
-  templateUrl: 'alert_archive_categorie.html',
-})
-
-export class alert_supp_categorie {
-
-  constructor(private categorieService: CategorieService,
-              public dialogRef: MatDialogRef<alert_supp_categorie>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  delete() {
-    this.categorieService.delete(this.data.id).subscribe(
-      data => {
-        console.log(data);
-        this.dialogRef.close();
-      }
-    );
-  }
-};
-@Component({
-  selector: 'app-alert_rest_categorie',
-  templateUrl: 'alert_restauration_categorie.html',
-})
-export class alert_rest_categorie {
-
-  constructor(private categorieService: CategorieService,
-              public dialogRef: MatDialogRef<alert_rest_categorie>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  restaurer() {
-    this.categorieService.restaurerCategorie(this.data.id).subscribe(
-      data =>{
-        console.log(data);
-        this.dialogRef.close();
-      }
-    );
-  }
-}
 

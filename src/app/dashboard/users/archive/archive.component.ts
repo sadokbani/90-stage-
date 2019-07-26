@@ -2,6 +2,7 @@ import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {UserService} from '../service/user.service';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-archive',
@@ -47,79 +48,83 @@ export class ArchiveComponent implements OnInit {
   }
 
   delete(id): void {
-    const dialogRef = this.dialog.open(UserAlertSupp, {
-      width: '22%',
-      data: {id: id}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.refrechUsers();
-    });
+    swal.fire({
+      title: 'voulez-vous vraiment supprimer ce client',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'oui'
+    }).then((result) => {
+      if (result.value){
+        this.userService.deleteUser(id).subscribe(
+          data => {
+            console.log(data);
+            swal.fire(
+              'ce client a été supprimer',
+              '',
+              'success'
+            )
+            this.refrechUsers();
+          }
+        ) ; }
+    }) ;
   }
-
   restaurer(id): void {
-    const dialogRef = this.dialog.open(UserAlertRest, {
-      width: '22%',
-      data: {id: id}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.refrechUsers();
-    });
+    swal.fire({
+      title: 'voulez-vous vraiment restaurer ce client',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'oui'
+    }).then((result) => {
+      if (result.value){
+        this.userService.restaurerUser(id).subscribe(
+          data => {
+            console.log(data);
+            swal.fire(
+              'ce client a été restauré',
+              '',
+              'success'
+            )
+            this.refrechUsers();
+          }
+        ) ; }
+    }) ;
   }
-
 }
 
 
 
-@Component({
-  selector: 'user-alert-supp',
-  templateUrl: 'userAlertSupp.html',
-})
-export class UserAlertSupp {
 
-  constructor(private userService: UserService,
-              public dialogRef: MatDialogRef<UserAlertSupp>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {}
+//
+// @Component({
+//   selector: 'user-alert-supp',
+//   templateUrl: 'userAlertSupp.html',
+// })
+// export class UserAlertSupp {
+//
+//   constructor(private userService: UserService,
+//               public dialogRef: MatDialogRef<UserAlertSupp>,
+//               @Inject(MAT_DIALOG_DATA) public data: any) {}
+//
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+//   supprimer(){
+//     this.userService.deleteUser(this.data.id).subscribe(
+//       data =>{
+//         console.log(data);
+//         this.dialogRef.close();
+//       }
+//     );
+//   }
+//
+//
+// }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-  supprimer(){
-    this.userService.deleteUser(this.data.id).subscribe(
-      data =>{
-        console.log(data);
-        this.dialogRef.close();
-      }
-    );
-  }
-
-
-}
-
-@Component({
-  selector: 'user-alert-rest',
-  templateUrl: 'userAlertRest.html',
-})
-export class UserAlertRest {
-
-  constructor(private userService: UserService,
-              public dialogRef: MatDialogRef<UserAlertRest>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-  restaurer(){
-    this.userService.restaurerUser(this.data.id).subscribe(
-      data =>{
-        console.log(data);
-        this.dialogRef.close();
-      }
-    );
-  }
-
-
-}

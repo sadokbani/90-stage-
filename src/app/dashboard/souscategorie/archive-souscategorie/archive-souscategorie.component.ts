@@ -7,6 +7,7 @@ import {SouscategorieService} from '../service/souscategorie.service';
 import {Router} from '@angular/router';
 import {CategorieService} from '../../categorie/service/categorie.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import swal from "sweetalert2";
 
 
 export class Categories {
@@ -65,75 +66,103 @@ export class ArchiveSouscategorieComponent implements OnInit {
     }
   }
   openDialog(id): void {
-    const dialogRef = this.dialog.open(alert_supp_sous_categorie, {
-
-      data: {id: id}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.refrechCategories();
-    });
+    swal.fire({
+      title: 'voulez-vous vraiment supprimer cette sous catégorie',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'oui'
+    }).then((result) => {
+      if (result.value){
+        this.categorieService.delete(id).subscribe(
+          data => {
+            console.log(data);
+            swal.fire(
+              'cette sous categorie a été supprimer',
+              '',
+              'success'
+            )
+            this.refrechCategories();
+          }
+        ) ; }
+    }) ;
   }
   openDialog_rest(id): void {
-    const dialogRef = this.dialog.open(alert_rest_sous_categorie, {
-
-      data: {id: id}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.refrechCategories();
-    });
+    swal.fire({
+      title: 'voulez-vous vraiment restaurer cette sous catégorie',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'oui'
+    }).then((result) => {
+      if (result.value){
+        this.categorieService.restaurerSousCategorie(id).subscribe(
+          data => {
+            console.log(data);
+            swal.fire(
+              'cette sous categorie a été restauré',
+              '',
+              'success'
+            )
+            this.refrechCategories();
+          }
+        ) ; }
+    }) ;
   }
 }
-
-@Component({
-  selector: 'app-alert_archive_sous_categorie',
-  templateUrl: 'alert_archive_sous_categorie.html',
-})
-
-export class alert_supp_sous_categorie {
-
-  constructor(private categorieService: SouscategorieService,
-              public dialogRef: MatDialogRef<alert_supp_sous_categorie>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  delete() {
-    this.categorieService.delete(this.data.id).subscribe(
-      data => {
-        console.log(data);
-        this.dialogRef.close();
-      }
-    );
-  }
-};
-@Component({
-  selector: 'app-alert_rest_sous_categorie',
-  templateUrl: 'alert_restauration_sous_categorie.html',
-})
-export class alert_rest_sous_categorie {
-
-  constructor(private categorieService: SouscategorieService,
-              public dialogRef: MatDialogRef<alert_rest_sous_categorie>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  restaurer() {
-    this.categorieService.restaurerSousCategorie(this.data.id).subscribe(
-      data =>{
-        console.log(data);
-        this.dialogRef.close();
-      }
-    );
-  }
-}
-
-
+//
+// @Component({
+//   selector: 'app-alert_archive_sous_categorie',
+//   templateUrl: 'alert_archive_sous_categorie.html',
+// })
+//
+// export class alert_supp_sous_categorie {
+//
+//   constructor(private categorieService: SouscategorieService,
+//               public dialogRef: MatDialogRef<alert_supp_sous_categorie>,
+//               @Inject(MAT_DIALOG_DATA) public data: any) {}
+//
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+//
+//   delete() {
+//     this.categorieService.delete(this.data.id).subscribe(
+//       data => {
+//         console.log(data);
+//         this.dialogRef.close();
+//       }
+//     );
+//   }
+// };
+// @Component({
+//   selector: 'app-alert_rest_sous_categorie',
+//   templateUrl: 'alert_restauration_sous_categorie.html',
+// })
+// export class alert_rest_sous_categorie {
+//
+//   constructor(private categorieService: SouscategorieService,
+//               public dialogRef: MatDialogRef<alert_rest_sous_categorie>,
+//               @Inject(MAT_DIALOG_DATA) public data: any) {}
+//
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+//
+//   restaurer() {
+//     this.categorieService.restaurerSousCategorie(this.data.id).subscribe(
+//       data =>{
+//         console.log(data);
+//         this.dialogRef.close();
+//       }
+//     );
+//   }
+// }
+//
+//

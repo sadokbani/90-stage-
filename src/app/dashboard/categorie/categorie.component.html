@@ -54,7 +54,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td  *matCellDef="let row" >
           <button matTooltip="Modifier la categorie"  mat-icon-button [routerLink]="['/categories/edit', row._id]" ><mat-icon>edit</mat-icon> </button>
-          <button  matTooltip="Archiver la categorie" mat-icon-button color="warn" (click) = "openDialog(row._id)"><mat-icon>archive</mat-icon></button>
+          <button  matTooltip="Archiver la categorie" mat-icon-button color="warn" (click) = "openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
         </td>
       </ng-container>
 
