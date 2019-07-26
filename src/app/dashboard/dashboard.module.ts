@@ -19,7 +19,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatChipsModule} from '@angular/material';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
-import {UserAlert, UsersComponent} from './users/users.component';
+import { UsersComponent} from './users/users.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatCheckboxModule, MatDatepickerModule,

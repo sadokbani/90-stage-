@@ -1,10 +1,10 @@
-<mat-toolbar class="main-header" color="primary">
+<mat-toolbar class="main-header mat-purple-A400" >
   <button (click)="toggleSidenav.emit()" mat-icon-button>
     <mat-icon>menu</mat-icon>
   </button>
 
 
-  <div class="branding">
+  <div class="branding" >
     <div class="logo"></div>
   </div>
   <!--<div class="search-bar" fxFlex>-->
@@ -25,9 +25,9 @@
   <!--</button>-->
   <span style="flex: 1 1 auto;"></span>
 
-  <a style="float:right" (click)="signout()">
-    <mat-icon>exit_to_app</mat-icon>
-    Déconnexion
+  <a  (click)="signout()">
+    <mat-icon >exit_to_app</mat-icon>
+
   </a>
   <!--<mat-menu #user="matMenu" x-position="before">-->
     <!--<button mat-menu-item>-->
