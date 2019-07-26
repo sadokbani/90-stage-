@@ -3,8 +3,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {SouscategorieService} from '../service/souscategorie.service';
 import {CategorieService} from '../../categorie/service/categorie.service';
-import {create_alert_categorie} from '../../categorie/create-categorie/create-categorie.component';
+
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import swal from "sweetalert2";
 
 
 class Categorie {
@@ -42,12 +43,16 @@ export class CreateSouscategorieComponent implements OnInit {
     });
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(create_alert_souscategorie, {
-    });
+    swal.fire({
+      title: 'Erreur',
+      text: "Vous devez remplir tous les champs  pour continuer",
+      type: 'warning',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+      confirmButtonText: 'ok'
+    }) ;
   }
   addSousCategorie( SousCategorieNom, CategorieNom, Priority ) {
     if(this.angForm.valid) {
@@ -65,19 +70,19 @@ export class CreateSouscategorieComponent implements OnInit {
 
 
 }
-@Component({
-  selector: 'app-createalertsouscategorie',
-  templateUrl: 'create-alert-souscategorie.html',
-})
-export class create_alert_souscategorie {
-
-  constructor(
-    public dialogRef: MatDialogRef<create_alert_souscategorie>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
+// @Component({
+//   selector: 'app-createalertsouscategorie',
+//   templateUrl: 'create-alert-souscategorie.html',
+// })
+// export class create_alert_souscategorie {
+//
+//   constructor(
+//     public dialogRef: MatDialogRef<create_alert_souscategorie>,
+//     @Inject(MAT_DIALOG_DATA) public data: any) {
+//   }
+//
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+// }
 
