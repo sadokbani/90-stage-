@@ -11,7 +11,7 @@
             <div fxLayout="column" fxLayoutAlign="space-around">
               <div class="pb-1">
                 <mat-form-field style="width: 100%">
-                  <input matInput placeholder="Email" [formControl]="form.controls['email']">
+                  <input matInput placeholder="Adresse email" [formControl]="form.controls['email']">
 
                   <mat-error *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="mat-text-warn">Adresse email requis.</mat-error>
                   <mat-error *ngIf="form.controls['email'].hasError('email') && form.controls['email'].touched" class="mat-text-warn">Pas de type email.</mat-error>
@@ -20,7 +20,7 @@
               </div>
               <div class="pb-1">
                 <mat-form-field style="width: 100%">
-                  <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" [formControl]="form.controls['password']">
+                  <input matInput [type]="hide ? 'password' : 'text'" placeholder="Mot de passe" [formControl]="form.controls['password']">
                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   <mat-error *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
                              class="mat-text-warn">Mot de passe requis.</mat-error>

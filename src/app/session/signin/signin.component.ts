@@ -56,7 +56,7 @@ export class SigninComponent implements OnInit {
   openDialog(): void {
     swal.fire({
       title: 'Erreur',
-      text: "Vous devez remplir tous les champs et entrée une adresse email valide",
+      text: "Vous devez remplir tous les champs et entrer une adresse émail valide.",
       type: 'warning',
       showCancelButton: false,
       confirmButtonColor: '#3085d6',
