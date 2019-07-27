@@ -29,6 +29,11 @@ export class ArchiveCategorieComponent implements OnInit {
   constructor(private  categorieService: CategorieService, private router: Router , public dialog: MatDialog ) {
   }
   ngOnInit() {
+    this.paginator._intl.itemsPerPageLabel = 'nombre des catégorie à afficher par page';
+    this.paginator._intl.nextPageLabel = 'page suivante';
+    this.paginator._intl.previousPageLabel = 'page précédente ' ;
+    this.paginator._intl.lastPageLabel = 'dernière page';
+    this.paginator._intl.firstPageLabel = 'première page' ;
     this.refrechCategories();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
