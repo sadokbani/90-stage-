@@ -14,6 +14,10 @@ import {SouscategorieComponent} from './souscategorie/souscategorie.component';
 import { ArchiveCategorieComponent} from './categorie/archive-categorie/archive-categorie.component';
 import {ArchiveSouscategorieComponent} from './souscategorie/archive-souscategorie/archive-souscategorie.component';
 import {HistoriqueAchatsComponent} from './historique-achats/historique-achats.component';
+import {PaysComponent} from './pays/pays.component';
+import {CreatePaysComponent} from './pays/create-pays/create-pays.component';
+import {UpdatePaysComponent} from './pays/update-pays/update-pays.component';
+import {ArchivePaysComponent} from './pays/archive-pays/archive-pays.component';
 
 export const DashboardRoutes: Routes = [
   {path: '', component: DashboardComponent},
@@ -30,4 +34,8 @@ export const DashboardRoutes: Routes = [
   {path: 'archive_categorie', component:  ArchiveCategorieComponent },
   {path: 'archive_souscategorie', component: ArchiveSouscategorieComponent },
   {path: 'historique', component: HistoriqueAchatsComponent },
+  {path: 'pays', component: PaysComponent },
+  {path: 'archive_pays', component: ArchivePaysComponent},
+  {path: 'pays/create', component: CreatePaysComponent},
+  {path: 'pays/edit/:id', component: UpdatePaysComponent},
 ];

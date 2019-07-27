@@ -46,11 +46,19 @@ const MENUITEMS = [
     icon: 'class'
   },
   {
+    state: 'pays',
+    name: 'Pays',
+    type: 'link',
+    icon: 'flag'
+
+  },
+  {
     state: 'historique',
     name: "Historique d'achat ",
     type: 'link',
     icon: 'update'
   },
+
   // {
   //   state: 'http://primer.nyasha.me/docs',
   //   name: 'DOCS',

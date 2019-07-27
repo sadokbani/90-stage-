@@ -134,7 +134,7 @@ categoriesRoutes.put("/:id", (req, res, next) => {
 
 });
 // Defined delete | remove | destroy route
-categoriesRoutes.route('/delete/:id').get(function (req, res) {
+categoriesRoutes.route('/delete/:id').delete(function (req, res) {
   Categorie.findByIdAndRemove({_id: req.params.id}, function(err, categorie){
         if(err) res.json(err);
         else res.json('Successfully removed');

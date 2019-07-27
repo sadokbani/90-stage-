@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.paginator._intl.itemsPerPageLabel = 'nombre des client à afficher par page';
+    this.paginator._intl.itemsPerPageLabel = 'nombre des clients à afficher par page';
     this.paginator._intl.nextPageLabel = 'page suivante';
     this.paginator._intl.previousPageLabel = 'page précédente ' ;
     this.paginator._intl.lastPageLabel = 'dernière page';

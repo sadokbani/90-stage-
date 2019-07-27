@@ -46,7 +46,7 @@ historiqueRoutes.route('/edit/:id').get(function (req, res) {
 });
 
 //  Defined update route
-historiqueRoutes.route('/update/:id').post(function (req, res) {
+historiqueRoutes.route('/update/:id').put(function (req, res) {
   console.log(req.body);
   historique.findById(req.params.id, function(err, historique) {
     if (!historique)
@@ -71,7 +71,7 @@ historiqueRoutes.route('/update/:id').post(function (req, res) {
 });
 
 // Defined delete | remove | destroy route
-historiqueRoutes.route('/delete/:id').get(function (req, res) {
+historiqueRoutes.route('/delete/:id').delete(function (req, res) {
   historique.findByIdAndRemove({_id: req.params.id}, function(err, historique){
     if(err) res.json(err);
     else res.json('Successfully removed');

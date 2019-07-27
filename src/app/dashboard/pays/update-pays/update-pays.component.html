@@ -1,0 +1,65 @@
+
+<div style="margin-left: 20%; margin-right: 20%; margin-top: 5%">
+  <mat-card>
+    <mat-card-content>
+      <button matTooltip=" Retour au liste des pays, toutes les modification seront perdues" routerLink="/pays" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>undo</mat-icon>
+      </button>
+      <form [formGroup]="angForm" novalidate>
+
+        <div class="pb-1">
+
+          <mat-form-field style="width: 100%">
+            <input matInput  placeholder=" nom de sous catégorie" [(ngModel)] = "pays.Nom" type="text" [formControl]="angForm.controls['Nom']">
+            <mat-error *ngIf="angForm.controls['Nom'].hasError('required') && angForm.controls['Nom'].touched" class="mat-text-warn"> pays est requis.</mat-error>
+          </mat-form-field>
+
+        </div>
+
+
+
+
+        <!--<div class="pb-1">-->
+          <!--&lt;!&ndash;<label class="col-md-4">&ndash;&gt;-->
+          <!--&lt;!&ndash;</label>&ndash;&gt;-->
+          <!--&lt;!&ndash;<br>&ndash;&gt;-->
+          <!--<mat-form-field>-->
+
+            <!--<mat-select placeholder=" nom de catégorie" [(value)]="selected"-->
+
+                        <!--#CategorieNom>-->
+
+              <!--<mat-option *ngFor="let cat of cate" [value]=cat.CategorieNom>-->
+                <!--{{cat.CategorieNom}}-->
+              <!--</mat-option>-->
+
+            <!--</mat-select>-->
+          <!--</mat-form-field>-->
+          <!--<p>Vous avez sélectionné: {{selected}}</p>-->
+
+
+        <!--</div>-->
+
+
+
+
+        <div class="pb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput  placeholder="Priorité " [(ngModel)] = "pays.Priority" type="number" [formControl]="angForm.controls['Priority']">
+            <mat-error *ngIf="angForm.controls['Priority'].hasError('required') && angForm.controls['Priority'].touched" class="mat-text-warn">  La priorité de pays est requise sous forme de numéro .</mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <div class="form-group">
+          <button matTooltip=" Retour au liste des sous categories, toutes les modification seront perdues" routerLink="/pays" style="margin-left: 5px; float: right;"  mat-raised-button>Annuler
+          </button>
+          <button  style=" float: right;"matTooltip="Vous allez modifier ce pays " (click) = "updatePays(angForm.value.Nom,  angForm.value.Priority)" type="submit" mat-raised-button color="primary"
+                   [disabled]="angForm.invalid" >
+            Modifier le pays
+          </button>
+          <br>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

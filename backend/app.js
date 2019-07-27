@@ -7,7 +7,7 @@ const commercantsRoutes = require("./routes/commercants");
 const usersRoutes = require("./routes/users");
 
 const historiqueRoute = require("./routes/historique.route");
-
+const paysRoute = require ("./routes/pays")
 const categoriesRoute = require('./routes/categorie.route');
 const souscategoriesRoute = require('./routes/souscategorie.route');
 const app = express();
@@ -46,6 +46,6 @@ app.use("/commercant", commercantsRoutes);
 app.use("/user", usersRoutes);
 app.use('/categorie', categoriesRoute);
 app.use('/souscategorie', souscategoriesRoute);
-
+app.use('/pays' , paysRoute);
 app.use('/historique', historiqueRoute);
 module.exports = app;

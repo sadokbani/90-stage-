@@ -80,7 +80,7 @@ souscategoriesRoutes.route('/edit/:id').get(function (req, res) {
 });
 
 //  Defined update route
-souscategoriesRoutes.route('/update/:id').post(function (req, res) {
+souscategoriesRoutes.route('/update/:id').put(function (req, res) {
   console.log(req.body);
   SousCategorie.findById(req.params.id, function(err, souscategorie) {
     if (!souscategorie)
@@ -102,7 +102,7 @@ souscategoriesRoutes.route('/update/:id').post(function (req, res) {
 });
 
 // Defined delete | remove | destroy route
-souscategoriesRoutes.route('/delete/:id').get(function (req, res) {
+souscategoriesRoutes.route('/delete/:id').delete(function (req, res) {
   SousCategorie.findByIdAndRemove({_id: req.params.id}, function(err, souscategorie){
     if(err) res.json(err);
     else res.json('Successfully removed');

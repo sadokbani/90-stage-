@@ -1,9 +1,8 @@
-// Product.js
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define collection and schema for Product
+
 let Categorie = new Schema({
 
   CategorieDescription: {
