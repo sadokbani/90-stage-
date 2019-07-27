@@ -7,6 +7,7 @@ import {SouscategorieService} from './service/souscategorie.service';
 import {Router} from '@angular/router';
 import {CategorieService} from '../categorie/service/categorie.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import swal from "sweetalert2";
 
 
 export class Categories {
@@ -32,6 +33,11 @@ export class SouscategorieComponent implements OnInit {
   constructor(private  categorieService: SouscategorieService, private router: Router , public dialog: MatDialog ) {
   }
   ngOnInit() {
+    this.paginator._intl.itemsPerPageLabel = 'nombre des sous catégorie à afficher par page';
+    this.paginator._intl.nextPageLabel = 'page suivante';
+    this.paginator._intl.previousPageLabel = 'page précédente ' ;
+    this.paginator._intl.lastPageLabel = 'dernière page';
+    this.paginator._intl.firstPageLabel = 'première page' ;
     this.refrechCategories();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -55,39 +61,53 @@ export class SouscategorieComponent implements OnInit {
     }
   }
   openDialog(id): void {
-    const dialogRef = this.dialog.open(alert_sous_categorie, {
-
-      data: {id: id}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.refrechCategories();
-    });
+    swal.fire({
+      title: 'voulez-vous vraiment archiver cette sous catégorie',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'oui'
+    }).then((result) => {
+      if (result.value){
+        this.categorieService.archiverSousCategorie(id).subscribe(
+          data => {
+            console.log(data);
+            swal.fire(
+              'cette sous categorie a été archivé',
+              '',
+              'success'
+            )
+            this.refrechCategories();
+          }
+        ) ; }
+    }) ;
   }
 }
 
-@Component({
-  selector: 'app-alertsouscategorie',
-  templateUrl: 'alert_sous_categorie.html',
-})
-export class alert_sous_categorie {
-
-  constructor(private categorieService: SouscategorieService,
-              public dialogRef: MatDialogRef<alert_sous_categorie>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  archiver() {
-    this.categorieService.archiverSousCategorie(this.data.id).subscribe(
-      data =>{
-        console.log(data);
-        this.dialogRef.close();
-      }
-    );
-  }
-}
+// @Component({
+//   selector: 'app-alertsouscategorie',
+//   templateUrl: 'alert_sous_categorie.html',
+// })
+// export class alert_sous_categorie {
+//
+//   constructor(private categorieService: SouscategorieService,
+//               public dialogRef: MatDialogRef<alert_sous_categorie>,
+//               @Inject(MAT_DIALOG_DATA) public data: any) {}
+//
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+//
+//   archiver() {
+//     this.categorieService.archiverSousCategorie(this.data.id).subscribe(
+//       data =>{
+//         console.log(data);
+//         this.dialogRef.close();
+//       }
+//     );
+//   }
+// }
 

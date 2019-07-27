@@ -10,9 +10,14 @@ let historique = require('../models/historique');
 
 historiqueRoutes.route('/add').post(function (req, res) {
   console.log(req.body);
-  let historique = new historique(req.body);
-  historique.save()
-    .then(historique => {
+  let Historique = new historique();
+  Historique.Utilisateur=req.body.Utilisateur;
+  Historique.Coupon=req.body.Coupon;
+
+  Historique.Promotion=req.body.Promotion;
+  Historique.Remise=req.body.Remise;
+  Historique.save()
+    .then(Historique => {
       res.status(200).json({'historique': 'historique has been added successfully'});
     })
     .catch(err => {

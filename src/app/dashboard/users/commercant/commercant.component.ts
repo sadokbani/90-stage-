@@ -6,7 +6,8 @@ import {mimeType} from '../../../session/signup/mime-type.validator';
 import {UserService} from '../service/user.service';
 import {isUndefined} from "util";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
-import {create_alert_categorie} from '../../categorie/create-categorie/create-categorie.component';
+
+import swal from "sweetalert2";
 const password = new FormControl('', Validators.required);
 const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 @Component({
@@ -57,14 +58,18 @@ export class CommercantComponent implements OnInit {
     });
   }
 
-openDialog(): void {
-  const dialogRef = this.dialog.open(create_alert_categorie, {
-  });
-
-dialogRef.afterClosed().subscribe(result => {
-  console.log('The dialog was closed');
-});
-}
+  openDialog(): void {
+    swal.fire({
+      title: 'Erreur',
+      text: "Vous devez remplir tous les champs et selectioner une image pour continuer",
+      type: 'warning',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'ok'
+    }) ;
+  }
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({image: file});
@@ -97,19 +102,19 @@ dialogRef.afterClosed().subscribe(result => {
   }
 }
 
-@Component({
-  selector: 'app-createalertcommerçant',
-  templateUrl: 'create-commerçant-alert.html',
-})
-export class create_commerçant_alert {
-
-  constructor(
-    public dialogRef: MatDialogRef<create_commerçant_alert>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
+// @Component({
+//   selector: 'app-createalertcommerçant',
+//   templateUrl: 'create-commerçant-alert.html',
+// })
+// export class create_commerçant_alert {
+//
+//   constructor(
+//     public dialogRef: MatDialogRef<create_commerçant_alert>,
+//     @Inject(MAT_DIALOG_DATA) public data: any) {
+//   }
+//
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+// }
 

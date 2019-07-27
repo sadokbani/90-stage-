@@ -12,11 +12,27 @@ export class UserService {
               private router: Router) { }
 
   retriveAllUsers(){
-    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/aa");
+    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/tous");
   }
 
   retriveAllUsersNV(){
-    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/archive/aa");
+    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/archive/tous");
+  }
+
+  retriveAllClient(){
+    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/client");
+  }
+
+  retriveAllClientNV(){
+    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/archive/client");
+  }
+
+  retriveAllCommercant(){
+    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/commercant");
+  }
+
+  retriveAllCommercantNV(){
+    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/archive/commercant");
   }
 
 

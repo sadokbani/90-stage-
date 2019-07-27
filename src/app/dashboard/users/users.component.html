@@ -1,8 +1,8 @@
 <div style="margin: 30px">
   <div>
 
-    <button color="primary" routerLink="/client/-1" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Client</button>
-    <button color="warn" routerLink="/commercant/-1" style="margin: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Commerçant</button>
+    <button class="mat-blue-A400" routerLink="/client/-1" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Client</button>
+    <button class="mat-red-A200" routerLink="/commercant/-1" style="margin: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Commerçant</button>
     <button  matTooltip="consulter l'archive des des clients" routerLink="/archive" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
 
   </div>
@@ -11,6 +11,15 @@
   <mat-form-field>
     <input [(ngModel)]="value" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" autocomplete="off">
     <!--<button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clear()"><mat-icon>close</mat-icon></button>-->
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Selectionner le type d'utilisateur</mat-label>
+    <mat-select [(value)]="selected" (valueChange)="select()">
+      <!--<mat-option>None</mat-option>-->
+      <mat-option value="1">Tous les utilisateurs</mat-option>
+      <mat-option value="2">Les clients</mat-option>
+      <mat-option value="3">Les Commerçants</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <div class="mat-elevation-z8">
@@ -64,7 +73,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td mat-cell *matCellDef="let row" >
           <button matTooltip="modifier ce client" mat-icon-button (click)="update(row._id, row.role)"><mat-icon>edit</mat-icon></button>
-          <button matTooltip="Vous allez archiver ce client " mat-icon-button color="warn" (click)="openDialog(row._id)"><mat-icon>archive</mat-icon></button>
+          <button matTooltip="Vous allez archiver ce client " mat-icon-button color="warn" (click)="openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
         </td>
 
       </ng-container>

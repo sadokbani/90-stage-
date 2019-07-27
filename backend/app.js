@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 var cors= require('cors');
 const commercantsRoutes = require("./routes/commercants");
 const usersRoutes = require("./routes/users");
-const historiqueRoutes = require("./routes/historique.route");
+
+const historiqueRoute = require("./routes/historique.route");
 
 const categoriesRoute = require('./routes/categorie.route');
 const souscategoriesRoute = require('./routes/souscategorie.route');
@@ -45,5 +46,6 @@ app.use("/commercant", commercantsRoutes);
 app.use("/user", usersRoutes);
 app.use('/categorie', categoriesRoute);
 app.use('/souscategorie', souscategoriesRoute);
-app.use('/historique', historiqueRoutes);
+
+app.use('/historique', historiqueRoute);
 module.exports = app;

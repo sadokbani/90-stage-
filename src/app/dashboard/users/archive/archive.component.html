@@ -1,10 +1,23 @@
 <div style="margin: 30px">
-  <button matTooltip="Retour au liste des clients"  routerLink="/users" style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon>Retour au liste des clients</button>
+  <div>
+  <button matTooltip="Retour au liste des clients"  routerLink="/users" style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon></button>
+  </div>
 
-  <mat-form-field>
-    <input [(ngModel)]="value" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" autocomplete="off">
-    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="value=''"><mat-icon>close</mat-icon></button>
-  </mat-form-field>
+
+    <mat-form-field>
+      <input [(ngModel)]="value" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" autocomplete="off">
+      <!--<button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clear()"><mat-icon>close</mat-icon></button>-->
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Selectionner le type d'utilisateur</mat-label>
+      <mat-select [(value)]="selected" (valueChange)="select()">
+        <!--<mat-option>None</mat-option>-->
+        <mat-option value="1">Tous les utilisateurs</mat-option>
+        <mat-option value="2">Les clients</mat-option>
+        <mat-option value="3">Les Commerçants</mat-option>
+      </mat-select>
+    </mat-form-field>
+
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
@@ -67,7 +80,7 @@
       </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[6, 8, 10, 20, 50, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </div>
 

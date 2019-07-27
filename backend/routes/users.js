@@ -96,7 +96,7 @@ router.get("/:id", (req, res, next) =>{
 });
 
 
-router.get("/valide/aa", (req, res, next) =>{
+router.get("/valide/tous", (req, res, next) =>{
   User.find({valide: 1}).then(documents => {
     res.status(200).json({
       message: "users fetched successfully!",
@@ -105,8 +105,46 @@ router.get("/valide/aa", (req, res, next) =>{
   });
 });
 
-router.get("/archive/aa", (req, res, next) =>{
+router.get("/archive/tous", (req, res, next) =>{
   User.find({valide: 0}).then(documents => {
+    res.status(200).json({
+      message: "users fetched successfully!",
+      users: documents //we can also use map methode
+    });
+  });
+});
+
+
+router.get("/valide/client", (req, res, next) =>{
+  User.find({valide: 1, role:2}).then(documents => {
+    res.status(200).json({
+      message: "users fetched successfully!",
+      users: documents //we can also use map methode
+    });
+  });
+});
+
+router.get("/archive/client", (req, res, next) =>{
+  User.find({valide: 0, role:2}).then(documents => {
+    res.status(200).json({
+      message: "users fetched successfully!",
+      users: documents //we can also use map methode
+    });
+  });
+});
+
+
+router.get("/valide/commercant", (req, res, next) =>{
+  User.find({valide: 1, role:1}).then(documents => {
+    res.status(200).json({
+      message: "users fetched successfully!",
+      users: documents //we can also use map methode
+    });
+  });
+});
+
+router.get("/archive/commercant", (req, res, next) =>{
+  User.find({valide: 0, role:1}).then(documents => {
     res.status(200).json({
       message: "users fetched successfully!",
       users: documents //we can also use map methode

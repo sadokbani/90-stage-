@@ -3,7 +3,7 @@
 <div style="margin-left: 20%; margin-right: 20%; margin-top: 5%">
   <mat-card>
     <mat-card-content>
-      <button routerLink="/users" style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon>Retour au liste des clients</button>
+      <button routerLink="/users" style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon></button>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div fxLayout="column" fxLayoutAlign="space-around">
           <div class="pb-1">
@@ -52,8 +52,9 @@
 
           </div>
 
-
+          <button routerLink="/users" style="margin-left:5px ; float: right"  mat-raised-button> Annuler</button>
           <button style="float: right" mat-raised-button color="primary"  type="submit" >Ajouter Commerçant</button>
+
 <br>
         </div>
 

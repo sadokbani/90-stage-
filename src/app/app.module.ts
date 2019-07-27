@@ -95,6 +95,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatMenuModule,
     MatCheckboxModule,
     MatIconModule,
+
     MatButtonModule,
     MatToolbarModule,
     MatTabsModule,

@@ -1,7 +1,6 @@
 <div style="margin: 30px">
   <div>
-    <button matTooltip="Consulter la liste des sous catégories" routerLink="/souscategories" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>undo</mat-icon>
-      Retour au sous categories</button>
+    <button matTooltip="Consulter la liste des sous catégories" routerLink="/souscategories" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>undo</mat-icon></button>
   </div>
 
   <mat-form-field>
@@ -28,7 +27,13 @@
 
       <ng-container matColumnDef="priority">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> LA PRIORITE DE SOUS CATEGORIE </th>
-        <td mat-cell *matCellDef="let row"> {{row.Priority}} </td>
+        <td mat-cell *matCellDef="let row">
+          <p>
+            <span matBadge="{{row.Priority}}" *ngIf="row.Priority <=3"  matBadgeColor="warn"  style="align-content: center"></span>
+            <span matBadge="{{row.Priority}}" *ngIf="  row.Priority <7  && row.Priority >3 "  matBadgeColor="accent"  style="align-content: center"></span>
+            <span matBadge="{{row.Priority}}" *ngIf="  row.Priority >=7 "  matBadgeColor="blue"  style="align-content: center"></span>
+          </p>
+        </td>
       </ng-container>
 
 

@@ -5,7 +5,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from 'ng2-validation';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {mimeType} from '../../../session/signup/mime-type.validator';
-import {alert_categorie} from '../categorie.component';
+
+import swal from "sweetalert2";
 
 
 
@@ -40,12 +41,16 @@ export class CreateCategorieComponent implements OnInit {
     });
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(create_alert_categorie, {
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    swal.fire({
+      title: 'Erreur',
+      text: "Vous devez remplir tous les champs et selectioner une image pour continuer",
+      type: 'warning',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'ok'
+    }) ;
   }
   addCategorie( ) {
     if (this.angForm.valid) {
@@ -70,19 +75,19 @@ export class CreateCategorieComponent implements OnInit {
 
 }
 
-
-@Component({
-  selector: 'app-createalertcategorie',
-  templateUrl: 'create-categorie-alert.html',
-})
-export class create_alert_categorie {
-
-  constructor(
-              public dialogRef: MatDialogRef<create_alert_categorie>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
+//
+// @Component({
+//   selector: 'app-createalertcategorie',
+//   templateUrl: 'create-categorie-alert.html',
+// })
+// export class create_alert_categorie {
+//
+//   constructor(
+//               public dialogRef: MatDialogRef<create_alert_categorie>,
+//               @Inject(MAT_DIALOG_DATA) public data: any) {
+//   }
+//
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+// }

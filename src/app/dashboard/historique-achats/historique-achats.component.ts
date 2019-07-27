@@ -36,10 +36,15 @@ export class HistoriqueAchatsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private  historiqueService: HistoriqueServiceService, private router: Router, public dialog: MatDialog) {
+  constructor(private  historiqueService: HistoriqueServiceService, private router: Router, public dialog: MatDialog ) {
   }
 
   ngOnInit() {
+    this.paginator._intl.itemsPerPageLabel = 'nombre des achats à afficher par page' ;
+    this.paginator._intl.nextPageLabel = 'page suivante';
+    this.paginator._intl.previousPageLabel = 'page précédente ' ;
+    this.paginator._intl.lastPageLabel = 'dernière page';
+    this.paginator._intl.firstPageLabel = 'première page' ;
     this.refrechHistorique();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

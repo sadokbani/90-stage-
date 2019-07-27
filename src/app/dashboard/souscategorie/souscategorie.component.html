@@ -1,7 +1,7 @@
 <div style="margin: 30px">
   <div>
 
-    <button color="primary" routerLink="/souscategories/create" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Sous Categorie</button>
+    <button class="mat-blue-A400" routerLink="/souscategories/create" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Sous Categorie</button>
 
     <button matTooltip="consulter l'archive des sous catégories" routerLink="/archive_souscategorie" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
 
@@ -32,11 +32,12 @@
     <ng-container matColumnDef="priority">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> La priorite de sous categorie</th>
       <td mat-cell *matCellDef="let row">
-
         <p>
-          <span matBadge=" {{row.Priority}}" matBadgeColor="warn" ></span>
+          <span matBadge="{{row.Priority}}" *ngIf="row.Priority <=3"  matBadgeColor="warn"  style="align-content: center"></span>
+          <span matBadge="{{row.Priority}}" *ngIf="  row.Priority <7  && row.Priority >3 "  matBadgeColor="accent"  style="align-content: center"></span>
+          <span matBadge="{{row.Priority}}" *ngIf="  row.Priority >=7 "  matBadgeColor="blue"  style="align-content: center"></span>
         </p>
-        </td>
+      </td>
     </ng-container>
 
 
@@ -46,7 +47,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
       <td  *matCellDef="let row" >
         <button matTooltip="modifier cette sous categorie" mat-icon-button [routerLink]="['/editSC', row._id]" ><mat-icon>edit</mat-icon> </button>
-        <button matTooltip="Vous allez archiver cette sous catégorie " mat-icon-button color="warn"  (click) = "openDialog(row._id)"><mat-icon>archive</mat-icon></button>
+        <button matTooltip="Vous allez archiver cette sous catégorie " mat-icon-button color="warn"  (click) = "openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
       </td>
 
     </ng-container>

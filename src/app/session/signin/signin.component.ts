@@ -7,6 +7,7 @@ import {
   FormControl
 } from '@angular/forms';
 import {SessionService} from '../session.service';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-signin',
@@ -37,12 +38,30 @@ export class SigninComponent implements OnInit {
     //   },
     //   error => {console.log(error)}
     // );
-    if(this.form.value.email == 'admin@gmail.com' && this.form.value.password=='admin'){
-      sessionStorage.setItem('admin', '0');
-      this.router.navigate(['']);
+    if (this.form.valid){
+      if(this.form.value.email == 'admin@gmail.com' && this.form.value.password=='admin'){
+        sessionStorage.setItem('admin', '0');
+        this.router.navigate(['']);
+      }
+      else {
+        this.islogin=true;
+      }
+    } else {
+      this.openDialog();
     }
-    else {
-      this.islogin=true;
-    }
+
+  }
+
+  openDialog(): void {
+    swal.fire({
+      title: 'Erreur',
+      text: "Vous devez remplir tous les champs et entrée une adresse email valide",
+      type: 'warning',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'ok'
+    }) ;
   }
 }
