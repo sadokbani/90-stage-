@@ -22,6 +22,7 @@ export class SigninComponent implements OnInit {
               private sessionService: SessionService) {}
 
   ngOnInit() {
+    sessionStorage.removeItem('admin');
     this.form = this.fb.group({
       email: [null, Validators.compose([Validators.required, Validators.email])],
       password: [null, Validators.compose([Validators.required])]
