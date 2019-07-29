@@ -54,7 +54,7 @@
 
       <ng-container matColumnDef="dateCreation">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Creation </th>
-        <td mat-cell *matCellDef="let row" > {{row.dateCreation|date}} </td>
+        <td mat-cell *matCellDef="let row" > {{row.dateCreation|date:'dd/MM/yyyy-HH:m'}} </td>
       </ng-container>
 
       <!--<ng-container matColumnDef="image">-->

@@ -18,6 +18,8 @@ import {PaysComponent} from './pays/pays.component';
 import {CreatePaysComponent} from './pays/create-pays/create-pays.component';
 import {UpdatePaysComponent} from './pays/update-pays/update-pays.component';
 import {ArchivePaysComponent} from './pays/archive-pays/archive-pays.component';
+import {CommentaireComponent} from './commentaire/commentaire.component';
+import {CommentaireDesacComponent} from './commentaire/commentaire-desac/commentaire-desac.component';
 
 export const DashboardRoutes: Routes = [
   {path: '', component: DashboardComponent},
@@ -38,4 +40,6 @@ export const DashboardRoutes: Routes = [
   {path: 'archive_pays', component: ArchivePaysComponent},
   {path: 'pays/create', component: CreatePaysComponent},
   {path: 'pays/edit/:id', component: UpdatePaysComponent},
+  {path: 'commentaire', component: CommentaireComponent},
+  {path: 'commentaireDesc', component: CommentaireDesacComponent},
 ];

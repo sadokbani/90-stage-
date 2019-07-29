@@ -7,9 +7,10 @@ const commercantsRoutes = require("./routes/commercants");
 const usersRoutes = require("./routes/users");
 
 const historiqueRoute = require("./routes/historique.route");
-const paysRoute = require ("./routes/pays")
+const paysRoute = require ("./routes/pays");
 const categoriesRoute = require('./routes/categorie.route');
 const souscategoriesRoute = require('./routes/souscategorie.route');
+const commentairesRoute = require('./routes/commentaires');
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/stage").then(
@@ -48,4 +49,5 @@ app.use('/categorie', categoriesRoute);
 app.use('/souscategorie', souscategoriesRoute);
 app.use('/pays' , paysRoute);
 app.use('/historique', historiqueRoute);
+app.use('/commentaire',commentairesRoute);
 module.exports = app;

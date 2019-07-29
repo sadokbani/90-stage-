@@ -199,7 +199,7 @@ router.delete('/:id', (req, res) => {
 
   User.findByIdAndRemove(req.params.id, (err, doc) => {
     if (!err) { res.send(doc); }
-    else { console.log('Error in Employee Delete :' + JSON.stringify(err, undefined, 2)); }
+    else { console.log('Error in user Delete :' + JSON.stringify(err, undefined, 2)); }
   });
 });
 

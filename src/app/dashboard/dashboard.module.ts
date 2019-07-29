@@ -39,7 +39,7 @@ import {
 
   CreateCategorieComponent
 } from './categorie/create-categorie/create-categorie.component';
-import {CountryPickerModule, } from 'ngx-country-picker';
+// import {CountryPickerModule, } from 'ngx-country-picker';
 import { UpdateCategorieComponent } from './categorie/update-categorie/update-categorie.component';
 import { SouscategorieComponent} from './souscategorie/souscategorie.component';
 import { CreateSouscategorieComponent , } from './souscategorie/create-souscategorie/create-souscategorie.component';
@@ -58,6 +58,8 @@ import { PaysComponent } from './pays/pays.component';
 import { CreatePaysComponent } from './pays/create-pays/create-pays.component';
 import { ArchivePaysComponent } from './pays/archive-pays/archive-pays.component';
 import { UpdatePaysComponent } from './pays/update-pays/update-pays.component';
+import { CommentaireComponent } from './commentaire/commentaire.component';
+import { CommentaireDesacComponent } from './commentaire/commentaire-desac/commentaire-desac.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -87,7 +89,7 @@ import { UpdatePaysComponent } from './pays/update-pays/update-pays.component';
     MatBottomSheetModule,
     MatDialogModule,
     MatChipsModule,
-    CountryPickerModule.forRoot(),
+    // CountryPickerModule.forRoot(),
 
 
     MatTabsModule, MatMenuModule,
@@ -100,7 +102,9 @@ import { UpdatePaysComponent } from './pays/update-pays/update-pays.component';
     PaysComponent,
     CreatePaysComponent,
     ArchivePaysComponent,
-    UpdatePaysComponent],
+    UpdatePaysComponent,
+    CommentaireComponent,
+    CommentaireDesacComponent],
   entryComponents: [],
 
 

@@ -53,6 +53,13 @@ const MENUITEMS = [
 
   },
   {
+    state: 'commentaire',
+    name: 'Commentaire',
+    type: 'link',
+    icon: 'comment'
+
+  },
+  {
     state: 'historique',
     name: "Historique d'achat ",
     type: 'link',
