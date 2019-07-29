@@ -30,12 +30,17 @@ export class SouscategorieService {
       .http
       .get( `${this.uri}/selected_SousCategorie/${selected}`  );
   }
+
   getSousCategoriearchive() {
     return this
       .http
       .get(`${this.uri}/archive`);
   }
-
+  getSousCategoriearchive_byCategorie(selected) {
+    return this
+      .http
+      .get(`${this.uri}/archive/${selected}`);
+  }
   restaurerSousCategorie(id) {
     return this.http.put(`${this.uri}/restaurer_souscategorie/${id}`,null);
   }

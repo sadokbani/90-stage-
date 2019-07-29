@@ -44,6 +44,18 @@ souscategoriesRoutes.route('/archive').get(function (req, res) {
   });
 });
 
+souscategoriesRoutes.route('/archive/:selected').get(function (req, res) {
+  SousCategorie.find({valide: 0 , CategorieNom: req.params.selected },function (err,souscategorie){
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(souscategorie);
+    }
+  });
+});
+
+
 souscategoriesRoutes.route('/selected_SousCategorie/:selected').get(function (req, res) {
 
   SousCategorie.find({CategorieNom: req.params.selected},function (err,souscategorie){
