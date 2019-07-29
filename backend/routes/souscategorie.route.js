@@ -44,7 +44,17 @@ souscategoriesRoutes.route('/archive').get(function (req, res) {
   });
 });
 
+souscategoriesRoutes.route('/selected_SousCategorie/:selected').get(function (req, res) {
 
+  SousCategorie.find({CategorieNom: req.params.selected},function (err,souscategorie){
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(souscategorie);
+    }
+  });
+});
 souscategoriesRoutes.put("/restaurer_souscategorie/:id", (req, res, next) => {
 
   SousCategorie.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, souscategorie) {

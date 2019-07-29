@@ -25,6 +25,11 @@ export class SouscategorieService {
       .get(`${this.uri}`);
   }
 
+  getSousCategorie_byCategorie(selected) {
+    return this
+      .http
+      .get( `${this.uri}/selected_SousCategorie/${selected}`  );
+  }
   getSousCategoriearchive() {
     return this
       .http

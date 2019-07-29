@@ -18,21 +18,33 @@ export class Categories {
     public  priority: number, ) {}
 }
 
+class Categorie {
+  _id: string;
+  CategorieNom: string;
+  CategorieDescription: string;
+  CategoriePriority: number;
+  CategorieImage: string;
+}
+
 @Component({
   selector: 'app-souscategorie',
   templateUrl: './souscategorie.component.html',
   styleUrls: ['./souscategorie.component.scss']
 })
 export class SouscategorieComponent implements OnInit {
-
+  categories: Categorie[];
+  selected = '1';
   displayedColumns: string[] = [ 'name', 'categoriename', 'priority', 'action'];
   dataSource = new MatTableDataSource<Categories>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private  categorieService: SouscategorieService, private router: Router , public dialog: MatDialog ) {
+  constructor(private  categorieService: SouscategorieService, private router: Router ,  private  ps2: CategorieService , public dialog: MatDialog ) {
   }
   ngOnInit() {
+    this.ps2.getCategorie().subscribe((data: Categorie[]) => {
+      this.categories = data;
+    });
     this.paginator._intl.itemsPerPageLabel = 'nombre des sous catégorie à afficher par page';
     this.paginator._intl.nextPageLabel = 'page suivante';
     this.paginator._intl.previousPageLabel = 'page précédente ' ;
@@ -51,7 +63,14 @@ export class SouscategorieComponent implements OnInit {
     );
   }
 
+  refrechSouscategorie_byCategorie( ) {
+    this.categorieService.getSousCategorie_byCategorie(this.selected).subscribe(
+      response => {
+        this.dataSource.data = response as Categories[];
 
+      }
+    );
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -85,6 +104,13 @@ export class SouscategorieComponent implements OnInit {
         ) ; }
     }) ;
   }
+
+  select() {
+
+    if (this.selected == '1') {this.refrechCategories(); } else {this. refrechSouscategorie_byCategorie() ;
+    }
+  }
+
 }
 
 // @Component({

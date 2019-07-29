@@ -8,9 +8,18 @@
   </div>
 
 <mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" >
 </mat-form-field>
+  <mat-form-field>
+    <mat-label>Selectionner le nom de categorie</mat-label>
+    <mat-select [(value)]="selected" (valueChange)="select()">
+      <mat-option value="1">Tous les categories</mat-option>
+      <mat-option *ngFor="let cat of categories" [value]=cat.CategorieNom>
+        {{cat.CategorieNom}}
+      </mat-option>
 
+    </mat-select>
+  </mat-form-field>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
