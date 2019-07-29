@@ -55,10 +55,7 @@ export class UsersComponent implements OnInit {
   }
 
 
-  clear() {
-    this.value = '';
 
-  }
 
   update(id, role) {
     if (role == 2) this.router.navigate(['/client', id]);
@@ -85,7 +82,7 @@ export class UsersComponent implements OnInit {
               'ce client a été archivé',
               '',
               'success'
-            )
+            );
             this.refrechUsers();
           }
         );

@@ -1,8 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {CommentaireService} from './service/commentaire.service';
 import swal from "sweetalert2";
+import {AjoutCommentaireComponent} from './ajout-commentaire/ajout-commentaire.component';
 
 @Component({
   selector: 'app-commentaire',
@@ -18,6 +19,7 @@ export class CommentaireComponent implements OnInit {
   value = '';
 
   constructor(private router: Router,
+              private dialog: MatDialog,
               private commentaireService: CommentaireService) { }
 
   ngOnInit() {
@@ -100,5 +102,13 @@ export class CommentaireComponent implements OnInit {
 
   }
 
+  ajouter(){
+    const dialogConfig= new MatDialogConfig();
+    // dialogConfig.disableClose = true;
+    // dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    dialogConfig.maxHeight=window.innerHeight-50 + 'px';
+    this.dialog.open(AjoutCommentaireComponent, dialogConfig);
+  }
 
 }

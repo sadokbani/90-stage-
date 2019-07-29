@@ -8,7 +8,7 @@ import {
   MatListModule, MatMenuModule,
   MatPaginatorModule,
   MatSidenavModule,
-  MatSortModule, MatTabsModule,
+  MatSortModule, MatStepperModule, MatTabsModule,
   MatToolbarModule,
 } from '@angular/material';
 
@@ -60,6 +60,7 @@ import { ArchivePaysComponent } from './pays/archive-pays/archive-pays.component
 import { UpdatePaysComponent } from './pays/update-pays/update-pays.component';
 import { CommentaireComponent } from './commentaire/commentaire.component';
 import { CommentaireDesacComponent } from './commentaire/commentaire-desac/commentaire-desac.component';
+import { AjoutCommentaireComponent } from './commentaire/ajout-commentaire/ajout-commentaire.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -89,6 +90,7 @@ import { CommentaireDesacComponent } from './commentaire/commentaire-desac/comme
     MatBottomSheetModule,
     MatDialogModule,
     MatChipsModule,
+    MatStepperModule,
     // CountryPickerModule.forRoot(),
 
 
@@ -104,8 +106,9 @@ import { CommentaireDesacComponent } from './commentaire/commentaire-desac/comme
     ArchivePaysComponent,
     UpdatePaysComponent,
     CommentaireComponent,
-    CommentaireDesacComponent],
-  entryComponents: [],
+    CommentaireDesacComponent,
+    AjoutCommentaireComponent],
+  entryComponents: [AjoutCommentaireComponent],
 
 
 })
