@@ -58,7 +58,7 @@ souscategoriesRoutes.route('/archive/:selected').get(function (req, res) {
 
 souscategoriesRoutes.route('/selected_SousCategorie/:selected').get(function (req, res) {
 
-  SousCategorie.find({CategorieNom: req.params.selected},function (err,souscategorie){
+  SousCategorie.find({valide: 1 , CategorieNom: req.params.selected},function (err,souscategorie){
     if(err){
       console.log(err);
     }
