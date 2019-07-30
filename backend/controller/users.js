@@ -177,7 +177,6 @@ router.put("/:id", (req, res, next) => {
 
 router.put("/archive/:id", (req, res, next) => {
   // console.log(req.body);
-  // console.log("gggg");
   User.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
     if (err) return next(err);
     res.send(doc);
@@ -187,7 +186,6 @@ router.put("/archive/:id", (req, res, next) => {
 
 router.put("/restaurer/:id", (req, res, next) => {
   // console.log(req.body);
-  // console.log("gggg");
   User.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, doc) {
     if (err) return next(err);
     res.send(doc);

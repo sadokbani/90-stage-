@@ -38,7 +38,6 @@ router.post("", (req, res, next)=>{
 
 router.put("/desactiver/:id", (req, res, next) => {
   // console.log(req.body);
-  // console.log("gggg");
   Commentaire.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
     if (err) return next(err);
     res.send(doc);
@@ -48,7 +47,6 @@ router.put("/desactiver/:id", (req, res, next) => {
 
 router.put("/activer/:id", (req, res, next) => {
   // console.log(req.body);
-  // console.log("gggg");
   Commentaire.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, doc) {
     if (err) return next(err);
     res.send(doc);

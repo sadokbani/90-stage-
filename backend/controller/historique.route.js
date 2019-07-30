@@ -25,7 +25,6 @@ historiqueRoutes.route('/add').post(function (req, res) {
     });
 });
 
-// Defined get data(index or listing) route
 historiqueRoutes.route('/').get(function (req, res) {
   historique.find(function (err,historique){
     if(err){
@@ -37,7 +36,6 @@ historiqueRoutes.route('/').get(function (req, res) {
   });
 });
 
-// Defined edit route
 historiqueRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   historique.findById(id, function (err, historique){
@@ -45,7 +43,6 @@ historiqueRoutes.route('/edit/:id').get(function (req, res) {
   });
 });
 
-//  Defined update route
 historiqueRoutes.route('/update/:id').put(function (req, res) {
   console.log(req.body);
   historique.findById(req.params.id, function(err, historique) {
@@ -70,7 +67,6 @@ historiqueRoutes.route('/update/:id').put(function (req, res) {
   });
 });
 
-// Defined delete | remove | destroy route
 historiqueRoutes.route('/delete/:id').delete(function (req, res) {
   historique.findByIdAndRemove({_id: req.params.id}, function(err, historique){
     if(err) res.json(err);

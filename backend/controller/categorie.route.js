@@ -102,7 +102,6 @@ categoriesRoutes.put("/archiver_categorie/:id", (req, res, next) => {
 
 
 
-// Defined edit route
 categoriesRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   Categorie.findById(id, function (err, categorie){

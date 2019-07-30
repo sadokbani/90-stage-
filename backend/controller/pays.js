@@ -1,13 +1,10 @@
-// product.route.js
 
 const express = require('express');
 const app = express();
 const paysRoutes = express.Router();
 
-// Require Product model in our routes module
 let Pays = require('../models/pays');
 
-// Defined store route
 
 paysRoutes.route('/add').post(function (req, res) {
   console.log(req.body);
@@ -78,7 +75,6 @@ paysRoutes.route('/edit/:id').get(function (req, res) {
   });
 });
 
-//  Defined update route
 paysRoutes.route('/update/:id').put(function (req, res) {
   console.log(req.body);
   Pays.findById(req.params.id, function(err, pays) {
@@ -99,7 +95,6 @@ paysRoutes.route('/update/:id').put(function (req, res) {
   });
 });
 
-// Defined delete | remove | destroy route
 paysRoutes.route('/delete/:id').delete(function (req, res) {
   Pays.findByIdAndRemove({_id: req.params.id}, function(err, pays){
     if(err) res.json(err);
