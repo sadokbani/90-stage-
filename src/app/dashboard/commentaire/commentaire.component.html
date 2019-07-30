@@ -1,7 +1,7 @@
 <div style="margin: 30px">
 
   <button class="mat-blue-A400" (click)="ajouter()" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Commentaire</button>
-  <button  matTooltip="consulter les commentaires désactiver" routerLink="/commentaireDesc" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
+  <button  matTooltip="consulter les commentaires désactiver" routerLink="/commentaireDesc" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>list_alt</mat-icon> Liste des commentaires désactivées</button>
 
   <mat-form-field>
     <input [(ngModel)]="value" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" autocomplete="off">
@@ -37,8 +37,8 @@
 
       <!-- Color Column -->
       <ng-container matColumnDef="user">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
-        <td mat-cell *matCellDef="let row"> {{row.user.nom}} {{row.user.email}}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Utilisateur </th>
+        <td mat-cell *matCellDef="let row"> {{row.user.nom}} <br>{{row.user.email}}</td>
       </ng-container>
 
       <ng-container matColumnDef="dateCreation">

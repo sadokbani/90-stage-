@@ -63,7 +63,7 @@ export class SouscategorieComponent implements OnInit {
     );
   }
 
-  refrechSouscategorie_byCategorie( ) {
+  refrechSouscategorie_byCategorie() {
     this.categorieService.getSousCategorie_byCategorie(this.selected).subscribe(
       response => {
         this.dataSource.data = response as Categories[];
@@ -107,7 +107,7 @@ export class SouscategorieComponent implements OnInit {
 
   select() {
 
-    if (this.selected == '1') {this.refrechCategories(); } else {this. refrechSouscategorie_byCategorie() ;
+    if (this.selected == '1') {this.refrechCategories(); } else {this.refrechSouscategorie_byCategorie() ;
     }
   }
 

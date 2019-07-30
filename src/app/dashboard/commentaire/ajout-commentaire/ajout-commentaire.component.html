@@ -1,41 +1,56 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="categorie">
     <form [formGroup]="categorie">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+      <ng-template matStepLabel>Remplir le nom de la catégorie</ng-template>
       <mat-form-field>
-        <mat-label>nom de catégorie</mat-label>
-        <mat-select [(value)]="selected"
-                    formControlName="firstCtrl">
+      <mat-label>nom de catégorie</mat-label>
+      <mat-select [(value)]="selected"
+      formControlName="firstCtrl" (valueChange)="refrechSouscategorie_byCategorie()">
 
-          <mat-option *ngFor="let cat of categories" [value]=cat.CategorieNom>
-            {{cat.CategorieNom}}
-          </mat-option>
+      <mat-option *ngFor="let cat of categories" [value]=cat.CategorieNom>
+      {{cat.CategorieNom}}
+      </mat-option>
 
-        </mat-select>
+      </mat-select>
+        <mat-error *ngIf="categorie.controls['firstCtrl'].hasError('required') " class="mat-text-warn"> vous devez selectionner un catégorie.</mat-error>
+
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="sousCategorie">
     <form [formGroup]="sousCategorie">
-      <ng-template matStepLabel>Fill out your address</ng-template>
+      <ng-template matStepLabel>Remplir le nom de la sous catégorie</ng-template>
       <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+        <mat-label>nom de sous catégorie</mat-label>
+        <mat-select [(value)]="selectedd"
+                    formControlName="secondCtrl" >
+
+          <mat-option *ngFor="let cat of sousCategories" [value]=cat.SousCategorieNom>
+            {{cat.SousCategorieNom}}
+          </mat-option>
+
+        </mat-select>
+        <mat-error *ngIf="sousCategorie.controls['secondCtrl'].hasError('required') " class="mat-text-warn"> vous devez selectionner un sous catégorie.</mat-error>
+
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Précédent</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
+    <ng-template matStepLabel>Terminé</ng-template>
+    Vous avez maintenant terminé
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button matStepperPrevious>Précédent</button>
+      <button mat-button (click)="stepper.reset()">Réinitialiser</button>
+      <button mat-button (click)="stepper.reset()">Ajouter</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+
+

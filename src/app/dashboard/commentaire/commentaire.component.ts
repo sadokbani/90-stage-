@@ -106,7 +106,7 @@ export class CommentaireComponent implements OnInit {
     const dialogConfig= new MatDialogConfig();
     // dialogConfig.disableClose = true;
     // dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
+    dialogConfig.width = "80%";
     dialogConfig.maxHeight=window.innerHeight-50 + 'px';
     this.dialog.open(AjoutCommentaireComponent, dialogConfig);
   }
