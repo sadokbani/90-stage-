@@ -30,4 +30,8 @@ export class CommentaireService {
     return this.http.delete(`http://localhost:3000/commentaire/${id}`);
   }
 
+  addComment(com){
+    return this.http.post("http://localhost:3000/commentaire",com);
+  }
+
 }

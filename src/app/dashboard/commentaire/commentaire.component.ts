@@ -20,7 +20,8 @@ export class CommentaireComponent implements OnInit {
 
   constructor(private router: Router,
               private dialog: MatDialog,
-              private commentaireService: CommentaireService) { }
+              private commentaireService: CommentaireService,
+              ) { }
 
   ngOnInit() {
     this.paginator._intl.itemsPerPageLabel = 'nombre des clients à afficher par page';
@@ -108,7 +109,11 @@ export class CommentaireComponent implements OnInit {
     // dialogConfig.autoFocus = true;
     dialogConfig.width = "80%";
     dialogConfig.maxHeight=window.innerHeight-50 + 'px';
-    this.dialog.open(AjoutCommentaireComponent, dialogConfig);
+    this.dialog.open(AjoutCommentaireComponent, dialogConfig).afterClosed().subscribe(
+      data=>{
+        this.refrechCommentaires();
+      }
+    );
   }
 
 }

@@ -3,14 +3,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 var cors= require('cors');
-const commercantsRoutes = require("./routes/commercants");
-const usersRoutes = require("./routes/users");
+const commercantsRoutes = require("./controller/commercants");
+const usersRoutes = require("./controller/users");
 
-const historiqueRoute = require("./routes/historique.route");
-const paysRoute = require ("./routes/pays");
-const categoriesRoute = require('./routes/categorie.route');
-const souscategoriesRoute = require('./routes/souscategorie.route');
-const commentairesRoute = require('./routes/commentaires');
+const historiqueRoute = require("./controller/historique.route");
+const paysRoute = require ("./controller/pays");
+const categoriesRoute = require('./controller/categorie.route');
+const souscategoriesRoute = require('./controller/souscategorie.route');
+const commentairesRoute = require('./controller/commentaires');
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/stage").then(

@@ -28,7 +28,7 @@ import {
   MatSlideToggleModule,
   MatSelectModule,
   MatProgressBarModule,
-  MatBadgeModule,
+  MatBadgeModule, MatDialogRef, MAT_DIALOG_DATA,
 
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -118,7 +118,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
+    },
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
   ],
   bootstrap: [AppComponent]
 })
