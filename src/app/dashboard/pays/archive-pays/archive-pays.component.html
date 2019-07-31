@@ -42,7 +42,7 @@
 
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
-        <td  *matCellDef="let row" >
+        <td mat-cell *matCellDef="let row" >
           <button matTooltip="modifier cepays" mat-icon-button (click) = "openDialog2(row._id)" ><mat-icon>undo</mat-icon> </button>
           <button matTooltip="Vous allez archiver ce pays " mat-icon-button color="warn"  (click) = "openDialog(row._id)"><mat-icon>delete_outline</mat-icon></button>
         </td>
