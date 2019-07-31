@@ -43,9 +43,9 @@ categoriesRoutes.post(
       CategoriePriority:req.body.CategoriePriority,
       CategorieImage: url + "/images/" + req.file.filename
     });
-    post.save().then(createdCommercant => {
+    post.save().then(createdcategorie => {
       res.status(201).json({
-        message: "Post added successfully",
+        message: "categorie added successfully",
 
       });
     });
