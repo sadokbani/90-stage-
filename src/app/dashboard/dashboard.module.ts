@@ -33,6 +33,7 @@ import {ClientComponent, } from './users/client/client.component';
 import { CommercantComponent } from './users/commercant/commercant.component';
 import {ArchiveComponent, } from './users/archive/archive.component';
 import { CategorieComponent, } from './categorie/categorie.component';
+// import { AgmCoreModule } from '@agm/core';
 
 import {
 
@@ -92,8 +93,10 @@ import { AjoutCommentaireComponent } from './commentaire/ajout-commentaire/ajout
     MatChipsModule,
     MatStepperModule,
     // CountryPickerModule.forRoot(),
-
-
+    //
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyBWrWJu1kBCyajc-V43pBJR-vAbycFoILM'
+    // }),
     MatTabsModule, MatMenuModule,
     RouterModule.forChild(DashboardRoutes)
   ],

@@ -29,6 +29,24 @@ paysRoutes.route('/').get(function (req, res) {
   });
 });
 
+
+
+// use API of countries
+// const Countries = require('countries-api');
+//
+// paysRoutes.get("/aaaa", (req, res, next) =>{
+//
+//   res.json(Countries.findAll());
+// });
+//
+//
+// paysRoutes.get("/aaaa/:lat/:long", (req, res, next) =>{
+//   console.log(req.params.lat.toString());
+//   console.log(req.params.long);
+//
+//   res.json(Countries.findByLatLong([parseFloat(req.params.lat), parseFloat(req.params.long)]).data);
+// });
+
 paysRoutes.route('/archive').get(function (req, res) {
   Pays.find({valide: 0},function (err,pays){
     if(err){
