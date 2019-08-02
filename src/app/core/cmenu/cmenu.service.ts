@@ -29,7 +29,7 @@ const MENUITEMS = [
   },
   {
     state: 'client',
-    name: 'Utilisateurs ',
+    name: 'Clients ',
     type: 'link',
     icon: 'supervised_user_circle'
   }
