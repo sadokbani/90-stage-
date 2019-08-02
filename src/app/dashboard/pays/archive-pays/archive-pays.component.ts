@@ -61,12 +61,12 @@ export class ArchivePaysComponent implements OnInit {
   }
   openDialog(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment supprimer ce pays',
+      title: 'vous voulez vraiment supprimer ce pays ?',
       text: '',
-      type: 'warning',
+      type: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -74,11 +74,12 @@ export class ArchivePaysComponent implements OnInit {
         this.paysService.delete(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'ce pays a été supprimé',
-              '',
-              'success'
-            )
+            swal.fire({
+              type: 'success',
+              title: 'ce pays a été supprimé',
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.refrechPays();
           }
         ) ; }
@@ -86,12 +87,12 @@ export class ArchivePaysComponent implements OnInit {
   }
   openDialog2(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment restaurer ce pays',
+      title: 'vous voulez vraiment restaurer ce pays ?',
       text: '',
-      type: 'warning',
+      type: '',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -99,11 +100,12 @@ export class ArchivePaysComponent implements OnInit {
         this.paysService.restaurerPays(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'ce pays a été restauré',
-              '',
-              'success'
-            )
+            swal.fire({
+              type: 'success',
+              title: 'ce pays a été restauré',
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.refrechPays();
           }
         ) ; }

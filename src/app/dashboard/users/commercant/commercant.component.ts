@@ -62,10 +62,10 @@ export class CommercantComponent implements OnInit {
     swal.fire({
       title: 'Erreur',
       text: "Vous devez remplir tous les champs et selectioner une image pour continuer",
-      type: 'warning',
+      type: 'error',
       showCancelButton: false,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'ok'
     }) ;

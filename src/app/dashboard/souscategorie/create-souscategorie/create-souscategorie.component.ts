@@ -46,10 +46,10 @@ export class CreateSouscategorieComponent implements OnInit {
     swal.fire({
       title: 'Erreur',
       text: "Vous devez remplir tous les champs  pour continuer",
-      type: 'warning',
+      type: 'error',
       showCancelButton: false,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
 
       confirmButtonText: 'ok'
     }) ;

@@ -59,12 +59,12 @@ export class ArchiveCategorieComponent implements OnInit {
   }
   openDialog(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment supprimer cette catégorie',
+      title: 'vous voulez vraiment supprimer cette catégorie',
       text: "",
-      type: 'warning',
+      type: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -72,11 +72,12 @@ export class ArchiveCategorieComponent implements OnInit {
         this.categorieService.delete(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'cette categorie a été supprimer',
-              '',
-              'success'
-            );
+            swal.fire({
+              type: 'success',
+              title: 'cette categorie a été supprimé',
+              showConfirmButton: false,
+              timer: 1500
+            });
             this.refrechCategories();
             console.log(this.dataSource.data.length);
             if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/categorie']);
@@ -86,12 +87,12 @@ export class ArchiveCategorieComponent implements OnInit {
   }
   openDialog_rest(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment restaurer cette  catégorie',
+      title: 'vous voulez vraiment restaurer cette  catégorie',
       text: "",
-      type: 'warning',
+      type: '',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -99,11 +100,13 @@ export class ArchiveCategorieComponent implements OnInit {
         this.categorieService.restaurerCategorie(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'cette  categorie a été restauré',
-              '',
-              'success'
-            );
+
+            swal.fire({
+              type: 'success',
+              title: 'cette categorie a été restauré',
+              showConfirmButton: false,
+              timer: 1500
+            });
             this.refrechCategories();
             console.log(this.dataSource.data.length);
 

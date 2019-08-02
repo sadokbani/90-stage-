@@ -47,7 +47,7 @@
       <div class="form-group">
         <button matTooltip=" Retour au liste des categories, toutes les modification seront perdues" routerLink="/admin/categorie" style="margin-left: 5px; float: right;"  mat-raised-button>Annuler
         </button>
-        <button  matTooltip="Vous allez modifier les informations de cette catégorie" style="float: right" (click) = "updateCategorie()" type="submit" mat-raised-button color="primary"
+        <button  matTooltip="Vous allez modifier les informations de cette catégorie" style="float: right" (click) = "updateCategorie()" type="submit" mat-raised-button class="mat-deep-purple-A200"
                 [disabled]="angForm.invalid" >
           Modifier la categorie
         </button>

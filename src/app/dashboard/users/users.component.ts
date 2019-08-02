@@ -65,12 +65,12 @@ export class UsersComponent implements OnInit {
 
   openDialog(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment archiver ce client',
+      title: 'vous voulez vraiment archiver ce client ?',
       text: "",
-      type: 'warning',
+      type: '',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -78,11 +78,12 @@ export class UsersComponent implements OnInit {
         this.userService.archiveUser(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'ce client a été archivé',
-              '',
-              'success'
-            );
+            swal.fire({
+              type: 'success',
+              title: 'ce client a été archivé',
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.refrechUsers();
           }
         );

@@ -81,12 +81,12 @@ export class SouscategorieComponent implements OnInit {
   }
   openDialog(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment archiver cette sous catégorie',
+      title: 'vous voulez vraiment archiver cette sous catégorie ?',
       text: "",
-      type: 'warning',
+      type: '',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -94,11 +94,12 @@ export class SouscategorieComponent implements OnInit {
         this.categorieService.archiverSousCategorie(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'cette sous categorie a été archivé',
-              '',
-              'success'
-            )
+            swal.fire({
+              type: 'success',
+              title: 'cette sous categorie a été archivé',
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.refrechCategories();
           }
         ) ; }

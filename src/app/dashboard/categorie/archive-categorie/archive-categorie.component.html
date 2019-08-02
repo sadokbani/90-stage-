@@ -30,9 +30,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Priorité </th>
         <td mat-cell *matCellDef="let row">
           <p>
-          <span matBadge="{{row.CategoriePriority}}" *ngIf="row.CategoriePriority <=3"  matBadgeColor="warn"  style="align-content: center"></span>
-          <span matBadge="{{row.CategoriePriority}}" *ngIf="  row.CategoriePriority <7  && row.CategoriePriority >3 "  matBadgeColor="accent"  style="align-content: center"></span>
-          <span matBadge="{{row.CategoriePriority}}" *ngIf="  row.CategoriePriority >=7 "  matBadgeColor="blue"  style="align-content: center"></span>
+          <span matBadge="{{row.CategoriePriority}}"  matBadgeColor="purple"   style="align-content: center"></span>
       </p>
         </td>
       </ng-container>
@@ -51,7 +49,7 @@
 
           <button matTooltip="Vous allez restaurer cette catégorie " mat-icon-button  matTooltip="Restaurer Categorie"
                 style=" float: left;"(click)="openDialog_rest(row._id)"   ><mat-icon >undo</mat-icon></button>
-          <button matTooltip="Vous allez supprimer cette catégorie definitivement" mat-icon-button color="warn" style=" float: left;" (click) = "openDialog(row._id)"><mat-icon>delete_outline</mat-icon></button>
+          <button matTooltip="Vous allez supprimer cette catégorie definitivement" mat-icon-button  style=" float: left;" (click) = "openDialog(row._id)"><mat-icon>delete_outline</mat-icon></button>
         </td>
 
       </ng-container>

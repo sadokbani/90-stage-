@@ -93,12 +93,12 @@ export class ArchiveSouscategorieComponent implements OnInit {
   }
   openDialog(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment supprimer cette sous catégorie',
+      title: 'vous voulez vraiment supprimer cette sous catégorie ?',
       text: "",
-      type: 'warning',
+      type: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -106,11 +106,12 @@ export class ArchiveSouscategorieComponent implements OnInit {
         this.categorieService.delete(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'cette sous categorie a été supprimer',
-              '',
-              'success'
-            )
+            swal.fire({
+              type: 'success',
+              title: 'cette sous categorie a été supprimé',
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.refrechCategories();
           }
         ) ; }
@@ -118,12 +119,12 @@ export class ArchiveSouscategorieComponent implements OnInit {
   }
   openDialog_rest(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment restaurer cette sous catégorie',
+      title: 'vous voulez vraiment restaurer cette sous catégorie ?',
       text: "",
-      type: 'warning',
+      type: '',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -131,11 +132,12 @@ export class ArchiveSouscategorieComponent implements OnInit {
         this.categorieService.restaurerSousCategorie(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'cette sous categorie a été restauré',
-              '',
-              'success'
-            )
+            swal.fire({
+              type: 'success',
+              title: 'cette sous categorie a été restauré',
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.refrechCategories();
           }
         ) ; }

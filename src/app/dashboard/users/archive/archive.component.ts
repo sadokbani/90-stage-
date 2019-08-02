@@ -57,12 +57,12 @@ export class ArchiveComponent implements OnInit {
 
   delete(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment supprimer ce client',
+      title: 'vous voulez vraiment supprimer ce client ?',
       text: "",
-      type: 'warning',
+      type: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -70,11 +70,12 @@ export class ArchiveComponent implements OnInit {
         this.userService.deleteUser(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'ce client a été supprimer',
-              '',
-              'success'
-            )
+            swal.fire({
+              type: 'success',
+              title: 'ce client a été supprimé',
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.refrechUsers();
           }
         ) ; }
@@ -82,12 +83,12 @@ export class ArchiveComponent implements OnInit {
   }
   restaurer(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment restaurer ce client',
+      title: 'vous voulez vraiment restaurer ce client ?',
       text: "",
-      type: 'warning',
+      type: '',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -95,11 +96,12 @@ export class ArchiveComponent implements OnInit {
         this.userService.restaurerUser(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'ce client a été restauré',
-              '',
-              'success'
-            )
+            swal.fire({
+              type: 'success',
+              title: 'ce client a été restauré',
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.refrechUsers();
           }
         ) ; }
