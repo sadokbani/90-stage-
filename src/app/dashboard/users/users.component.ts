@@ -58,8 +58,8 @@ export class UsersComponent implements OnInit {
 
 
   update(id, role) {
-    if (role == 2) this.router.navigate(['/client', id]);
-    if (role == 1) this.router.navigate(['/commercant', id]);
+    if (role == 2) this.router.navigate(['/admin/client', id]);
+    if (role == 1) this.router.navigate(['/admin/commercant', id]);
 
   }
 

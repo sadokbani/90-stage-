@@ -22,7 +22,7 @@ export class PaysService {
     this.http.post(`${this.uri}/add`, obj)
       .subscribe(res => {
         console.log('Done');
-        this.router.navigate(['pays']);
+        this.router.navigate(['admin/pays']);
       });
   }
 
@@ -62,7 +62,7 @@ export class PaysService {
       .put(`${this.uri}/update/${id}`, obj)
       .subscribe(res => {
         console.log('Done');
-        this.router.navigate(['pays']);
+        this.router.navigate(['admin/pays']);
 
       });
   }

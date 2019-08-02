@@ -29,6 +29,7 @@ export class ArchiveCategorieComponent implements OnInit {
   constructor(private  categorieService: CategorieService, private router: Router , public dialog: MatDialog ) {
   }
   ngOnInit() {
+
     this.paginator._intl.itemsPerPageLabel = 'nombre des catégorie à afficher par page';
     this.paginator._intl.nextPageLabel = 'page suivante';
     this.paginator._intl.previousPageLabel = 'page précédente ' ;
@@ -75,8 +76,10 @@ export class ArchiveCategorieComponent implements OnInit {
               'cette categorie a été supprimer',
               '',
               'success'
-            )
+            );
             this.refrechCategories();
+            console.log(this.dataSource.data.length);
+            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/categorie']);
           }
         ) ; }
     }) ;
@@ -100,8 +103,12 @@ export class ArchiveCategorieComponent implements OnInit {
               'cette  categorie a été restauré',
               '',
               'success'
-            )
+            );
             this.refrechCategories();
+            console.log(this.dataSource.data.length);
+
+            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/categorie']);
+
           }
         ) ; }
     }) ;

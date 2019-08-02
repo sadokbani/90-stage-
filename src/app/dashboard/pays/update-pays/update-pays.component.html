@@ -2,7 +2,7 @@
 <div style="margin-left: 20%; margin-right: 20%; margin-top: 5%">
   <mat-card>
     <mat-card-content>
-      <button matTooltip=" Retour au liste des pays, toutes les modification seront perdues" routerLink="/pays" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>undo</mat-icon>
+      <button matTooltip=" Retour au liste des pays, toutes les modification seront perdues" routerLink="/admin/pays" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>undo</mat-icon>
       </button>
       <form [formGroup]="angForm" novalidate>
 
@@ -51,7 +51,7 @@
         </div>
 
         <div class="form-group">
-          <button matTooltip=" Retour au liste des sous categories, toutes les modification seront perdues" routerLink="/pays" style="margin-left: 5px; float: right;"  mat-raised-button>Annuler
+          <button matTooltip=" Retour au liste des sous categories, toutes les modification seront perdues" routerLink="/admin/pays" style="margin-left: 5px; float: right;"  mat-raised-button>Annuler
           </button>
           <button  style=" float: right;"matTooltip="Vous allez modifier ce pays " (click) = "updatePays(angForm.value.Nom,  angForm.value.Priority)" type="submit" mat-raised-button color="primary"
                    [disabled]="angForm.invalid" >

@@ -24,7 +24,7 @@ export class HistoriqueServiceService {
     this.http.post(`${this.uri}/add`, obj)
       .subscribe(res => {
         console.log('Done');
-        this.router.navigate(['historique']);
+        this.router.navigate(['admin/historique']);
 
       });
   }

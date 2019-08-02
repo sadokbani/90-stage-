@@ -82,7 +82,7 @@ export class CategorieComponent implements OnInit {
             'cette categorie a été archivé',
             '',
             'success'
-          )
+          );
           this.refrechCategories();
         }
       ) ; }

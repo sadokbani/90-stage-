@@ -63,7 +63,7 @@ export class UserService {
       commercantData).subscribe(
       responseData =>{
         console.log(responseData);
-        this.router.navigate(['/users']);
+        this.router.navigate(['/admin/users']);
       }
     );
   }
@@ -79,7 +79,7 @@ export class UserService {
       clientData).subscribe(
       responseData =>{
         console.log(responseData);
-        this.router.navigate(['/users']);
+        this.router.navigate(['/admin/users']);
       }
     );
   }
@@ -96,7 +96,7 @@ export class UserService {
       clientData).subscribe(
       responseData =>{
         console.log(responseData);
-        this.router.navigate(['/users']);
+        this.router.navigate(['/admin/users']);
       }
     );
   }
@@ -111,7 +111,7 @@ export class UserService {
       }).subscribe(
       responseData =>{
         console.log(responseData);
-        this.router.navigate(['/users']);
+        this.router.navigate(['/admin/users']);
       }
     );
   }
@@ -126,7 +126,7 @@ export class UserService {
       clientData).subscribe(
       responseData =>{
         console.log(responseData);
-        this.router.navigate(['/users']);
+        this.router.navigate(['/admin/users']);
       }
     );
   }
@@ -140,7 +140,7 @@ export class UserService {
       }).subscribe(
       responseData =>{
         console.log(responseData);
-        this.router.navigate(['/users']);
+        this.router.navigate(['/admin/users']);
       }
     );
   }

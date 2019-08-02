@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent, AuthLayoutComponent } from './core';
 import {AuthGaurdService} from './auth-gaurd.service';
+import {CommercantLayoutComponent} from './core/commercant-layout/commercant-layout.component';
+import {AuthGardComService} from './auth-gard-com.service';
 
 export const AppRoutes: Routes = [
   {
@@ -9,8 +11,17 @@ export const AppRoutes: Routes = [
   component: AdminLayoutComponent,
     canActivate:[AuthGaurdService],
   children: [{
-    path: '',
+    path: 'admin',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
+  }]
+},
+{
+  path: '',
+  component: CommercantLayoutComponent,
+  canActivate:[AuthGardComService],
+  children: [{
+    path: 'commer',
+    loadChildren: './dash-commercant/dash-commercant.module#DashCommercantModule'
   }]
 },
 
@@ -22,10 +33,10 @@ export const AppRoutes: Routes = [
     loadChildren: './session/session.module#SessionModule'
   }]
 },
-  {
-  path: '**',
-  redirectTo: 'session/404'
-},
+//   {
+//   path: '**',
+//   redirectTo: 'session/404'
+// },
 
 
 

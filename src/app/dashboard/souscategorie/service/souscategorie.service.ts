@@ -17,7 +17,7 @@ export class SouscategorieService {
     };
     console.log(obj);
     this.http.post(`${this.uri}/add`, obj)
-      .subscribe(res => { console.log('Done'); this.router.navigate(['souscategories']);});
+      .subscribe(res => { console.log('Done'); this.router.navigate(['admin/souscategories']);});
   }
   getSousCategorie() {
     return this
@@ -63,7 +63,7 @@ export class SouscategorieService {
       .put(`${this.uri}/update/${id}`, obj)
       .subscribe(res => {
         console.log('Done');
-        this.router.navigate(['souscategories']);
+        this.router.navigate(['admin/souscategories']);
 
       });
   }

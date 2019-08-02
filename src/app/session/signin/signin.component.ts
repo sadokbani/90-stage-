@@ -23,6 +23,7 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {
     sessionStorage.removeItem('admin');
+    sessionStorage.removeItem('commercant');
     this.form = this.fb.group({
       email: [null, Validators.compose([Validators.required, Validators.email])],
       password: [null, Validators.compose([Validators.required])]
@@ -42,7 +43,11 @@ export class SigninComponent implements OnInit {
     if (this.form.valid){
       if(this.form.value.email == 'admin@gmail.com' && this.form.value.password=='admin'){
         sessionStorage.setItem('admin', '0');
-        this.router.navigate(['']);
+        this.router.navigate(['/admin/accueil']);
+      }
+      else if(this.form.value.email == 'commercant@gmail.com' && this.form.value.password=='admin'){
+        sessionStorage.setItem('commercant', '0');
+        this.router.navigate(['/commer/accueil']);
       }
       else {
         this.islogin=true;

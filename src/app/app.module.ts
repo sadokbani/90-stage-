@@ -49,6 +49,10 @@ import {
 
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
+import { DashCommercantComponent } from './dash-commercant/dash-commercant.component';
+import { CommercantLayoutComponent } from './core/commercant-layout/commercant-layout.component';
+import { SidebarcComponent } from './core/sidebarc/sidebarc.component';
+import { CmenuComponent } from './core/cmenu/cmenu.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -75,6 +79,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective,
+    CommercantLayoutComponent,
+    SidebarcComponent,
+    CmenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,4 +131,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+}

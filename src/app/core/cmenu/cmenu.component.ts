@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import { MenuService } from './menu.service';
-
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit } from '@angular/core';
+import {CmenuService} from './cmenu.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-menu',
+  selector: 'app-cmenu',
   template: `
     <mat-nav-list appAccordion class="navigation">
-      <mat-list-item appAccordionLink *ngFor="let menuitem of menuService.getAll()" group="{{menuitem.state}}">
-        <a appAccordionToggle class="relative" [routerLink]="['/admin', menuitem.state]" *ngIf="menuitem.type === 'link'">
+      <mat-list-item appAccordionLink *ngFor="let menuitem of cmenuService.getAll()" group="{{menuitem.state}}">
+        <a appAccordionToggle class="relative" [routerLink]="['/commer', menuitem.state]" *ngIf="menuitem.type === 'link'">
           <mat-icon>{{ menuitem.icon }}</mat-icon>
           <span>{{ menuitem.name | translate }}</span>
           <span fxFlex></span>
@@ -40,18 +39,18 @@ import { TranslateService } from '@ngx-translate/core';
         </mat-nav-list>
       </mat-list-item>
     </mat-nav-list>`,
-  providers: [MenuService]
+  providers: [CmenuService]
 })
-export class MenuComponent {
+export class CmenuComponent  {
   currentLang = 'en';
 
   constructor(
-    public menuService: MenuService,
+    public cmenuService: CmenuService,
     public translate: TranslateService
   ) {}
 
   addMenuItem(): void {
-    this.menuService.add({
+    this.cmenuService.add({
       state: 'menu',
       name: 'MENU',
       type: 'sub',

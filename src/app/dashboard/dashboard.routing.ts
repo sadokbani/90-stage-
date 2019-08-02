@@ -21,25 +21,33 @@ import {ArchivePaysComponent} from './pays/archive-pays/archive-pays.component';
 import {CommentaireComponent} from './commentaire/commentaire.component';
 import {CommentaireDesacComponent} from './commentaire/commentaire-desac/commentaire-desac.component';
 
+
 export const DashboardRoutes: Routes = [
-  {path: '', component: DashboardComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'archive', component: ArchiveComponent},
-  {path: 'client/:id', component: ClientComponent},
-  {path: 'commercant/:id', component: CommercantComponent},
-  {path: 'categorie', component: CategorieComponent},
-  {path: 'categories/create', component: CreateCategorieComponent},
-  {path: 'categories/edit/:id', component: UpdateCategorieComponent},
-  {path: 'souscategories/create', component: CreateSouscategorieComponent },
-  {path: 'souscategories', component: SouscategorieComponent },
-  {path: 'editSC/:id', component: UpdateSouscategorieComponent },
-  {path: 'archive_categorie', component:  ArchiveCategorieComponent },
-  {path: 'archive_souscategorie', component: ArchiveSouscategorieComponent },
-  {path: 'historique', component: HistoriqueAchatsComponent },
-  {path: 'pays', component: PaysComponent },
-  {path: 'archive_pays', component: ArchivePaysComponent},
-  {path: 'pays/create', component: CreatePaysComponent},
-  {path: 'pays/edit/:id', component: UpdatePaysComponent},
-  {path: 'commentaire', component: CommentaireComponent},
-  {path: 'commentaireDesc', component: CommentaireDesacComponent},
+
+  {
+    path: '',
+    children: [
+      {path: 'accueil', component: DashboardComponent},
+      {path: 'users', component: UsersComponent},
+      {path: 'archive', component: ArchiveComponent},
+      {path: 'client/:id', component: ClientComponent},
+      {path: 'commercant/:id', component: CommercantComponent},
+      {path: 'categorie', component: CategorieComponent},
+      {path: 'categories/create', component: CreateCategorieComponent},
+      {path: 'categories/edit/:id', component: UpdateCategorieComponent},
+      {path: 'souscategories/create', component: CreateSouscategorieComponent },
+      {path: 'souscategories', component: SouscategorieComponent },
+      {path: 'editSC/:id', component: UpdateSouscategorieComponent },
+      {path: 'archive_categorie', component:  ArchiveCategorieComponent },
+      {path: 'archive_souscategorie', component: ArchiveSouscategorieComponent },
+      {path: 'historique', component: HistoriqueAchatsComponent },
+      {path: 'pays', component: PaysComponent },
+      {path: 'archive_pays', component: ArchivePaysComponent},
+      {path: 'pays/create', component: CreatePaysComponent},
+      {path: 'pays/edit/:id', component: UpdatePaysComponent},
+      {path: 'commentaire', component: CommentaireComponent},
+      {path: 'commentaireDesc', component: CommentaireDesacComponent},
+    ]
+  }
+
 ];

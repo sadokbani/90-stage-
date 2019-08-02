@@ -29,7 +29,7 @@ export class CategorieService {
     this.http.post(`${this.uri}/add`, obj)
       .subscribe(res => {
         console.log('Done');
-        this.router.navigate(['categorie']);
+        this.router.navigate(['admin/categorie']);
 
       });
   }
@@ -67,7 +67,7 @@ export class CategorieService {
       clientData).subscribe(
       responseData =>{
         console.log(responseData);
-        this.router.navigate(['/categorie']);
+        this.router.navigate(['admin/categorie']);
       }
     );
   }
@@ -82,7 +82,7 @@ export class CategorieService {
       }).subscribe(
       responseData =>{
         console.log(responseData);
-        this.router.navigate(['/categorie']);
+        this.router.navigate(['admin/categorie']);
       }
     );
   }

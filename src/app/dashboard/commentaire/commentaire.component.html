@@ -1,7 +1,7 @@
 <div style="margin: 30px">
 
   <button class="mat-blue-A400" (click)="ajouter()" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Commentaire</button>
-  <button  matTooltip="consulter les commentaires désactiver" routerLink="/commentaireDesc" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>list_alt</mat-icon> Liste des commentaires désactivées</button>
+  <button  matTooltip="consulter les commentaires désactiver" routerLink="/admin/commentaireDesc" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>list_alt</mat-icon> Liste des commentaires désactivées</button>
 
   <mat-form-field>
     <input [(ngModel)]="value" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" autocomplete="off">
