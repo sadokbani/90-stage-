@@ -83,7 +83,7 @@ export class SouscategorieComponent implements OnInit {
     swal.fire({
       title: 'vous voulez vraiment archiver cette sous catégorie ?',
       text: "",
-      type: '',
+      type: 'error',
       showCancelButton: true,
       confirmButtonColor: '#64638f',
       cancelButtonColor: '#9795cf',

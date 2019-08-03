@@ -48,7 +48,7 @@ export class CommentaireDesacComponent implements OnInit {
     swal.fire({
       title: 'voulez-vous vraiment activer cette commentaire',
       text: "",
-      type: 'warning',
+      type: 'info',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -65,6 +65,7 @@ export class CommentaireDesacComponent implements OnInit {
               'success'
             );
             this.refrechCommentaires();
+            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/commentaire']);
           }
         );
       }

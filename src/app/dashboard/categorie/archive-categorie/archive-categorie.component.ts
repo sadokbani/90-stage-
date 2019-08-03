@@ -89,7 +89,7 @@ export class ArchiveCategorieComponent implements OnInit {
     swal.fire({
       title: 'vous voulez vraiment restaurer cette  catégorie',
       text: "",
-      type: '',
+      type: 'info',
       showCancelButton: true,
       confirmButtonColor: '#64638f',
       cancelButtonColor: '#9795cf',

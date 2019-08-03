@@ -66,8 +66,8 @@ export class UsersComponent implements OnInit {
   openDialog(id): void {
     swal.fire({
       title: 'vous voulez vraiment archiver ce client ?',
-      text: "",
-      type: '',
+      text: '',
+      type: 'error',
       showCancelButton: true,
       confirmButtonColor: '#64638f',
       cancelButtonColor: '#9795cf',
@@ -83,7 +83,7 @@ export class UsersComponent implements OnInit {
               title: 'ce client a été archivé',
               showConfirmButton: false,
               timer: 1500
-            })
+            });
             this.refrechUsers();
           }
         );

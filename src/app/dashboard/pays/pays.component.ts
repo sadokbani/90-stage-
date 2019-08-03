@@ -61,7 +61,7 @@ export class PaysComponent implements OnInit {
     swal.fire({
       title: 'vous voulez vraiment archiver ce pays ?',
       text: '',
-      type: '',
+      type: 'error',
       showCancelButton: true,
       confirmButtonColor: '#64638f',
       cancelButtonColor: '#9795cf',
@@ -77,7 +77,7 @@ export class PaysComponent implements OnInit {
               title: 'ce pays a été archivé',
               showConfirmButton: false,
               timer: 1500
-            })
+            });
             this.refrechPays();
           }
         ) ; }

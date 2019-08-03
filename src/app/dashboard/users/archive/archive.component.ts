@@ -75,8 +75,10 @@ export class ArchiveComponent implements OnInit {
               title: 'ce client a été supprimé',
               showConfirmButton: false,
               timer: 1500
-            })
+            });
             this.refrechUsers();
+            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/users']);
+
           }
         ) ; }
     }) ;
@@ -84,8 +86,8 @@ export class ArchiveComponent implements OnInit {
   restaurer(id): void {
     swal.fire({
       title: 'vous voulez vraiment restaurer ce client ?',
-      text: "",
-      type: '',
+      text: '',
+      type: 'info',
       showCancelButton: true,
       confirmButtonColor: '#64638f',
       cancelButtonColor: '#9795cf',
@@ -101,11 +103,15 @@ export class ArchiveComponent implements OnInit {
               title: 'ce client a été restauré',
               showConfirmButton: false,
               timer: 1500
-            })
+            });
             this.refrechUsers();
+            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/users']);
+
           }
         ) ; }
     }) ;
+
+
   }
 
 

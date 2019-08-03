@@ -111,8 +111,9 @@ export class ArchiveSouscategorieComponent implements OnInit {
               title: 'cette sous categorie a été supprimé',
               showConfirmButton: false,
               timer: 1500
-            })
+            });
             this.refrechCategories();
+            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/souscategories']);
           }
         ) ; }
     }) ;
@@ -121,7 +122,7 @@ export class ArchiveSouscategorieComponent implements OnInit {
     swal.fire({
       title: 'vous voulez vraiment restaurer cette sous catégorie ?',
       text: "",
-      type: '',
+      type: 'info',
       showCancelButton: true,
       confirmButtonColor: '#64638f',
       cancelButtonColor: '#9795cf',
@@ -137,8 +138,9 @@ export class ArchiveSouscategorieComponent implements OnInit {
               title: 'cette sous categorie a été restauré',
               showConfirmButton: false,
               timer: 1500
-            })
+            });
             this.refrechCategories();
+            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/souscategories']);
           }
         ) ; }
     }) ;

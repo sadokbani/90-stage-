@@ -66,8 +66,8 @@ export class CategorieComponent implements OnInit {
   openDialog(id): void {
     swal.fire({
       title: 'vous voulez vraiment archiver cette catégorie ?',
-      text: "",
-      type: 'danger',
+      text: '',
+      type: 'error',
       showCancelButton: true,
       confirmButtonColor: '#64638f',
       cancelButtonColor: '#9795cf',
@@ -83,7 +83,7 @@ export class CategorieComponent implements OnInit {
             title: 'cette categorie a été archivé',
             showConfirmButton: false,
             timer: 1500
-          })
+          });
           this.refrechCategories();
         }
       ) ; }

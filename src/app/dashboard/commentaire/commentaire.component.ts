@@ -79,7 +79,7 @@ export class CommentaireComponent implements OnInit {
     swal.fire({
       title: 'voulez-vous vraiment supprimer cette commentaire',
       text: "",
-      type: 'warning',
+      type: 'error',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',

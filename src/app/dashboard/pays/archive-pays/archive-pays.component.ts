@@ -79,8 +79,9 @@ export class ArchivePaysComponent implements OnInit {
               title: 'ce pays a été supprimé',
               showConfirmButton: false,
               timer: 1500
-            })
+            });
             this.refrechPays();
+            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/pays']);
           }
         ) ; }
     }) ;
@@ -89,7 +90,7 @@ export class ArchivePaysComponent implements OnInit {
     swal.fire({
       title: 'vous voulez vraiment restaurer ce pays ?',
       text: '',
-      type: '',
+      type: 'info',
       showCancelButton: true,
       confirmButtonColor: '#64638f',
       cancelButtonColor: '#9795cf',
@@ -105,8 +106,10 @@ export class ArchivePaysComponent implements OnInit {
               title: 'ce pays a été restauré',
               showConfirmButton: false,
               timer: 1500
-            })
+            });
             this.refrechPays();
+            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/pays']);
+
           }
         ) ; }
     }) ;
