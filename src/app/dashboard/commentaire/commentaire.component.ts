@@ -78,12 +78,12 @@ export class CommentaireComponent implements OnInit {
 
  supprimer(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment supprimer cette commentaire',
+      title: 'vous voulez vraiment supprimer cette commentaire ?',
       text: "",
       type: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -91,11 +91,12 @@ export class CommentaireComponent implements OnInit {
         this.commentaireService.deleteComment(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'cette commentaire a été supprimé',
-              '',
-              'success'
-            );
+            swal.fire({
+              type: 'success',
+              title: 'ce commentaire a été supprimé',
+              showConfirmButton: false,
+              timer: 1500
+            });
             this.refrechCommentaires();
           }
         );
