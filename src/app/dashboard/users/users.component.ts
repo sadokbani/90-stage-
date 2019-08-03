@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit {
   }
 
   openDialog(id): void {
-    swal.fire({
+      swal.fire({
       title: 'vous voulez vraiment archiver ce client ?',
       text: '',
       type: 'error',

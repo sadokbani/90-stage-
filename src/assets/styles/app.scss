@@ -18,9 +18,15 @@
   /*change color of underline*/
   background-color: purple !important;
 }
-.mat-form-field-ripple {
+ .mat-input-invalid  {
   /*change color of underline when focused*/
   background-color: red !important;;
 }
+.mat-form-field-ripple  {
+  /*change color of underline when focused*/
+  background-color: purple !important;;
+}
+
+
 
 
