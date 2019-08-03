@@ -46,12 +46,12 @@ export class CommentaireDesacComponent implements OnInit {
 
   activer(id): void {
     swal.fire({
-      title: 'voulez-vous vraiment activer cette commentaire',
+      title: 'vous voulez vraiment activer cette commentaire ?',
       text: "",
       type: 'info',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
@@ -59,11 +59,12 @@ export class CommentaireDesacComponent implements OnInit {
         this.commentaireService.activerComments(id).subscribe(
           data => {
             console.log(data);
-            swal.fire(
-              'cette commentaire a été activé',
-              '',
-              'success'
-            );
+            swal.fire({
+              type: 'success',
+              title: 'ce commentaire a été activé',
+              showConfirmButton: false,
+              timer: 1500
+            });
             this.refrechCommentaires();
             if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['admin/commentaire']);
           }

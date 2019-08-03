@@ -6,6 +6,7 @@ import { MatDialog, } from '@angular/material';
 import {PaysService} from './service/pays.service';
 import {Router} from '@angular/router';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MatPaginatorIntl} from '@angular/material';
 import swal from 'sweetalert2';
 
 
@@ -21,7 +22,10 @@ export class Pays {
   templateUrl: './pays.component.html',
   styleUrls: ['./pays.component.scss']
 })
+
+
 export class PaysComponent implements OnInit {
+
   displayedColumns: string[] = [ 'pays', 'priority', 'action'];
   dataSource = new MatTableDataSource<Pays>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,6 +39,10 @@ export class PaysComponent implements OnInit {
     this.paginator._intl.previousPageLabel = 'page précédente ' ;
     this.paginator._intl.lastPageLabel = 'dernière page';
     this.paginator._intl.firstPageLabel = 'première page' ;
+    this.paginator.showFirstLastButtons = true;
+
+
+
     this.refrechPays();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
