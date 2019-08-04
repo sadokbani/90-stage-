@@ -28,11 +28,24 @@ const MENUITEMS = [
     icon: 'dashboard'
   },
   {
+    state: 'promotion',
+    name: 'Promotion ',
+    type: 'link',
+    icon: 'shopping_cart'
+  },
+  {
     state: 'client',
     name: 'Clients ',
     type: 'link',
     icon: 'supervised_user_circle'
-  }
+  },
+  {
+    state: 'historique',
+    name: 'Historique ',
+    type: 'link',
+    icon: 'update'
+  },
+
 ];
 
 @Injectable()

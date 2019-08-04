@@ -1,6 +1,6 @@
 <div style="margin: 30px">
   <div>
-    <button matTooltip="Consulter la liste des sous catégories" routerLink="/admin/souscategories"  style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon></button>
+    <button matTooltip=" liste des sous catégories" routerLink="/admin/souscategories"  style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon></button>
   </div>
 <br> <br>
   <mat-form-field>
@@ -48,8 +48,8 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td mat-cell *matCellDef="let row" >
-          <button matTooltip="Vous allez restaurer cette sous catégorie " mat-icon-button  (click) = "openDialog_rest(row._id)" ><mat-icon>undo</mat-icon> </button>
-          <button matTooltip="Vous allez supprimer cette sous catégorie definitivement" mat-icon-button (click) = "openDialog(row._id)"><mat-icon>delete_outline</mat-icon></button>
+          <button matTooltip=" restaurer " mat-icon-button  (click) = "openDialog_rest(row._id)" ><mat-icon>undo</mat-icon> </button>
+          <button matTooltip="supprimer definitivement" mat-icon-button (click) = "openDialog(row._id)"><mat-icon>delete_outline</mat-icon></button>
         </td>
       </ng-container>
 
