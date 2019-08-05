@@ -53,6 +53,13 @@ const MENUITEMS = [
 
   },
   {
+    state: 'promotions',
+    name: 'Promotion',
+    type: 'link',
+    icon: 'panorama'
+
+  },
+  {
     state: 'commentaire',
     name: 'Commentaire',
     type: 'link',

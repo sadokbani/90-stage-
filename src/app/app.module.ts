@@ -8,6 +8,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CountryPickerModule } from 'angular2-countrypicker';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -104,7 +105,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatMenuModule,
     MatCheckboxModule,
     MatIconModule,
-
+    MatDatepickerModule,
     MatButtonModule,
     MatToolbarModule,
     MatTabsModule,
