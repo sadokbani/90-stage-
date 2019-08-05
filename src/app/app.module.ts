@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { CountryPickerModule } from 'angular2-countrypicker';
+
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
@@ -86,7 +86,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   imports: [
     BrowserModule,
-    CountryPickerModule.forRoot(),
+
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
     FormsModule,
