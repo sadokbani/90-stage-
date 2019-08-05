@@ -1,13 +1,77 @@
-<input matInput type="datetime-local" [(ngModel)]="filterDateFrom" />
-<button (click)="aa()">try</button>
+<div style="margin: 30px">
+  <div>
 
-<br><br><br><br><br><br><br>
-<mat-form-field>
-  <input matInput [(ngModel)]="aaa" [matDatepicker]="picker" placeholder="Choose a date">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
+    <button class="mat-purple-A700" routerLink="/admin/promotion/-1" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter une promotion</button>
+    <button  matTooltip="list des promotions desactivés" routerLink="/admin/archive" style="margin-bottom: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
+
+  </div>
 
 
 
-<input type="file" #filePicker (change)="onImagePicked($event)" multiple>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+
+
+      <ng-container matColumnDef="commercant">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Commerçant</th>
+        <td mat-cell *matCellDef="let row"> {{row.commercant}}</td>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="categorieNom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de categorie </th>
+        <td mat-cell *matCellDef="let row"> {{row.categorieNom}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="SousCategorieNom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de sous categorie </th>
+        <td mat-cell *matCellDef="let row"> <p *ngFor="let souscat of row.SousCategorieNom">{{souscat}}</p></td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="promotionNom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de promotion </th>
+        <td mat-cell *matCellDef="let row" > {{row.promotionNom}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="adresse">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </th>
+        <td mat-cell *matCellDef="let row" > {{row.adresse}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <td mat-cell *matCellDef="let row" > {{row.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Images </th>
+        <!--<td mat-cell *matCellDef="let row"> {{row.imagePath}} </td>-->
+        <td style="padding: 5px" mat-cell *matCellDef="let row" > <img *ngFor="let img of row.imagePath" style="width: 90px; height: 90px; margin: 10px" src="{{img}}"> </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+        <td mat-cell *matCellDef="let row" >
+          <button matTooltip="modifier" mat-icon-button ><mat-icon>edit</mat-icon></button>
+          <button matTooltip=" archiver  " mat-icon-button ><mat-icon>delete_sweep</mat-icon></button>
+        </td>
+
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
+

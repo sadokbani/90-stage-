@@ -29,9 +29,19 @@ export class PromotionService {
       promotionData).subscribe(
       (responseData:any) =>{
         console.log(responseData);
-        this.http.put(`http://localhost:3000/promotion/validation/${time}/${responseData.promotion.createdPromo._id}`,null).subscribe();
+        this.http.put(`http://localhost:3000/promotion/activation/${time}/${responseData.promotion.createdPromo._id}`,null).subscribe(
+          response=>{
+            this.http.put(`http://localhost:3000/promotion/desactivation/${responseData.promotion.createdPromo._id}`,null).subscribe();
+          }
+        );
         this.router.navigate(['/admin/promotions']);
       }
     );
   }
+
+
+  retriveAllpromotion(){
+    return this.http.get<{message:string, promotions:any}>("http://localhost:3000/promotion");
+  }
+
 }

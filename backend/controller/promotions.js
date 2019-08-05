@@ -74,13 +74,23 @@ router.get("", (req, res, next) => {
 });
 
 
-router.put("/validation/:time/:id", (req, res, next) => {
+router.put("/activation/:time/:id", (req, res, next) => {
   setTimeout(()=>{
     Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, doc) {
       if (err) return next(err);
       res.send(doc);
     });
   }, req.params.time);
+
+
+});
+router.put("/desactivation/:id", (req, res, next) => {
+  setTimeout(()=>{
+    Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
+      if (err) return next(err);
+      res.send(doc);
+    });
+  }, 5400000);
 
 
 });
