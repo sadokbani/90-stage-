@@ -9,23 +9,23 @@ export class ClientService {
   constructor(private http: HttpClient,
               private router: Router) { }
   retriveAllUsers(){
-    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/tous");
+    return this.http.get<{message:string, users:any}>("http://localhost:3000/client_commercant/valide/client");
   }
 
   retriveAllUsersArchive(){
-    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/archive/tous");
+    return this.http.get<{message:string, users:any}>("http://localhost:3000/client_commercant/archive/client");
   }
 
   archiveUser(id) {
-    return this.http.put(`http://localhost:3000/user/archive/${id}`,null);
+    return this.http.put(`http://localhost:3000/client_commercant/archive/${id}`,null);
   }
 
   restaurerUser(id) {
-    return this.http.put(`http://localhost:3000/user/restaurer/${id}`,null);
+    return this.http.put(`http://localhost:3000/client_commercant/restaurer/${id}`,null);
   }
 
   deleteUser(id) {
-    return this.http.delete(`http://localhost:3000/user/${id}`);
+    return this.http.delete(`http://localhost:3000/client_commercant/${id}`);
   }
 
 

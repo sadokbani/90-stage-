@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MatSort, MatTableDataSource, MatPaginator, MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Router} from '@angular/router';
-import {UserService} from './service/client.service
 import swal from "sweetalert2";
 import {ClientService} from './service/client.service';
 
