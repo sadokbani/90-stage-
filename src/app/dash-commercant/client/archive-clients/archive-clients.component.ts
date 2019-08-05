@@ -15,7 +15,7 @@ export class ArchiveClientsComponent implements OnInit {
   selected = '1';
 
   displayedColumns: string[] = ['imagePath', 'nom', 'email', 'nombreJeton', 'role', 'dateCreation', 'actions' ];
-  dataSource= new MatTableDataSource<any>();
+  dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -58,7 +58,6 @@ export class ArchiveClientsComponent implements OnInit {
   delete(id): void {
     swal.fire({
       title: 'vous voulez vraiment supprimer ce client ?',
-      text: "",
       type: 'error',
       showCancelButton: true,
       confirmButtonColor: '#64638f',
@@ -77,7 +76,7 @@ export class ArchiveClientsComponent implements OnInit {
               timer: 1500
             });
             this.refrechUsers();
-            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['commer/client']);
+            if (this.dataSource.data.length-1 == 0 ) {this.router.navigate(['commer/client']) };
 
           }
         ) ; }
@@ -94,7 +93,7 @@ export class ArchiveClientsComponent implements OnInit {
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {
-      if (result.value){
+      if (result.value) {
         this.userService.restaurerUser(id).subscribe(
           data => {
             console.log(data);
@@ -105,7 +104,7 @@ export class ArchiveClientsComponent implements OnInit {
               timer: 1500
             });
             this.refrechUsers();
-            if (this.dataSource.data.length-1 == 0 ) this.router.navigate(['commer/client']);
+            if (this.dataSource.data.length-1 == 0 ) {this.router.navigate(['commer/client']); }
 
           }
         ) ; }
