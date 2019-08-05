@@ -1,6 +1,6 @@
 <div style="margin: 30px">
   <div>
-  <button matTooltip="Retour au liste des clients"  routerLink="/admin/users" style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon></button>
+  <button matTooltip="liste des clients"  routerLink="/admin/users" style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon></button>
   </div>
 <br><br>
 <div>
@@ -69,8 +69,8 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td mat-cell *matCellDef="let row" >
-          <button matTooltip="Vous allez restaurer ce client " mat-icon-button (click)="restaurer(row._id)"><mat-icon>undo</mat-icon></button>
-          <button matTooltip="Vous allez supprimer ce client definitivement" mat-icon-button  (click)="delete(row._id)"><mat-icon>delete_outline</mat-icon></button>
+          <button matTooltip=" restaurer  " mat-icon-button (click)="restaurer(row._id)"><mat-icon>undo</mat-icon></button>
+          <button matTooltip=" supprimer définitivement" mat-icon-button  (click)="delete(row._id)"><mat-icon>delete_outline</mat-icon></button>
         </td>
 
       </ng-container>

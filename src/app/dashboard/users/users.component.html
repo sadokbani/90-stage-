@@ -1,9 +1,9 @@
 <div style="margin: 30px">
   <div>
 
-    <button class="mat-purple-A700" routerLink="/admin/client/-1" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Client</button>
-    <button class="mat-deep-purple-400" routerLink="/admin/commercant/-1" style="margin: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Commerçant</button>
-    <button  matTooltip="consulter l'archive des clients" routerLink="/admin/archive" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
+    <button class="mat-purple-A700" routerLink="/admin/client/-1" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter un client</button>
+    <button class="mat-deep-purple-400" routerLink="/admin/commercant/-1" style="margin: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter un commerçant</button>
+    <button  matTooltip="archive des clients" routerLink="/admin/archive" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
 
   </div>
 
@@ -73,8 +73,8 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td mat-cell *matCellDef="let row" >
-          <button matTooltip="modifier ce client" mat-icon-button (click)="update(row._id, row.role)"><mat-icon>edit</mat-icon></button>
-          <button matTooltip="Vous allez archiver ce client " mat-icon-button  (click)="openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
+          <button matTooltip="modifier" mat-icon-button (click)="update(row._id, row.role)"><mat-icon>edit</mat-icon></button>
+          <button matTooltip=" archiver  " mat-icon-button  (click)="openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
         </td>
 
       </ng-container>

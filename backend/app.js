@@ -5,13 +5,15 @@ const mongoose = require("mongoose");
 var cors= require('cors');
 const commercantsRoutes = require("./controller/commercants");
 const usersRoutes = require("./controller/users");
-
+const historique_commercantRoute = require("./controller/historique_commercant")
 const historiqueRoute = require("./controller/historique.route");
 const paysRoute = require ("./controller/pays");
 const categoriesRoute = require('./controller/categorie.route');
 const souscategoriesRoute = require('./controller/souscategorie.route');
 const commentairesRoute = require('./controller/commentaires');
 const promotionsRoute = require('./controller/promotions');
+
+const client_commercantRoute = require('./controller/client_commercant');
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/stage").then(
@@ -51,5 +53,9 @@ app.use('/souscategorie', souscategoriesRoute);
 app.use('/pays' , paysRoute);
 app.use('/historique', historiqueRoute);
 app.use('/commentaire',commentairesRoute);
+
 app.use('/promotion',promotionsRoute);
+app.use('/historique_commercant',historique_commercantRoute);
+app.use('/client_commercant',client_commercantRoute);
+
 module.exports = app;

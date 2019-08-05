@@ -2,9 +2,9 @@
 <div style="margin: 30px">
   <div>
 
-    <button class="mat-purple-A700" routerLink="/admin/categories/create" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter Categorie</button>
+    <button class="mat-purple-A700" routerLink="/admin/categories/create" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter une Categorie</button>
 
-    <button   matTooltip="Consulter l'archive des categories" routerLink="/admin/archive_categorie" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
+    <button   matTooltip="archive des categories" routerLink="/admin/archive_categorie" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
 
   </div>
 
@@ -54,8 +54,8 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td  mat-cell *matCellDef="let row" >
-          <button matTooltip="Modifier la categorie"  mat-icon-button [routerLink]="['/admin/categories/edit', row._id]" ><mat-icon>edit</mat-icon> </button>
-          <button  matTooltip="Archiver la categorie" mat-icon-button (click) = "openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
+          <button matTooltip="Modifier"  mat-icon-button [routerLink]="['/admin/categories/edit', row._id]" ><mat-icon>edit</mat-icon> </button>
+          <button  matTooltip="Archiver" mat-icon-button (click) = "openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
         </td>
       </ng-container>
 

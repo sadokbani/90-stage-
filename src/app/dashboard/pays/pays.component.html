@@ -4,7 +4,7 @@
 
     <button class="mat-purple-A700"routerLink="/admin/pays/create" style="margin-bottom: 15px" mat-raised-button><mat-icon>add</mat-icon>Ajouter un pays</button>
 
-    <button matTooltip="consulter l'archive des pays" routerLink="/admin/archive_pays" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
+    <button matTooltip="archive des pays" routerLink="/admin/archive_pays" style="margin-top: 15px; float: right;"  mat-raised-button><mat-icon>note</mat-icon> Archive</button>
 
   </div>
 
@@ -43,8 +43,8 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td mat-cell *matCellDef="let row" >
-          <button matTooltip="modifier cepays" mat-icon-button [routerLink]="['/admin/pays/edit', row._id]" ><mat-icon>edit</mat-icon> </button>
-          <button matTooltip="Vous allez archiver ce pays " mat-icon-button  (click) = "openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
+          <button matTooltip="modifier" mat-icon-button [routerLink]="['/admin/pays/edit', row._id]" ><mat-icon>edit</mat-icon> </button>
+          <button matTooltip="archiver" mat-icon-button  (click) = "openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
         </td>
 
       </ng-container>

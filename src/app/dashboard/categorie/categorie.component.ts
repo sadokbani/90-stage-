@@ -39,6 +39,7 @@ export class CategorieComponent implements OnInit {
     this.paginator._intl.previousPageLabel = 'page précédente ' ;
     this.paginator._intl.lastPageLabel = 'dernière page';
     this.paginator._intl.firstPageLabel = 'première page' ;
+
     this.refrechCategories();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

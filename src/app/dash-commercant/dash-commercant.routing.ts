@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import {DashCommercantComponent} from './dash-commercant.component';
 import {ClientComponent} from './client/client.component';
+import {HistoriqueComponent} from './historique/historique.component';
+import {PromotionComponent} from './promotion/promotion.component';
+import {ArchiveClientsComponent} from './client/archive-clients/archive-clients.component';
 
 export const DashCommercantRoutes: Routes = [
   {
@@ -13,6 +16,18 @@ export const DashCommercantRoutes: Routes = [
       {
         path: 'client',
         component: ClientComponent
+      },
+      {
+        path: 'historique',
+        component: HistoriqueComponent
+      },
+      {
+        path: 'archive',
+        component: ArchiveClientsComponent
+      },
+      {
+        path: 'promotion',
+        component: PromotionComponent
       },
 
     ]
