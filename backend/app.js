@@ -11,6 +11,7 @@ const paysRoute = require ("./controller/pays");
 const categoriesRoute = require('./controller/categorie.route');
 const souscategoriesRoute = require('./controller/souscategorie.route');
 const commentairesRoute = require('./controller/commentaires');
+const promotionsRoute = require('./controller/promotions');
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/stage").then(
@@ -50,4 +51,5 @@ app.use('/souscategorie', souscategoriesRoute);
 app.use('/pays' , paysRoute);
 app.use('/historique', historiqueRoute);
 app.use('/commentaire',commentairesRoute);
+app.use('/promotion',promotionsRoute);
 module.exports = app;

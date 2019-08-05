@@ -80,12 +80,17 @@ router.post(
 );
 
 router.get("", (req, res, next) => {
-  User.find().then(documents => {
-    res.status(200).json({
-      message: "users fetched successfully!",
-      users: documents //we can also use map methode
+
+  setTimeout(()=>{
+    console.log("ooki");
+    User.find().then(documents => {
+      res.status(200).json({
+        message: "users fetched successfully!",
+        users: documents //we can also use map methode
+      });
     });
-  });
+  }, 10000);
+
 });
 
 router.get("/:id", (req, res, next) =>{
@@ -200,6 +205,7 @@ router.delete('/:id', (req, res) => {
     else { console.log('Error in user Delete :' + JSON.stringify(err, undefined, 2)); }
   });
 });
+
 
 
 module.exports = router;

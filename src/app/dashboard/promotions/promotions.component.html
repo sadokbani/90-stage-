@@ -1,0 +1,13 @@
+<input matInput type="datetime-local" [(ngModel)]="filterDateFrom" />
+<button (click)="aa()">try</button>
+
+<br><br><br><br><br><br><br>
+<mat-form-field>
+  <input matInput [(ngModel)]="aaa" [matDatepicker]="picker" placeholder="Choose a date">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+
+
+<input type="file" #filePicker (change)="onImagePicked($event)" multiple>
