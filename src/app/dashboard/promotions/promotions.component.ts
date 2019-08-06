@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {UserService} from '../users/service/user.service';
@@ -15,16 +15,19 @@ export class PromotionsComponent implements OnInit {
   value = '';
   deletev = false;
   displayedColumns: string[] = ['commercant', 'categorieNom', 'SousCategorieNom', 'promotionNom', 'adresse','description', 'image','actions'];
-  dataSource = new MatTableDataSource<any>();
   selected = '1';
   name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router: Router,
-              private promotionService: PromotionService,
+              public promotionService: PromotionService,
               public dialog: MatDialog) {
   }
+
+  // ngAfterViewChecked() {
+  //   this.refrechPromotions();
+  // }
 
   ngOnInit() {
     this.paginator._intl.itemsPerPageLabel = 'nombre des clients à afficher par page';
@@ -32,32 +35,76 @@ export class PromotionsComponent implements OnInit {
     this.paginator._intl.previousPageLabel = 'page précédente ' ;
     this.paginator._intl.lastPageLabel = 'dernière page';
     this.paginator._intl.firstPageLabel = 'première page' ;
-    this.refrechUsers();
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.refrechPromotions();
+    this.promotionService.dataSource.paginator = this.paginator;
+    this.promotionService.dataSource.sort = this.sort;
 
   }
 
-  refrechUsers() {
-    this.promotionService.retriveAllpromotion().subscribe(
-      response => {
-        console.log(response.promotions);
-        this.dataSource.data = response.promotions as any[];
-
-      }
-    );
+  refrechPromotions() {
+    this.promotionService.retriveAllpromotion();
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.promotionService.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    if (this.promotionService.dataSource.paginator) {
+      this.promotionService.dataSource.paginator.firstPage();
     }
   }
 
 
+  active(id){
+    this.promotionService.activation(id).subscribe(
+      (data:any)=>{
+        console.log(data._id);
+        this.refrechPromotions();
+        this.promotionService.desactivationTime(id).subscribe(
+          response=>{
 
+            this.refrechPromotions();
+          }
+        );
+      }
+    );
+  }
+
+  desactive(id){
+      this.promotionService.desactivation(id).subscribe(
+        data=>{
+          console.log(data);
+          this.refrechPromotions();
+
+        }
+      );
+  }
+
+
+  supprimer(id): void {
+    swal.fire({
+      title: 'vous voulez vraiment supprimer cette promotion ?',
+      text: "",
+      type: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'oui'
+    }).then((result) => {
+      if (result.value){
+        this.promotionService.deletePromotion(id).subscribe(
+          data => {
+            console.log(data);
+            swal.fire({
+              type: 'success',
+              title: 'cette promotion a été supprimé',
+              showConfirmButton: false,
+              timer: 1500
+            });
+              this.refrechPromotions();          }
+        ) ; }
+    }) ;
+  }
 
 
 }

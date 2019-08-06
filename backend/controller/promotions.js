@@ -84,7 +84,7 @@ router.put("/activation/:time/:id", (req, res, next) => {
 
 
 });
-router.put("/desactivation/:id", (req, res, next) => {
+router.put("/desactivation/time/:id", (req, res, next) => {
   setTimeout(()=>{
     Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
       if (err) return next(err);
@@ -94,5 +94,31 @@ router.put("/desactivation/:id", (req, res, next) => {
 
 
 });
+
+
+router.put("/activation/:id", (req, res, next) => {
+
+    Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, doc) {
+      if (err) return next(err);
+      res.send(doc);
+    });
+});
+
+router.put("/desactivation/:id", (req, res, next) => {
+
+    Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
+      if (err) return next(err);
+      res.send(doc);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+
+  Promotion.findByIdAndRemove(req.params.id, (err, doc) => {
+    if (!err) { res.send(doc); }
+    else { console.log('Error in Promotion Delete :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
+
 
 module.exports = router;

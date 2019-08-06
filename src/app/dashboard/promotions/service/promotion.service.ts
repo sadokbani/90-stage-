@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {MatTableDataSource} from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromotionService {
+  promotionData:any[];
+  dataSource = new MatTableDataSource<any>();
 
   constructor(private http: HttpClient,
               private router: Router) { }
@@ -31,8 +34,13 @@ export class PromotionService {
         console.log(responseData);
         this.http.put(`http://localhost:3000/promotion/activation/${time}/${responseData.promotion.createdPromo._id}`,null).subscribe(
           response=>{
-            this.http.put(`http://localhost:3000/promotion/desactivation/${responseData.promotion.createdPromo._id}`,null).subscribe();
-          }
+            this.retriveAllpromotion();
+            this.desactivationTime(responseData.promotion.createdPromo._id).subscribe(
+              data=>{
+                this.retriveAllpromotion();
+                console.log(data);
+              }
+            );          }
         );
         this.router.navigate(['/admin/promotions']);
       }
@@ -41,7 +49,31 @@ export class PromotionService {
 
 
   retriveAllpromotion(){
-    return this.http.get<{message:string, promotions:any}>("http://localhost:3000/promotion");
+     this.http.get<{message:string, promotions:any}>("http://localhost:3000/promotion").subscribe(
+      response => {
+        // console.log(response.promotions);
+        // this.promotionService.promotionData = response.promotions ;
+        // this.dataSource.data = this.promotionService.promotionData as any[];
+        this.dataSource.data = response.promotions as any[];
+
+
+      }
+    );
   }
 
+  activation(id){
+    return this.http.put(`http://localhost:3000/promotion/activation/${id}`,null);
+  }
+
+  desactivation(id){
+    return this.http.put(`http://localhost:3000/promotion/desactivation/${id}`,null);
+  }
+
+  desactivationTime(id){
+   return this.http.put(`http://localhost:3000/promotion/desactivation/time/${id}`,null);
+  }
+
+  deletePromotion(id) {
+    return this.http.delete(`http://localhost:3000/promotion/${id}`);
+  }
 }
