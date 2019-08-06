@@ -5,9 +5,12 @@ const Schema = mongoose.Schema;
 
 let historique = new Schema({
 
-    Utilisateur: {
+    ID_Utilisateur: {
       type: String
     },
+  ID_commercant: {
+    type: String
+  },
     Promotion: {
       type: String
     },

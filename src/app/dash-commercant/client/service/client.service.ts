@@ -11,7 +11,12 @@ export class ClientService {
   retriveAllUsers(){
     return this.http.get<{message:string, users:any}>("http://localhost:3000/client_commercant/valide/client");
   }
-
+  retriveAllUsersbyID(id){
+    return this.http.get<{message:string, users:any}>(`http://localhost:3000/client_commercant/valide/client/${id}`);
+  }
+  retriveAllID(){
+    return this.http.get<{message:string, id:any}>("http://localhost:3000/client_commercant/ID");
+  }
   retriveAllUsersArchive(){
     return this.http.get<{message:string, users:any}>("http://localhost:3000/client_commercant/archive/client");
   }

@@ -31,7 +31,7 @@ export class Historique {
 })
 export class HistoriqueAchatsComponent implements OnInit {
 
-  displayedColumns: string[] = ['Utilisateur', 'Promotion', 'Coupon', 'Remise', 'Date' , 'Etat'];
+  displayedColumns: string[] = ['Client', 'Commercant', 'Promotion', 'Coupon', 'Remise', 'Date' , 'Etat'];
   dataSource = new MatTableDataSource<Historique>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

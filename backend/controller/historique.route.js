@@ -11,9 +11,9 @@ let historique = require('../models/historique');
 historiqueRoutes.route('/add').post(function (req, res) {
   console.log(req.body);
   let Historique = new historique();
-  Historique.Utilisateur=req.body.Utilisateur;
+  Historique.ID_Utilisateur=req.body.Utilisateur;
+  Historique.ID_commercant=req.body.commercant;
   Historique.Coupon=req.body.Coupon;
-
   Historique.Promotion=req.body.Promotion;
   Historique.Remise=req.body.Remise;
   Historique.save()
@@ -50,7 +50,9 @@ historiqueRoutes.route('/update/:id').put(function (req, res) {
       res.status(404).send("Record not found");
     else {
 
-      historique.Utilisateur = req.body.Utilisateur;
+      historique.ID_Utilisateur = req.body.Utilisateur;
+      historique.ID_commercant = req.body.commercant;
+
       historique.Promotion = req.body.Promotion;
       historique.Coupon = req.body.Coupon;
       historique.Remise = req.body.Remise;

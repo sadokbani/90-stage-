@@ -12,7 +12,7 @@ const categoriesRoute = require('./controller/categorie.route');
 const souscategoriesRoute = require('./controller/souscategorie.route');
 const commentairesRoute = require('./controller/commentaires');
 const promotionsRoute = require('./controller/promotions');
-
+const achatsRoute = require('./controller/Achats');
 const client_commercantRoute = require('./controller/client_commercant');
 const app = express();
 
@@ -53,9 +53,8 @@ app.use('/souscategorie', souscategoriesRoute);
 app.use('/pays' , paysRoute);
 app.use('/historique', historiqueRoute);
 app.use('/commentaire',commentairesRoute);
-
 app.use('/promotion',promotionsRoute);
 app.use('/historique_commercant',historique_commercantRoute);
 app.use('/client_commercant',client_commercantRoute);
-
+app.use('/achats',achatsRoute);
 module.exports = app;

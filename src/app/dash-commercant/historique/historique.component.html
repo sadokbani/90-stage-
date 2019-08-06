@@ -13,10 +13,16 @@
 
 
 
-      <ng-container matColumnDef="Utilisateur">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Client </th>
-        <td mat-cell *matCellDef="let row"> {{row.Utilisateur}} </td>
+      <ng-container matColumnDef="Client">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID_Client </th>
+        <td mat-cell *matCellDef="let row" style="width: 200px"> {{row.ID_Utilisateur}} </td>
       </ng-container>
+
+      <ng-container matColumnDef="Commercant">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID_Commerçant </th>
+        <td mat-cell *matCellDef="let row" style="width: 200px"> {{row.ID_commercant}} </td>
+      </ng-container>
+
 
 
       <ng-container matColumnDef="Promotion">
@@ -36,7 +42,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Remise </th>
         <td mat-cell *matCellDef="let row"  >
 
-          {{row.Remise}}
+          {{row.Remise}} %
 
 
         </td>

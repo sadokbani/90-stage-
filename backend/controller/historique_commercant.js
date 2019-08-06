@@ -10,7 +10,9 @@ let historique = require('../models/historique');
 historiqueRoutes.route('/add').post(function (req, res) {
   console.log(req.body);
   let Historique = new historique();
-  Historique.Utilisateur=req.body.Utilisateur;
+  Historique.ID_Utilisateur=req.body.Utilisateur;
+  Historique.ID_commercant=req.body.commercant;
+
   Historique.Coupon=req.body.Coupon;
 
   Historique.Promotion=req.body.Promotion;
@@ -25,7 +27,7 @@ historiqueRoutes.route('/add').post(function (req, res) {
 });
 
 historiqueRoutes.route('/').get(function (req, res) {
-  historique.find(function (err,historique){
+  historique.find({ID_commercant: 1},function (err,historique){
     if(err){
       console.log(err);
     }

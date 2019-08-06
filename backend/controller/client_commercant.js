@@ -1,14 +1,30 @@
 const express = require("express");
 const app = express();
+const historique = require("../models/historique");
 const User = require("../models/user");
-
 const router = express.Router();
 
 router.get("/valide/client", (req, res, next) =>{
-  User.find({valide: 1, role:2}).then(documents => {
+  User.find({valide: 1, role:2 }).then(documents => {
     res.status(200).json({
       message: "users fetched successfully!",
       users: documents //we can also use map methode
+    });
+  });
+});
+router.get("/valide/client/:id", (req, res, next) =>{
+  User.find({valide: 1, _id: req.params.id }).then(documents => {
+    res.status(200).json({
+      message: "users fetched successfully!",
+      users: documents //we can also use map methode
+    });
+  });
+});
+router.get("/ID", (req, res, next) =>{
+  historique.find({ID_commercant: 1} ,{ ID_Utilisateur:1 , _id:0 }).then(documents => {
+    res.status(200).json({
+      message: "ID fetched successfully!",
+      id: documents //we can also use map methode
     });
   });
 });

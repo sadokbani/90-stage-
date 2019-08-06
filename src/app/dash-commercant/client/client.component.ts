@@ -4,6 +4,10 @@ import {Router} from '@angular/router';
 import swal from "sweetalert2";
 import {ClientService} from './service/client.service';
 
+class ID {
+  id: string;
+}
+
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -17,7 +21,7 @@ export class ClientComponent implements OnInit {
   name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  Table: ID[] = [];
   constructor(private router: Router,
               private userService: ClientService,
               public dialog: MatDialog) {
@@ -32,17 +36,25 @@ export class ClientComponent implements OnInit {
     this.refrechUsers();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
-  }
-
-  refrechUsers() {
-    this.userService.retriveAllUsers().subscribe(
+    this.userService.retriveAllID().subscribe(
       response => {
-        console.log(response.users);
-        this.dataSource.data = response.users as any[];
-
+        this.Table = response.id as any[];
+        console.log(this.Table);
       }
     );
+  }
+
+
+  refrechUsers() {
+    const array = this.Table;
+    for (let i = 0; i < array.length; i++) {
+      console.log(array[i]);
+      this.userService.retriveAllUsersbyID('array[i]').subscribe(
+        response => {
+          this.dataSource.data = response.users as any[];
+        }
+      );
+    }
   }
 
   applyFilter(filterValue: string) {

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const promotionSchema = new Schema({
+
   commercant: { type: String, required: true },
   categorieNom: { type: String, required: true },
   SousCategorieNom: { type: [String], required: true },
