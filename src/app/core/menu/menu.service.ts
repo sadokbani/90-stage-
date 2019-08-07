@@ -56,7 +56,7 @@ const MENUITEMS = [
     state: 'promotions',
     name: 'Promotion',
     type: 'link',
-    icon: 'panorama'
+    icon: 'shopping_cart'
 
   },
   {
