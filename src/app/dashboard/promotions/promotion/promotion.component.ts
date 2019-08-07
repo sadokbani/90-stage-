@@ -8,6 +8,8 @@ import swal from "sweetalert2";
 import {CategorieService} from '../../categorie/service/categorie.service';
 import {SouscategorieService} from '../../souscategorie/service/souscategorie.service';
 import {PromotionService} from '../service/promotion.service';
+import {DatePipe} from '@angular/common';
+import {isUndefined} from 'util';
 
 @Component({
   selector: 'app-promotion',
@@ -33,7 +35,8 @@ export class PromotionComponent implements OnInit {
               private userService: UserService,
               private categorieService: CategorieService,
               private sousCatService: SouscategorieService,
-              private promotionService: PromotionService) { }
+              private promotionService: PromotionService,
+              private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.userService.retriveAllCommercant().subscribe(
@@ -47,20 +50,28 @@ export class PromotionComponent implements OnInit {
       });
     this.id=this.route.snapshot.params['id'];
     if (this.id != -1){
-      // this.userService.retriveUser(this.id).subscribe(
-      //   response =>{
-      //     console.log(response);
-      //     this.imagePreview= response.imagePath;
-      //     this.form.setValue({
-      //       nom: response.nom,
-      //       email:response.email,
-      //       prenom:response.prenom,
-      //       password:null,
-      //       confirmPassword: null,
-      //       image:response.imagePath
-      //     });
-      //   }
-      // );
+      this.promotionService.retrivePromotin(this.id).subscribe(
+        response =>{
+          console.log(response);
+
+            this.sousCatService.getSousCategorie_byCategorie(response.categorieNom).subscribe(
+              (response: any[]) => {
+                this.sousCategories = response;
+              }
+            );
+          this.form.setValue({
+            commercant: response.commercant,
+            categorieNom:response.categorieNom,
+            SousCategorieNom:response.SousCategorieNom,
+            promotionNom:response.promotionNom,
+            adresse:response.adresse,
+            description:response.description,
+            dateDebut:this.datePipe.transform(new Date(response.dateDebut),"yyyy-MM-ddTHH:mm"),
+            image:response.imagePath[0]
+          });
+          this.urls= response.imagePath;
+        }
+      );
     }
     this.form = this.fb.group({
       commercant:new FormControl('', Validators.required),
@@ -134,19 +145,38 @@ export class PromotionComponent implements OnInit {
         const date= new Date(this.form.value.dateDebut);
         const dateNow= new Date();
         const periode=date.getTime()-dateNow.getTime();
-        this.promotionService.addPromotion(this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images,periode);
+        if (periode <= 0){
+          swal.fire({
+            title: 'Erreur',
+            text: "Vous devez remplir une date valide",
+            type: 'error',
+            showCancelButton: false,
+            confirmButtonColor: '#64638f',
+            cancelButtonColor: '#9795cf',
+            cancelButtonText: 'annuler',
+            confirmButtonText: 'ok'
+          }) ;
+        } else {
+          this.promotionService.addPromotion(this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images,periode);
+
+        }
       }
-      // else {
-      //
-      //   if (isUndefined(this.form.value.image.type)){
-      //     this.userService.updateClient(this.id,this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password);
-      //   }
-      //   else {
-      //     this.userService.updateClientImage(this.id,this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password, this.form.value.image);
-      //   }
-      //
-      // }
+      else {
+
+        if (isUndefined(this.form.value.image.type)){
+          console.log('no image');
+          console.log(this.form.value);
+          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,[])
+        }
+        else {
+          console.log('image upd');
+
+          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images)
+        }
+
+      }
     } else {
+      console.log(this.form.value);
       this.openDialog();
     }
 

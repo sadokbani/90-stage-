@@ -76,4 +76,77 @@ export class PromotionService {
   deletePromotion(id) {
     return this.http.delete(`http://localhost:3000/promotion/${id}`);
   }
+
+  retrivePromotin(id){
+    return this.http.get<any>(`http://localhost:3000/promotion/${id}`);
+  }
+
+  updatePromotion(id,commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string, categorieNom:string, dateDebut, description:string,image:any[]){
+    const date= new Date(dateDebut);
+    const dateNow= new Date();
+    const periode=date.getTime()-dateNow.getTime();
+    const promotionData = new FormData();
+    promotionData.append('commercant', commercant);
+    promotionData.append('categorieNom', categorieNom);
+    promotionData.append('adresse', adresse);
+    promotionData.append('promotionNom', promotionNom);
+    promotionData.append('description', description);
+    promotionData.append('dateDebut', dateDebut);
+
+    for (let i=0;i<SousCategorieNom.length;i++){
+      promotionData.append('SousCategorieNom', SousCategorieNom[i]);
+    }
+
+    if (image.length == 0){
+      this.http.put(`http://localhost:3000/promotion/${id}`,
+        {
+          commercant:commercant, promotionNom:promotionNom, SousCategorieNom:SousCategorieNom, adresse:adresse, categorieNom:categorieNom, dateDebut:dateDebut, description:description
+        }).subscribe(
+        responseData =>{
+          console.log(responseData);
+          this.router.navigate(['/admin/promotions']);
+          if (periode > 0){
+            this.http.put(`http://localhost:3000/promotion/activation/${periode}/${id}`,null).subscribe(
+              response=>{
+                this.retriveAllpromotion();
+                this.desactivationTime(id).subscribe(
+                  data=>{
+                    this.retriveAllpromotion();
+                    console.log(data);
+                  }
+                );          }
+            );
+          }
+          this.router.navigate(['/admin/promotions']);
+
+        }
+      );
+    } else {
+      for (let i=0;i<image.length;i++){
+        promotionData.append('image', image[i], promotionNom);
+      }
+      this.http.put(`http://localhost:3000/promotion/image/${id}`,
+        promotionData).subscribe(
+        responseData =>{
+          console.log(responseData);
+          if (periode > 0){
+            this.http.put(`http://localhost:3000/promotion/activation/${periode}/${id}`,null).subscribe(
+              response=>{
+                this.retriveAllpromotion();
+                this.desactivationTime(id).subscribe(
+                  data=>{
+                    this.retriveAllpromotion();
+                    console.log(data);
+                  }
+                );          }
+            );
+          }
+          this.router.navigate(['/admin/promotions']);
+        }
+      );
+    }
+
+  }
+
+
 }

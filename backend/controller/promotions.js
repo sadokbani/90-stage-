@@ -65,6 +65,12 @@ router.get("", (req, res, next) => {
 });
 
 
+router.get("/:id", (req, res, next) =>{
+  Promotion.findById(req.params.id, (err, doc) => {
+    if (!err) { res.send(doc); }
+    else { console.log('Error in Retriving Employee :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
 
 
 router.get("", (req, res, next) => {
@@ -121,4 +127,28 @@ router.delete('/:id', (req, res) => {
 });
 
 
+router.put("/image/:id",multer({ storage: storage }).array("image",12), (req, res, next) => {
+  const url = req.protocol + "://" + req.get("host");
+  const imageArray= new Array();
+  for (var i = 0; i < req.files.length; i++) {
+    imageArray.push( url + "/images/" + req.files[i].filename)
+  }
+  Promotion.findByIdAndUpdate(req.params.id, {$set: {
+      ...req.body,
+      imagePath:imageArray
+    }}, function (err, doc) {
+    if (err) return next(err);
+    res.status(200).json({message:"updated"});
+  });
+
+});
+
+
+router.put("/:id", (req, res, next) => {
+  Promotion.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, doc) {
+    if (err) return next(err);
+    res.status(200).json({message:"updated"});
+  });
+
+});
 module.exports = router;

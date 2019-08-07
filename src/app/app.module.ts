@@ -54,6 +54,7 @@ import { DashCommercantComponent } from './dash-commercant/dash-commercant.compo
 import { CommercantLayoutComponent } from './core/commercant-layout/commercant-layout.component';
 import { SidebarcComponent } from './core/sidebarc/sidebarc.component';
 import { CmenuComponent } from './core/cmenu/cmenu.component';
+import {DatePipe} from '@angular/common';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -124,6 +125,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule
   ],
   providers: [
+    DatePipe,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

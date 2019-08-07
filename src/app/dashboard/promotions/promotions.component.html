@@ -60,10 +60,10 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td style="width: 10px" mat-cell *matCellDef="let row" >
-          <button matTooltip="modifier" mat-icon-button ><mat-icon>edit</mat-icon></button>
+          <button matTooltip="modifier" mat-icon-button [routerLink]="['/admin/promotion/',row._id]"><mat-icon>edit</mat-icon></button>
           <button matTooltip="supprimer" mat-icon-button (click)="supprimer(row._id)" ><mat-icon>delete</mat-icon></button>
-          <button *ngIf="row.valide == 0" mat-button class="mat-deep-purple-A700" (click)="active(row._id)">Activé</button>
-          <button *ngIf="row.valide == 1" mat-button class="mat-grey-600" (click)="desactive(row._id)">Désactivé</button>
+          <button *ngIf="row.valide == 0" mat-button class="mat-deep-purple-A700" (click)="active(row._id)">Activer</button>
+          <button *ngIf="row.valide == 1" mat-button class="mat-grey-600" (click)="desactive(row._id)">Désactiver</button>
         </td>
 
       </ng-container>
