@@ -54,6 +54,7 @@ export class SigninComponent implements OnInit {
               this.islogin = true;
             } else {
               sessionStorage.setItem('commercantId', data[0]._id);
+              sessionStorage.setItem('commercantNom', data[0].nom);
               sessionStorage.setItem('commercant', '0');
               this.router.navigate(['/commer/accueil']);
             }

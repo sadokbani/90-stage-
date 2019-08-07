@@ -157,7 +157,6 @@ export class PromotionComponent implements OnInit {
             confirmButtonText: 'ok'
           }) ;
         } else {
-          this.promotionService.addPromotion(this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images,periode);
 
         }
       }
