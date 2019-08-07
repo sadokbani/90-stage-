@@ -71,5 +71,6 @@ export class CreatePaysComponent implements OnInit {
           this.pays=data.pays;
         }
       )
+
   }
 }
