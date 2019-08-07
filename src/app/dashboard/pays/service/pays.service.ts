@@ -38,6 +38,12 @@ export class PaysService {
       .get(`${this.uri}/archive`);
   }
 
+  getPaysList() {
+    return this
+      .http
+      .get(`${this.uri}/list`);
+  }
+
   restaurerPays(id) {
     return this.http.put(`${this.uri}/restaurer_pays/${id}`, null);
   }

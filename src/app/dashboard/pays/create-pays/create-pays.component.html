@@ -6,14 +6,22 @@
       </button>
       <form [formGroup]="angForm" novalidate>
 
+
         <div class="pb-1">
           <mat-form-field style="width: 100%">
-            <input matInput  placeholder="pays" type="text" [formControl]="angForm.controls['Nom']">
-            <mat-error *ngIf="angForm.controls['Nom'].hasError('required') && angForm.controls['Nom'].touched" class="mat-text-warn"> pays est requis.</mat-error>
+            <mat-label>Nom de pays</mat-label>
+            <mat-select [(value)]="paysSelected"
+                        [formControl]="angForm.controls['Nom']">
+
+              <mat-option *ngFor="let com of pays" [value]=com>
+                {{com}}
+              </mat-option>
+
+            </mat-select>
+            <mat-error *ngIf="angForm.controls['Nom'].hasError('required') && angForm.controls['Nom'].touched"  class="mat-text-warn"> vous devez selectionner un pays.</mat-error>
           </mat-form-field>
 
         </div>
-
 
         <div class="pb-1">
           <mat-form-field style="width: 100%">
@@ -28,7 +36,7 @@
         <div class="form-group">
           <button matTooltip=" Retour au liste des pays " routerLink="/admin/pays" style="margin-left: 5px; float: right;"  mat-raised-button> Annuler
           </button>
-          <button  style="float:right" (click) = "addPays(angForm.value.Nom,angForm.value.Priority)" type="submit" mat-raised-button class="mat-deep-purple-A200"
+          <button  style="float:right" (click) = "addPays()" type="submit" mat-raised-button class="mat-deep-purple-A200"
           >
             ajouter un pays
           </button>
