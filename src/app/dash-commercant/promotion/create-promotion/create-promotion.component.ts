@@ -61,7 +61,7 @@ export class CreatePromotionComponent implements OnInit {
             }
           );
           this.form.setValue({
-            commercant: response.commercant,
+           
             categorieNom:response.categorieNom,
             SousCategorieNom:response.SousCategorieNom,
             promotionNom:response.promotionNom,
