@@ -16,7 +16,7 @@ class ID {
 export class ClientComponent implements OnInit {
   value = '';
   deletev = false;
-  displayedColumns: string[] = ['imagePath', 'nom', 'email', 'nombreJeton', 'role', 'dateCreation', 'actions'];
+  displayedColumns: string[] = ['imagePath', 'nom', 'email', 'nombreJeton',  'dateCreation'];
   dataSource = new MatTableDataSource<any>();
   name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;

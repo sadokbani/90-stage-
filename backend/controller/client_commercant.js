@@ -13,7 +13,7 @@ router.get("/valide/client", (req, res, next) =>{
   });
 });
 router.get("/valide/client/:id", (req, res, next) =>{
-  User.find({valide: 1,_id: req.params.id }).then(documents => {
+  User.find({_id: req.params.id ,valide: 1 }).then(documents => {
     res.status(200).json({
       message: "users fetched successfully!",
       users: documents

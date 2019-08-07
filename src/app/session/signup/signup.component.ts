@@ -10,7 +10,7 @@ import { CustomValidators } from 'ng2-validation';
 import {mimeType} from './mime-type.validator';
 import {SessionService} from '../session.service';
 import {UserService} from '../../dashboard/users/service/user.service';
-
+import swal from 'sweetalert2';
 const password = new FormControl('', Validators.required);
 const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 
@@ -37,23 +37,38 @@ export class SignupComponent implements OnInit {
       ],
       password: password,
       confirmPassword: confirmPassword,
-      nom:new FormControl('', Validators.required),
+      nom: new FormControl('', Validators.required),
       image: new FormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeType]
       })
     });
   }
-
+  openDialog(): void {
+    swal.fire({
+      title: 'Erreur',
+      text: 'Vous devez remplir tous les champs et selectioner une image pour continuer',
+      type: 'error',
+      showCancelButton: false,
+      confirmButtonColor: '#64638f',
+      cancelButtonColor: '#9795cf',
+      cancelButtonText: 'annuler',
+      confirmButtonText: 'ok'
+    }) ;
+  }
   onSubmit() {
-   // this.router.navigate(['/dashboard']);
-    this.userService.addCommercant(this.form.value.nom, this.form.value.email, this.form.value.password, this.form.value.image);
+    // this.router.navigate(['/dashboard']);
+    if (this.form.valid) {
+      this.userService.addCommercant(this.form.value.nom, this.form.value.email, this.form.value.password, this.form.value.image);
+    } else {
+      this.openDialog();
+    }
   }
 
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({ image: file });
-    this.form.get("image").updateValueAndValidity();
+    this.form.get('image').updateValueAndValidity();
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result;

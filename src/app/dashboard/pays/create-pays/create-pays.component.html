@@ -11,7 +11,18 @@
             <input matInput  placeholder="pays" type="text" [formControl]="angForm.controls['Nom']">
             <mat-error *ngIf="angForm.controls['Nom'].hasError('required') && angForm.controls['Nom'].touched" class="mat-text-warn"> pays est requis.</mat-error>
           </mat-form-field>
+          <mat-form-field>
+            <mat-label>nom de catégorie</mat-label>
+            <mat-select [(value)]="selected"
+                        formControlName="CategorieNom"
+                        #CategorieNom>
 
+              <mat-option *ngFor="let cat of Table" [value]=cat.nom>
+                {{cat.nom}}
+              </mat-option>
+
+            </mat-select>
+          </mat-form-field>
         </div>
 
 

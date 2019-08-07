@@ -64,6 +64,7 @@
     "rxjs": "6.3.2",
     "screenfull": "3.3.3",
     "sweetalert2": "^8.14.0",
+    "translate-json-object": "^2.3.3",
     "zone.js": "0.8.26"
   },
   "devDependencies": {

@@ -52,7 +52,9 @@ export class HistoriqueComponent implements OnInit {
   }
 
   refrechHistorique() {
-    this.historiqueService.gethistorique().subscribe(
+    const id = sessionStorage.getItem('commercantId');
+    console.log(id);
+    this.historiqueService.gethistorique(id).subscribe(
       response => {
         this.dataSource.data = response as Historique[];
 
