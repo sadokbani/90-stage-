@@ -26,8 +26,8 @@ historiqueRoutes.route('/add').post(function (req, res) {
     });
 });
 
-historiqueRoutes.route('/').get(function (req, res) {
-  historique.find({ID_commercant: 1},function (err,historique){
+historiqueRoutes.route('/:id').get(function (req, res) {
+  historique.find({ID_commercant: req.params.id},function (err,historique){
     if(err){
       console.log(err);
     }

@@ -26,10 +26,10 @@ export class HistoriqueService {
 
       });
   }
-  gethistorique() {
+  gethistorique(id) {
     return this
       .http
-      .get(`${this.uri}`);
+      .get(`${this.uri}/${id}`);
   }
 
   edithistorique(id) {

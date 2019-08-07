@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {PaysService} from '../service/pays.service';
 
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
-import swal from "sweetalert2";
+import swal from 'sweetalert2';
 import {SouscategorieService} from '../../souscategorie/service/souscategorie.service';
 import {CategorieService} from '../../categorie/service/categorie.service';
 
@@ -13,7 +13,9 @@ class Pays {
   Nom: string;
   Priority: number;
 
-}
+} 
+
+
 @Component({
   selector: 'app-create-pays',
   templateUrl: './create-pays.component.html',
@@ -27,7 +29,7 @@ export class CreatePaysComponent implements OnInit {
   selected = '';
   hide = true;
   hide1 = true;
-  categories: Pays[];
+
 
   constructor(private fb: FormBuilder, private router: Router, private paysService: PaysService, public dialog: MatDialog) {
     this.createForm();
@@ -44,7 +46,7 @@ export class CreatePaysComponent implements OnInit {
   openDialog(): void {
     swal.fire({
       title: 'Erreur',
-      text: "Vous devez remplir tous les champs  pour continuer",
+      text: 'Vous devez remplir tous les champs  pour continuer',
       type: 'error',
       showCancelButton: false,
       confirmButtonColor: '#64638f',

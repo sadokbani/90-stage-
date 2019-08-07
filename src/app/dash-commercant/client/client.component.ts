@@ -16,7 +16,7 @@ class ID {
 export class ClientComponent implements OnInit {
   value = '';
   deletev = false;
-  displayedColumns: string[] = ['imagePath', 'nom', 'email', 'nombreJeton', 'role', 'dateCreation', 'actions'];
+  displayedColumns: string[] = ['imagePath', 'nom', 'email', 'nombreJeton',  'dateCreation'];
   dataSource = new MatTableDataSource<any>();
   name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -28,6 +28,7 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.refrechUsers();
     this.refrechUsers();
     this.paginator._intl.itemsPerPageLabel = 'nombre des clients à afficher par page';
     this.paginator._intl.nextPageLabel = 'page suivante';
@@ -50,9 +51,9 @@ export class ClientComponent implements OnInit {
       this.userService.retriveAllUsersbyID(response.id[i].ID_Utilisateur).subscribe(
         data => {
           table.push(data.users[0]);
+          this.dataSource.data = table as any[] ;
         });
     }
-        this.dataSource.data = table as any[] ;
       }
     );
   }
