@@ -31,6 +31,7 @@ import {
 import {HttpClientModule} from '@angular/common/http';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import { ArchiveClientsComponent } from './client/archive-clients/archive-clients.component';
+import { CreatePromotionComponent } from './promotion/create-promotion/create-promotion.component';
 
 @NgModule({
   imports: [
@@ -65,6 +66,6 @@ import { ArchiveClientsComponent } from './client/archive-clients/archive-client
     MatTabsModule, MatMenuModule,
     RouterModule.forChild(DashCommercantRoutes)
   ],
-  declarations: [DashCommercantComponent, ClientComponent, HistoriqueComponent, PromotionComponent, ArchiveClientsComponent]
+  declarations: [DashCommercantComponent, ClientComponent, HistoriqueComponent, PromotionComponent, ArchiveClientsComponent, CreatePromotionComponent]
 })
 export class DashCommercantModule {}

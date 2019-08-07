@@ -4,6 +4,8 @@ import {ClientComponent} from './client/client.component';
 import {HistoriqueComponent} from './historique/historique.component';
 import {PromotionComponent} from './promotion/promotion.component';
 import {ArchiveClientsComponent} from './client/archive-clients/archive-clients.component';
+import  {CreatePromotionComponent} from  './promotion/create-promotion/create-promotion.component';
+import {PromotionsComponent} from '../dashboard/promotions/promotions.component';
 
 export const DashCommercantRoutes: Routes = [
   {
@@ -29,6 +31,8 @@ export const DashCommercantRoutes: Routes = [
         path: 'promotion',
         component: PromotionComponent
       },
+      {path: 'promotion/:id', component: CreatePromotionComponent},
+
 
     ]
   }

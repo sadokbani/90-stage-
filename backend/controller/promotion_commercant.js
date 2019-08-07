@@ -105,18 +105,18 @@ router.put("/desactivation/time/:id", (req, res, next) => {
 
 router.put("/activation/:id", (req, res, next) => {
 
-    Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, doc) {
-      if (err) return next(err);
-      res.send(doc);
-    });
+  Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, doc) {
+    if (err) return next(err);
+    res.send(doc);
+  });
 });
 
 router.put("/desactivation/:id", (req, res, next) => {
 
-    Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
-      if (err) return next(err);
-      res.send(doc);
-    });
+  Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
+    if (err) return next(err);
+    res.send(doc);
+  });
 });
 
 router.delete('/:id', (req, res) => {
