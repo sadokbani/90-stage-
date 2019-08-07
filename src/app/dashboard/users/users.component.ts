@@ -31,6 +31,7 @@ export class UsersComponent implements OnInit {
     this.paginator._intl.lastPageLabel = 'dernière page';
     this.paginator._intl.firstPageLabel = 'première page' ;
     this.refrechUsers();
+
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
@@ -98,7 +99,7 @@ export class UsersComponent implements OnInit {
     if (this.selected =='1') this.refrechUsers();
     if (this.selected =='2') {
       this.userService.retriveAllClient().subscribe(
-        response=>{
+        response => {
           this.dataSource.data = response.users as any[];
         }
       );

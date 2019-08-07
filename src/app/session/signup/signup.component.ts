@@ -9,6 +9,7 @@ import {
 import { CustomValidators } from 'ng2-validation';
 import {mimeType} from './mime-type.validator';
 import {SessionService} from '../session.service';
+import {UserService} from '../../dashboard/users/service/user.service';
 
 const password = new FormControl('', Validators.required);
 const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
@@ -25,7 +26,8 @@ export class SignupComponent implements OnInit {
   hide1 = true;
 
   constructor(private fb: FormBuilder, private router: Router,
-              private sessionService: SessionService) {}
+              private sessionService: SessionService,
+              private userService: UserService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -45,7 +47,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
    // this.router.navigate(['/dashboard']);
-    this.sessionService.addCommercant(this.form.value.nom, this.form.value.email, this.form.value.password, this.form.value.image);
+    this.userService.addCommercant(this.form.value.nom, this.form.value.email, this.form.value.password, this.form.value.image);
   }
 
   onImagePicked(event: Event) {

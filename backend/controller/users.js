@@ -109,6 +109,13 @@ router.get("/valide/tous", (req, res, next) =>{
     });
   });
 });
+router.get("/commercant/:email", (req, res, next) =>{
+  User.find({role: 1, email: req.params.email},function (err, doc) {
+    if (err) return next(err);
+    res.status(200).json(doc);
+  });
+
+});
 
 router.get("/archive/tous", (req, res, next) =>{
   User.find({valide: 0}).then(documents => {

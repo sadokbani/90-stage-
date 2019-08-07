@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import {SessionService} from '../session.service';
 import swal from "sweetalert2";
+import {ServiceService} from './service.service';
 
 @Component({
   selector: 'app-signin',
@@ -19,7 +20,8 @@ export class SigninComponent implements OnInit {
   hide = true;
   islogin = false;
   constructor(private fb: FormBuilder, private router: Router,
-              private sessionService: SessionService) {}
+              private sessionService: SessionService,
+              private signinService: ServiceService) {}
 
   ngOnInit() {
     sessionStorage.removeItem('admin');
@@ -45,13 +47,24 @@ export class SigninComponent implements OnInit {
         sessionStorage.setItem('admin', '0');
         this.router.navigate(['/admin/accueil']);
       }
-      else if(this.form.value.email == 'commercant@gmail.com' && this.form.value.password=='admin'){
-        sessionStorage.setItem('commercant', '0');
-        this.router.navigate(['/commer/accueil']);
-      }
       else {
-        this.islogin=true;
+        this.signinService.isCommercant(this.form.value.email).subscribe(
+          data => {
+            if (data.length === 0) {
+              this.islogin = true;
+            } else {
+              sessionStorage.setItem('commercantId', data[0]._id);
+              sessionStorage.setItem('commercant', '0');
+              this.router.navigate(['/commer/accueil']);
+            }
+
+          }
+        );
+
       }
+      // else {
+      //   this.islogin=true;
+      // }
     } else {
       this.openDialog();
     }

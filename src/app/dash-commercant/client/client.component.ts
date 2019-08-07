@@ -21,40 +21,40 @@ export class ClientComponent implements OnInit {
   name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  Table: ID[] = [];
+  //Table: ID[] = [];
   constructor(private router: Router,
               private userService: ClientService,
               public dialog: MatDialog) {
   }
 
   ngOnInit() {
+    this.refrechUsers();
     this.paginator._intl.itemsPerPageLabel = 'nombre des clients à afficher par page';
     this.paginator._intl.nextPageLabel = 'page suivante';
     this.paginator._intl.previousPageLabel = 'page précédente ' ;
     this.paginator._intl.lastPageLabel = 'dernière page';
     this.paginator._intl.firstPageLabel = 'première page' ;
-    this.refrechUsers();
+
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.userService.retriveAllID().subscribe(
-      response => {
-        this.Table = response.id as any[];
-        console.log(this.Table);
-      }
-    );
   }
 
 
   refrechUsers() {
-    const array = this.Table;
-    for (let i = 0; i < array.length; i++) {
-      console.log(array[i]);
-      this.userService.retriveAllUsersbyID('array[i]').subscribe(
-        response => {
-          this.dataSource.data = response.users as any[];
-        }
-      );
+    const id = sessionStorage.getItem('commercantId');
+    console.log(id);
+    this.userService.retriveAllID(id).subscribe(
+      response => {
+      const table: any[] = [] ;
+    for (let i = 0; i < response.id.length; i++) {
+      this.userService.retriveAllUsersbyID(response.id[i].ID_Utilisateur).subscribe(
+        data => {
+          table.push(data.users[0]);
+        });
     }
+        this.dataSource.data = table as any[] ;
+      }
+    );
   }
 
   applyFilter(filterValue: string) {

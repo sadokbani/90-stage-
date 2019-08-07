@@ -13,18 +13,18 @@ router.get("/valide/client", (req, res, next) =>{
   });
 });
 router.get("/valide/client/:id", (req, res, next) =>{
-  User.find({valide: 1, _id: req.params.id }).then(documents => {
+  User.find({valide: 1,_id: req.params.id }).then(documents => {
     res.status(200).json({
       message: "users fetched successfully!",
-      users: documents //we can also use map methode
+      users: documents
     });
   });
 });
-router.get("/ID", (req, res, next) =>{
-  historique.find({ID_commercant: 1} ,{ ID_Utilisateur:1 , _id:0 }).then(documents => {
+router.get("/ID/:idCommercant", (req, res, next) =>{
+  historique.find({ID_commercant: req.params.idCommercant} ,{ ID_Utilisateur:1 , _id:0 }).then(documents => {
     res.status(200).json({
       message: "ID fetched successfully!",
-      id: documents //we can also use map methode
+      id: documents
     });
   });
 });
