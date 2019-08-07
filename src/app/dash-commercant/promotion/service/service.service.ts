@@ -122,7 +122,7 @@ export class ServiceService {
                 );          }
             );
           }
-          this.router.navigate(['/admin/promotions']);
+          this.router.navigate(['/commer/promotion']);
 
         }
       );
@@ -148,7 +148,7 @@ export class ServiceService {
                 );          }
             );
           }
-          this.router.navigate(['/admin/promotions']);
+          this.router.navigate(['/commer/promotion']);
         }
       );
     }
