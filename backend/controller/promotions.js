@@ -65,6 +65,7 @@ router.get("", (req, res, next) => {
 });
 
 
+
 router.get("/:id", (req, res, next) =>{
   Promotion.findById(req.params.id, (err, doc) => {
     if (!err) { res.send(doc); }
@@ -151,4 +152,15 @@ router.put("/:id", (req, res, next) => {
   });
 
 });
+
+
+router.get("/commercant/:nom", (req, res, next) => {
+  Promotion.find({commercant:req.params.nom}).then(documents => {
+    res.status(200).json({
+      message: "promotion fetched successfully!",
+      promotions: documents //we can also use map methode
+    });
+  });
+});
+
 module.exports = router;
