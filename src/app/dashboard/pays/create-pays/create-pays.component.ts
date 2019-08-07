@@ -20,7 +20,8 @@ class Pays {
   styleUrls: ['./create-pays.component.scss']
 })
 export class CreatePaysComponent implements OnInit {
-
+  paysSelected='';
+  pays:any[];
   angForm: FormGroup;
 
   selected = '';
@@ -53,15 +54,20 @@ export class CreatePaysComponent implements OnInit {
     });
   }
 
-  addPays(Nom, Priority) {
+  addPays() {
+    console.log(this.paysSelected);
     if (this.angForm.valid) {
-      this.paysService.addPays(Nom, Priority);
+      this.paysService.addPays(this.paysSelected,this.angForm.value.Priority);
     } else {
       this.openDialog();
     }
   }
 
   ngOnInit() {
-
+      this.paysService.getPaysList().subscribe(
+        (data:any)=>{
+          this.pays=data.pays;
+        }
+      )
   }
 }
