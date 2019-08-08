@@ -10,6 +10,17 @@
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
 
+  <mat-form-field>
+    <mat-label>Selectionner le type d'utilisateur</mat-label>
+    <mat-select [(value)]="selectedCommer" (valueChange)="selectCommer()">
+      <!--<mat-option>None</mat-option>-->
+      <mat-option value="1">Tous les commerçants</mat-option>
+      <mat-option *ngFor="let com of commercants" [value]=com.nom>
+        {{com.nom}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="promotionService.dataSource" matSort>
 

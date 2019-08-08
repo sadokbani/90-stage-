@@ -11,18 +11,21 @@ import {PromotionService} from './service/promotion.service';
   styleUrls: ['./promotions.component.scss']
 })
 export class PromotionsComponent implements OnInit {
-
+  selectedCommer='1';
   value = '';
   deletev = false;
   displayedColumns: string[] = ['commercant', 'categorieNom', 'SousCategorieNom', 'promotionNom', 'adresse','description', 'image','actions'];
   selected = '1';
   name: string;
+  commercants:any[];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router: Router,
               public promotionService: PromotionService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private userService : UserService) {
   }
 
   // ngAfterViewChecked() {
@@ -30,6 +33,11 @@ export class PromotionsComponent implements OnInit {
   // }
 
   ngOnInit() {
+    this.userService.retriveAllCommercant().subscribe(
+      data=>{
+        this.commercants= data.users;
+      }
+    );
     this.paginator._intl.itemsPerPageLabel = 'nombre des clients à afficher par page';
     this.paginator._intl.nextPageLabel = 'page suivante';
     this.paginator._intl.previousPageLabel = 'page précédente ' ;
@@ -106,5 +114,11 @@ export class PromotionsComponent implements OnInit {
     }) ;
   }
 
-
+  selectCommer(){
+    if (this.selectedCommer == '1' ){
+      this.refrechPromotions();
+    }else {
+      this.promotionService.retrivePromotionsByCommercant(this.selectedCommer);
+    }
+  }
 }
