@@ -8,7 +8,7 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-  isCommercant(email) {
-    return this.http.get<any>(`http://localhost:3000/user/commercant/${email}`);
+  isCommercant(email,pwd) {
+    return this.http.get<any>(`http://localhost:3000/user/commercant/${email}/${pwd}`);
   }
 }

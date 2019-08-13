@@ -52,13 +52,13 @@
       <!-- Color Column -->
       <ng-container matColumnDef="role">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
-        <td mat-cell *matCellDef="let row"  > <p *ngIf="row.role == 2">Client</p> <p *ngIf="row.role == 1"> Commerçant</p> </td>
+        <td mat-cell *matCellDef="let row"  > <p *ngIf="row.role == 2">Client</p><p *ngIf="row.role == 0">Admin</p> <p *ngIf="row.role == 1"> Commerçant</p> </td>
       </ng-container>
 
       <ng-container matColumnDef="dateCreation">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Creation </th>
         <!--<td mat-cell *matCellDef="let row" > {{row.dateCreation|date:'medium'}} </td>-->
-        <td mat-cell *matCellDef="let row" > {{row.dateCreation|date:'dd/MM/yyyy-HH:m'}} </td>
+        <td mat-cell *matCellDef="let row" > {{row.dateCreation|date:'dd/MM/yyyy'}} </td>
       </ng-container>
 
       <!--<ng-container matColumnDef="image">-->
@@ -74,7 +74,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td mat-cell *matCellDef="let row" >
           <button matTooltip="modifier" mat-icon-button (click)="update(row._id, row.role)"><mat-icon>edit</mat-icon></button>
-          <button matTooltip=" archiver  " mat-icon-button  (click)="openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
+          <button matTooltip=" archiver  " mat-icon-button  *ngIf="row.role != 0" (click)="openDialog(row._id)"><mat-icon>delete_sweep</mat-icon></button>
         </td>
 
       </ng-container>

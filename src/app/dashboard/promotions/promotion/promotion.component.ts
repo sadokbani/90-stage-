@@ -64,6 +64,7 @@ export class PromotionComponent implements OnInit {
             categorieNom:response.categorieNom,
             SousCategorieNom:response.SousCategorieNom,
             promotionNom:response.promotionNom,
+            quantite:response.nombreStock,
             adresse:response.adresse,
             description:response.description,
             dateDebut:this.datePipe.transform(new Date(response.dateDebut),"yyyy-MM-ddTHH:mm"),
@@ -76,6 +77,7 @@ export class PromotionComponent implements OnInit {
     this.form = this.fb.group({
       commercant:new FormControl('', Validators.required),
       categorieNom:new FormControl('', Validators.required),
+      quantite:new FormControl(''),
       SousCategorieNom:new FormControl('', Validators.required),
       promotionNom:new FormControl('', Validators.required),
       adresse:new FormControl('', Validators.required),
@@ -152,7 +154,6 @@ export class PromotionComponent implements OnInit {
             type: 'error',
             showCancelButton: false,
             confirmButtonColor: '#64638f',
-            cancelButtonColor: '#9795cf',
             cancelButtonText: 'annuler',
             confirmButtonText: 'ok'
           }) ;
@@ -166,12 +167,12 @@ export class PromotionComponent implements OnInit {
         if (isUndefined(this.form.value.image.type)){
           console.log('no image');
           console.log(this.form.value);
-          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,[])
+          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,[],this.form.value.quantite)
         }
         else {
           console.log('image upd');
 
-          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images)
+          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images,this.form.value.quantite)
         }
 
       }

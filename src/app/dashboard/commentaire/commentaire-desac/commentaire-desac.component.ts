@@ -51,7 +51,6 @@ export class CommentaireDesacComponent implements OnInit {
       type: 'info',
       showCancelButton: true,
       confirmButtonColor: '#64638f',
-      cancelButtonColor: '#9795cf',
       cancelButtonText: 'annuler',
       confirmButtonText: 'oui'
     }).then((result) => {

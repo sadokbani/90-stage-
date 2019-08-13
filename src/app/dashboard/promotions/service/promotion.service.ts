@@ -16,6 +16,7 @@ export class PromotionService {
 
   addPromotion(commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string, categorieNom:string, dateDebut, description:string,image:any[],time){
     const promotionData = new FormData();
+
     promotionData.append('commercant', commercant);
     promotionData.append('categorieNom', categorieNom);
     promotionData.append('adresse', adresse);
@@ -94,12 +95,13 @@ export class PromotionService {
     return this.http.get<any>(`http://localhost:3000/promotion/${id}`);
   }
 
-  updatePromotion(id,commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string, categorieNom:string, dateDebut, description:string,image:any[]){
+  updatePromotion(id,commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string, categorieNom:string, dateDebut, description:string,image:any[],quantite:string){
     const date= new Date(dateDebut);
     const dateNow= new Date();
     const periode=date.getTime()-dateNow.getTime();
     const promotionData = new FormData();
     promotionData.append('commercant', commercant);
+    promotionData.append('nombreStock', quantite);
     promotionData.append('categorieNom', categorieNom);
     promotionData.append('adresse', adresse);
     promotionData.append('promotionNom', promotionNom);

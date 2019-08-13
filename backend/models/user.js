@@ -20,7 +20,7 @@ userSchema.statics.hashPassword = function hashPassword(password){
   return bcrypt.hashSync(password,10);
 };
 
-userSchema.methods.isValid = function(hashedpassword){
+userSchema.methods.isValid = function isValid(hashedpassword){
   return  bcrypt.compareSync(hashedpassword, this.password);
 };
 

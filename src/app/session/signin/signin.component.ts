@@ -43,26 +43,29 @@ export class SigninComponent implements OnInit {
     //   error => {console.log(error)}
     // );
     if (this.form.valid){
-      if(this.form.value.email == 'admin@gmail.com' && this.form.value.password=='admin'){
-        sessionStorage.setItem('admin', '0');
-        this.router.navigate(['/admin/accueil']);
-      }
-      else {
-        this.signinService.isCommercant(this.form.value.email).subscribe(
+        this.signinService.isCommercant(this.form.value.email,this.form.value.password).subscribe(
           data => {
-            if (data.length === 0) {
-              this.islogin = true;
-            } else {
-              sessionStorage.setItem('commercantId', data[0]._id);
-              sessionStorage.setItem('commercantNom', data[0].nom);
-              sessionStorage.setItem('commercant', '0');
-              this.router.navigate(['/commer/accueil']);
-            }
+              if (data[0].role === 1){
+                sessionStorage.setItem('commercantId', data[0]._id);
+                sessionStorage.setItem('commercantNom', data[0].nom);
+                sessionStorage.setItem('commercant', '0');
+                this.router.navigate(['/commer/accueil']);
+              }
+              if (data[0].role === 0){
+                sessionStorage.setItem('admin', '0');
+                this.router.navigate(['/admin/accueil']);
+              }
+
+            },
+          error =>{
+            this.islogin = true;
 
           }
+
+
         );
 
-      }
+
       // else {
       //   this.islogin=true;
       // }

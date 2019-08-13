@@ -3,6 +3,7 @@ const multer = require("multer");
 const jwt = require('jsonwebtoken');
 const User = require("../models/user");
 
+
 const router = express.Router();
 
 const MIME_TYPE_MAP = {
@@ -82,7 +83,6 @@ router.post(
 router.get("", (req, res, next) => {
 
   setTimeout(()=>{
-    console.log("ooki");
     User.find().then(documents => {
       res.status(200).json({
         message: "users fetched successfully!",
@@ -109,10 +109,14 @@ router.get("/valide/tous", (req, res, next) =>{
     });
   });
 });
-router.get("/commercant/:email", (req, res, next) =>{
-  User.find({role: 1, email: req.params.email},function (err, doc) {
-    if (err) return next(err);
-    res.status(200).json(doc);
+
+
+
+router.get("/commercant/:email/:pwd", (req, res, next) =>{
+  User.find({ email: req.params.email},function (err, doc) {
+
+   if(doc[0].isValid(req.params.pwd)) res.status(200).json(doc);
+    else res.status(500).json("not found");
   });
 
 });

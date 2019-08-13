@@ -76,6 +76,22 @@
 
           </div>
 
+          <div class="pb-1" *ngIf="id == -1">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Quantité" type="text" readonly value="90" >
+              <!--<mat-error *ngIf="form.controls['quantite'].hasError('required') && form.controls['quantite'].touched" class="mat-text-warn">Vous devez inclure une quantite.</mat-error>-->
+            </mat-form-field>
+
+          </div>
+
+          <div class="pb-1" *ngIf="id != -1">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Quantité" type="text" [formControl]="form.controls['quantite']">
+              <mat-error *ngIf="form.controls['quantite'].hasError('required') && form.controls['quantite'].touched" class="mat-text-warn">Vous devez inclure une quantite.</mat-error>
+            </mat-form-field>
+
+          </div>
+
           <div class="pb-1">
             <mat-form-field style="width: 100%">
               <textarea matInput placeholder="Description de promotion" type="text" [formControl]="form.controls['description']"></textarea>
