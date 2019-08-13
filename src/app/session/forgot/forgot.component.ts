@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {EmailService} from './email.service';
 import {
   FormBuilder,
   FormGroup,
@@ -7,6 +8,7 @@ import {
   FormControl
 } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-forgot',
@@ -15,7 +17,7 @@ import { CustomValidators } from 'ng2-validation';
 })
 export class ForgotComponent implements OnInit {
   public form: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router , private email: EmailService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -27,6 +29,18 @@ export class ForgotComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['/session/signin']);
+    let user = {
+      email: this.form.value.email
+    }
+    this.email.sendEmail("http://localhost:3000/sendmail", user).subscribe(
+      data => {
+        let res:any = data;
+      },
+      err => {
+        console.log(err);
+
+      },
+    );
+
   }
 }

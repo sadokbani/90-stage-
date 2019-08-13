@@ -7,17 +7,17 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-
   constructor(private http: HttpClient,
               private router: Router) { }
 
-  retriveAllUsers(){
+  retriveAllUsers() {
     return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/tous");
   }
 
   retriveAllUsersNV(){
     return this.http.get<{message:string, users:any}>("http://localhost:3000/user/archive/tous");
   }
+
 
   retriveAllClient(){
     return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/client");

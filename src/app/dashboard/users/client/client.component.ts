@@ -6,7 +6,7 @@ import {mimeType} from '../../../session/signup/mime-type.validator';
 import {UserService} from '../service/user.service';
 import {isUndefined} from 'util';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
-
+import {HttpClient} from '@angular/common/http';
 import swal from "sweetalert2";
 
 
@@ -27,8 +27,8 @@ export class ClientComponent implements OnInit {
   id: number;
   hide = true;
   hide1 = true;
-  constructor(private fb: FormBuilder,  private route: ActivatedRoute,private router: Router, public dialog: MatDialog ,
-              private userService: UserService) { }
+  constructor(private fb: FormBuilder,  private route: ActivatedRoute, private router: Router, public dialog: MatDialog ,
+              private userService: UserService , private http: HttpClient ) { }
 
   ngOnInit() {
     this.id=this.route.snapshot.params['id'];
@@ -76,7 +76,7 @@ export class ClientComponent implements OnInit {
   openDialog(): void {
     swal.fire({
       title: 'Erreur',
-      text: "Vous devez remplir tous les champs et selectioner une image pour continuer",
+      text: 'Vous devez remplir tous les champs et selectioner une image pour continuer',
       type: 'error',
       showCancelButton: false,
       confirmButtonColor: '#64638f',
@@ -85,18 +85,19 @@ export class ClientComponent implements OnInit {
       confirmButtonText: 'ok'
     }) ;
   }
-  onSubmit(){
-    if (this.form.valid){
-      if(this.id == -1){
-        this.userService.addClient(this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password, this.form.value.image);
-      }
-      else {
+  onSubmit() {
+    if (this.form.valid) {
+      if (this.id == -1) {
+        this.userService.addClient(this.form.value.nom,
+          this.form.value.prenom, this.form.value.email, this.form.value.password, this.form.value.image);
+      } else {
 
         if (isUndefined(this.form.value.image.type)){
-          this.userService.updateClient(this.id,this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password);
-        }
-        else {
-          this.userService.updateClientImage(this.id,this.form.value.nom,this.form.value.prenom, this.form.value.email, this.form.value.password, this.form.value.image);
+          this.userService.updateClient(this.id, this.form.value.nom, this.form.value.prenom,
+            this.form.value.email, this.form.value.password);
+        } else {
+          this.userService.updateClientImage(this.id, this.form.value.nom,
+            this.form.value.prenom, this.form.value.email, this.form.value.password, this.form.value.image);
         }
 
       }
