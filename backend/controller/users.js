@@ -191,7 +191,8 @@ router.put("/:id", (req, res, next) => {
 
 });
 router.put("/reset/:email", (req, res, next) => {
-  User.updateOne({email:req.params.email}, {$set: {password: req.params.password}}, function (err, doc) {
+  console.log(req.params.email, req.params.password);
+  User.updateOne({email: req.params.email}, {$set:req.body}  , function (err, doc) {
     if (err) return next(err);
     res.status(200).json({message:"updated"});
   });

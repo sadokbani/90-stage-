@@ -64,7 +64,7 @@ app.post("/sendmail", (req, res) => {
   console.log("request came");
   let user = req.body;
   sendMail(user, info => {
-    console.log(`The mail has beed send 😃 and the id is ${info.messageId}`);
+    console.log(`The mail has beed send`);
     res.send(info);
   });
 });
@@ -76,8 +76,8 @@ async function sendMail(user, callback) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'anes.temani@esprit.tn',
-      pass: 'anes@1996'
+      user: 'wazolab01',
+      pass: 'anes1996'
     }
   });
 

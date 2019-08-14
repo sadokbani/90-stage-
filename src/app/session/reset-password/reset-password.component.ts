@@ -19,7 +19,7 @@ export class ResetPasswordComponent implements OnInit {
   public form: FormGroup;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, public dialog: MatDialog,
-              private http: HttpClient , private reset: ResetService) {
+              private http: HttpClient , private reset: ResetService ,private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -32,7 +32,10 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
   onSubmit() {
-this.reset.update('anestemani00@gmail.com', this.form.value.password);
+    let email = this.activatedRoute.snapshot.paramMap.get('email');
+
+    console.log(email);
+this.reset.update(email, this.form.value.password);
   }
 
 }
