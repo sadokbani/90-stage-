@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import User from '../../../../backend/models/user.js';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +12,13 @@ export class ResetService {
 
   update(email, password) {
 
-    this.http.put(`http://localhost:3000/user/reset/${email}}`,
+    this.http.put(`http://localhost:3000/user/reset/${email}`,
       {
-        password: User.hashPassword(password),
+        password: password
       }).subscribe(
       responseData => {
         console.log(responseData);
+          this.router.navigate(['/session/signin']);
       }
     );
   }

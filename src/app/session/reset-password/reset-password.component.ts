@@ -32,6 +32,12 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
   onSubmit() {
+      swal.fire({
+          type: 'success',
+          title: 'votre mot de passe a été réinitialisé ',
+          showConfirmButton: false,
+          timer: 1500
+      });
     let email = this.activatedRoute.snapshot.paramMap.get('email');
 
     console.log(email);

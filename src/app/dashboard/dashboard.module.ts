@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
 
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import {
   MatButtonModule, MatChip, MatDialogModule, MatGridListModule, MatIconModule,
   MatListModule, MatMenuModule,
@@ -69,7 +68,7 @@ import {PromotionComponent} from './promotions/promotion/promotion.component';
   imports: [
     MatSelectModule,
     MatFormFieldModule,
-    NgxMatSelectSearchModule,
+
     CommonModule,
     MatTableModule,
     FormsModule,
