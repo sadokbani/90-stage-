@@ -93,6 +93,22 @@ router.get("", (req, res, next) => {
 
 });
 
+router.get("/exist/:email", (req, res, next) => {
+
+    setTimeout(()=>{
+        User.find({"email" : req.params.email}).count().then(documents => {
+            res.status(200).json({
+                message: "users fetched successfully!",
+                users: documents //we can also use map methode
+            });
+            console.log(res.users);
+        });
+    }, 10000);
+
+});
+
+
+
 router.get("/:id", (req, res, next) =>{
   User.findById(req.params.id, (err, doc) => {
     if (!err) { res.send(doc); }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {EmailService} from './email.service';
+import swal from "sweetalert2";
 import {
   FormBuilder,
   FormGroup,
@@ -32,15 +33,33 @@ export class ForgotComponent implements OnInit {
     let user = {
       email: this.form.value.email
     }
-    this.email.sendEmail("http://localhost:3000/sendmail", user).subscribe(
-      data => {
-        let res:any = data;
-      },
-      err => {
-        console.log(err);
 
-      },
+const anes =this.email.exist(user.email).subscribe(
+    response => {
+            console.log(response.users);
+ if (response.users > 0) {
+     this.email.sendEmail("http://localhost:3000/mail", user).subscribe(
+         data => {
+             let res:any = data;
+         },
+         err => {
+             console.log(err);
+
+         },
+     );
+ } else {
+     swal.fire({
+         type: 'error',
+         title: 'compte introuvable ',
+         showConfirmButton: false,
+         timer: 1500
+     });
+ }
+ },
+        err => {
+            console.log(err);
+
+        },
     );
 
-  }
-}
+}}
