@@ -104,7 +104,7 @@ async function sendMail(user, callback) {
 </tr>
 <tr>
 <td>
-<h1  style="color: darkorchid" > <a href='http://localhost:3000/user/confirm/${user.email}' >confirmation</a> </h1>
+<h1  style="color: darkorchid" > <a href='http://localhost:4200/session/confirm/${user.email}' >confirmation</a> </h1>
 
 </td>
 </tr>

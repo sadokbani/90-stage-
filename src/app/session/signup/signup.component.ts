@@ -68,7 +68,7 @@ export class SignupComponent implements OnInit {
                 let res: any = data;
                 swal.fire({
                     type: 'success',
-                    title: 'email de recupération est envoyé  ',
+                    title: 'email de confirmation est envoyé  ',
                     showConfirmButton: false,
                     timer: 2000
                 });
