@@ -63,7 +63,7 @@ import { UpdatePaysComponent } from './pays/update-pays/update-pays.component';
 import { CommentaireComponent } from './commentaire/commentaire.component';
 import { CommentaireDesacComponent } from './commentaire/commentaire-desac/commentaire-desac.component';
 import { AjoutCommentaireComponent } from './commentaire/ajout-commentaire/ajout-commentaire.component';
-import { PromotionsComponent } from './promotions/promotions.component';
+import {PromoptionImage, PromotionsComponent} from './promotions/promotions.component';
 import {PromotionComponent} from './promotions/promotion/promotion.component';
 
 
@@ -121,8 +121,9 @@ import {PromotionComponent} from './promotions/promotion/promotion.component';
     CommentaireDesacComponent,
     AjoutCommentaireComponent,
     PromotionComponent,
-    PromotionsComponent],
-  entryComponents: [AjoutCommentaireComponent],
+    PromotionsComponent,
+    PromoptionImage],
+  entryComponents: [AjoutCommentaireComponent,PromoptionImage],
 
 
 })
