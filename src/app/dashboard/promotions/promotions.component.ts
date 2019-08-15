@@ -4,6 +4,8 @@ import {Router} from '@angular/router';
 import {UserService} from '../users/service/user.service';
 import swal from "sweetalert2";
 import {PromotionService} from './service/promotion.service';
+import {CategorieService} from '../categorie/service/categorie.service';
+import {SouscategorieService} from '../souscategorie/service/souscategorie.service';
 
 
 @Component({
@@ -13,12 +15,16 @@ import {PromotionService} from './service/promotion.service';
 })
 export class PromotionsComponent implements OnInit {
   selectedCommer='1';
+  selectedCategorie='1';
   value = '';
   deletev = false;
   displayedColumns: string[] = ['commercant', 'categorieNom', 'SousCategorieNom', 'promotionNom', 'adresse','description','statut', 'image','actions'];
   selected = '1';
   name: string;
   commercants:any[];
+  categories:any[];
+  sousCategorieSelected ;
+  sousCategories:any[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -27,7 +33,10 @@ export class PromotionsComponent implements OnInit {
               public promotionService: PromotionService,
               public dialog: MatDialog,
               private userService : UserService,
-              ) {
+              private categorieService: CategorieService,
+              private sousCatService: SouscategorieService,
+
+  ) {
   }
 
   // ngAfterViewChecked() {
@@ -40,6 +49,10 @@ export class PromotionsComponent implements OnInit {
         this.commercants= data.users;
       }
     );
+    this.categorieService.getCategorie().subscribe(
+        (data: any[])  =>{
+          this.categories = data;
+        });
     this.paginator._intl.itemsPerPageLabel = 'nombre des clients à afficher par page';
     this.paginator._intl.nextPageLabel = 'page suivante';
     this.paginator._intl.previousPageLabel = 'page précédente ' ;
@@ -89,7 +102,14 @@ export class PromotionsComponent implements OnInit {
       );
   }
 
-
+  refrechSouscategorie_byCategorie() {
+    this.sousCatService.getSousCategorie_byCategorie(this.selectedCategorie).subscribe(
+        (response: any[]) => {
+          this.sousCategories = response;
+          console.log(response);
+        }
+    );
+  }
   supprimer(id): void {
     swal.fire({
       title: 'vous voulez vraiment supprimer cette promotion ?',
@@ -118,13 +138,55 @@ export class PromotionsComponent implements OnInit {
 
   selectCommer(){
     if (this.selectedCommer == '1' ){
-      this.refrechPromotions();
+      if (this.selectedCategorie =='1'){
+        this.refrechPromotions();}
+      else {
+        this.promotionService.retrivePromotionsByCategorie(this.selectedCategorie);
+      }
     }else {
       this.promotionService.retrivePromotionsByCommercant(this.selectedCommer);
     }
   }
 
+  selectCategorie(){
+    this.refrechSouscategorie_byCategorie();
+    if (this.selectedCommer == '1'){
+      if (this.selectedCategorie =='1'){
+        this.refrechPromotions();
 
+      } else {
+        this.promotionService.retrivePromotionsByCategorie(this.selectedCategorie);
+
+      }
+    } else {
+      if (this.selectedCategorie =='1'){
+        this.promotionService.retrivePromotionsByCommercant(this.selectedCommer);
+
+      } else {
+      this.promotionService.retrivePromotionsByCategorieAndCommercant(this.selectedCommer,this.selectedCategorie);
+    }}
+  }
+
+  selectSousCat(){
+    if (this.selectedCommer == '1'){
+      if (this.sousCategorieSelected == '1'){
+        this.promotionService.retrivePromotionsByCategorie(this.selectedCategorie);
+      } else {
+        this.promotionService.retrivePromotionsByCategorieAndSouscateg(this.sousCategorieSelected,this.selectedCategorie);
+      }
+    }
+    else
+      {
+        if (this.sousCategorieSelected == '1'){
+          this.promotionService.retrivePromotionsByCategorieAndCommercant(this.selectedCommer,this.selectedCategorie);
+
+        }
+        else {
+          this.promotionService.retrivePromotionsByCategorieAndCommercantAndSouscat(this.selectedCommer,this.selectedCategorie,this.sousCategorieSelected);
+
+        }
+    }
+  }
   openDialog(image:[string]): void {
     const dialogRef = this.dialog.open(PromoptionImage, {
       // width: (image.length*210).toString()+'px' ,

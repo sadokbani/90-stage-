@@ -52,12 +52,7 @@ export class PromotionService {
   retriveAllpromotion(){
      this.http.get<{message:string, promotions:any}>("http://localhost:3000/promotion").subscribe(
       response => {
-        // console.log(response.promotions);
-        // this.promotionService.promotionData = response.promotions ;
-        // this.dataSource.data = this.promotionService.promotionData as any[];
         this.dataSource.data = response.promotions as any[];
-
-
       }
     );
   }
@@ -65,16 +60,42 @@ export class PromotionService {
   retrivePromotionsByCommercant(nom){
        this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/commercant/${nom}`).subscribe(
         response => {
-          // console.log(response.promotions);
-          // this.promotionService.promotionData = response.promotions ;
-          // this.dataSource.data = this.promotionService.promotionData as any[];
           this.dataSource.data = response.promotions as any[];
-
-
         }
       );
     }
 
+  retrivePromotionsByCategorie(nom){
+       this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/categorie/${nom}`).subscribe(
+        response => {
+          this.dataSource.data = response.promotions as any[];
+        }
+      );
+    }
+
+  retrivePromotionsByCategorieAndCommercant(commer,cat){
+       this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/mult/${cat}/${commer}`).subscribe(
+        response => {
+          this.dataSource.data = response.promotions as any[];
+        }
+      );
+    }
+
+    retrivePromotionsByCategorieAndCommercantAndSouscat(commer,cat,souscat){
+        this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/mult/${cat}/${commer}/${souscat}`).subscribe(
+            response => {
+                this.dataSource.data = response.promotions as any[];
+            }
+        );
+    }
+
+    retrivePromotionsByCategorieAndSouscateg(sousCat,cat){
+        this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/multi/${cat}/${sousCat}`).subscribe(
+            response => {
+                this.dataSource.data = response.promotions as any[];
+            }
+        );
+    }
   activation(id){
     return this.http.put(`http://localhost:3000/promotion/activation/${id}`,null);
   }
