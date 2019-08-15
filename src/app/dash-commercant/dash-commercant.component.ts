@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dash-commercant.component.scss']
 })
 export class DashCommercantComponent implements OnInit {
-
+  nom;
   constructor() { }
 
   ngOnInit() {
+    this.nom=sessionStorage.getItem('commercantNom');
+
   }
 
 }
