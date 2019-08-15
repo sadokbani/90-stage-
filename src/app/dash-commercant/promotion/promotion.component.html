@@ -23,26 +23,29 @@
 
       <!-- Progress Column -->
       <ng-container matColumnDef="categorieNom">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de categorie </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>categorie </th>
         <td mat-cell *matCellDef="let row"> {{row.categorieNom}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="SousCategorieNom">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de sous categorie </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>sous categorie </th>
         <td mat-cell *matCellDef="let row"> <p *ngFor="let souscat of row.SousCategorieNom">{{souscat}}</p></td>
       </ng-container>
 
 
       <ng-container matColumnDef="promotionNom">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom de promotion </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>promotion </th>
         <td mat-cell *matCellDef="let row" > {{row.promotionNom}} </td>
       </ng-container>
 
       <ng-container matColumnDef="adresse">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </th>
-        <td style="width: 100px" mat-cell *matCellDef="let row" > {{row.adresse}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> point de vente </th>
+        <td style="width: 100px" mat-cell *matCellDef="let row" >
+          <p *ngFor="let adresse of row.PTV">{{adresse}}</p> </td>
       </ng-container>
+
+
 
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>

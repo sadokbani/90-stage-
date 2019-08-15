@@ -8,7 +8,7 @@ import {CreatePromotionComponent} from './promotion/create-promotion/create-prom
 import {PromotionsComponent} from '../dashboard/promotions/promotions.component';
 import {PointsVenteComponent} from './promotion/points-vente/points-vente.component';
 import {CreatePtvComponent} from './promotion/points-vente/create-ptv/create-ptv.component';
-
+import {ArchivePtvComponent} from  './promotion/points-vente/archive-ptv/archive-ptv.component';
 export const DashCommercantRoutes: Routes = [
   {
     path: '',
@@ -36,6 +36,7 @@ export const DashCommercantRoutes: Routes = [
       {path: 'promotion/:id', component: CreatePromotionComponent},
         {path: 'pointsVente', component: PointsVenteComponent},
         {path: 'createpointsVente', component: CreatePtvComponent},
+        {path: 'archivePTV', component: ArchivePtvComponent},
     ]
   }
 ];

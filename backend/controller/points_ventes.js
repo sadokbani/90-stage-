@@ -30,7 +30,7 @@ ptvRoutes.route('/:id').get(function (req, res) {
 });
 
 ptvRoutes.route('/archive/:id').get(function (req, res) {
-    PVT.find({valide: 0}, {ID_commercant : req.params.id},function (err,pvt){
+    PVT.find({valide: 0, ID_commercant : req.params.id},function (err,pvt){
         if(err){
             console.log(err);
         }
