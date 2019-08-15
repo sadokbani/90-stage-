@@ -86,7 +86,7 @@ export class SigninComponent implements OnInit {
     //   error => {console.log(error)}
     // );
     if (this.form.valid){
-        this.signinService.isCommercant(this.form.value.email,this.form.value.password).subscribe(
+        this.signinService.isCommercant(this.form.value.email, this.form.value.password).subscribe(
           data => {
               if (data.role === 1){
                 sessionStorage.setItem('commercantId', data._id);

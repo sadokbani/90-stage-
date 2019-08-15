@@ -11,9 +11,6 @@ export class UserService {
               private router: Router) { }
 
 
-    confirm(email) {
-        return this.http.put(`http://localhost:3000/user/confirm/${email}`, null);
-    }
     sendEmail(url, data) {
         return this.http.post(url, data);
     }
@@ -53,8 +50,11 @@ export class UserService {
     return this.http.put(`http://localhost:3000/user/archive/${id}`,null);
   }
 
+    confirm(email) {
+        return this.http.put(`http://localhost:3000/user/confirm/${email}`, null);
+    }
   restaurerUser(id) {
-      return this.http.put(`http://localhost:3000/user/restaurer/${id}`,null);
+      return this.http.put(`http://localhost:3000/user/restaurer/${id}`, null);
     }
 
   deleteUser(id) {

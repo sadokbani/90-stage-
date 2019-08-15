@@ -113,7 +113,13 @@ router.put("/confirm/:email", (req, res, next) => {
         res.send(doc);
     });
 });
+router.put("/restaurer/:id", (req, res, next) => {
+    User.finddAndUpdate({email: req.params.email}, {$set: {confirmed: 1}}, function (err, doc) {
+        if (err) return next(err);
+        res.send(doc);
+    });
 
+});
 
 router.get("/:id", (req, res, next) =>{
   User.findById(req.params.id, (err, doc) => {
@@ -140,9 +146,11 @@ router.get("/commercant/:email/:pwd", (req, res, next) =>{
 
     console.log(doc)
     if (doc){
-
+        User.findOne({ email: req.params.email , confirmed: 1},function (err, doc) {
+            if (doc){
       if(doc.isValid(req.params.pwd)) res.status(200).json(doc);
-      else res.status(500).json("not found");
+      else res.status(500).json("not confirmed");}
+    });
     }
     else res.status(500).json("not found");
   });

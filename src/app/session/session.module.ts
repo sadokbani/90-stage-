@@ -26,6 +26,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
 } from "angular-6-social-login";
+import { ConfirmedComponent } from './confirmed/confirmed.component';
 
 
 export function getAuthServiceConfigs() {
@@ -72,7 +73,8 @@ export function getAuthServiceConfigs() {
     LockscreenComponent,
     SigninComponent,
     SignupComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ConfirmedComponent
   ]
 })
 export class SessionModule {}
