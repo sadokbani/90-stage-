@@ -95,7 +95,7 @@ router.get("", (req, res, next) => {
 
 router.get("/exist/:email", (req, res, next) => {
 
-    setTimeout(()=>{
+
         User.find({"email" : req.params.email}).count().then(documents => {
             res.status(200).json({
                 message: "users fetched successfully!",
@@ -103,7 +103,7 @@ router.get("/exist/:email", (req, res, next) => {
             });
             console.log(res.users);
         });
-    }, 10000);
+
 
 });
 
