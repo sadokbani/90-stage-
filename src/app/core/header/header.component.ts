@@ -23,6 +23,7 @@ export class HeaderComponent {
 
   signout(){
     sessionStorage.removeItem('admin');
+    sessionStorage.removeItem('commercantNom');
     sessionStorage.removeItem('commercant');
     sessionStorage.removeItem('commercantId');
     this.router.navigate(['session/signin']);

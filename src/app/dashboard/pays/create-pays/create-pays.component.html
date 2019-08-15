@@ -12,9 +12,7 @@
             <mat-label>Nom de pays</mat-label>
             <mat-select [(value)]="paysSelected"
                         [formControl]="angForm.controls['Nom']">
-              <mat-option>
-                <ngx-mat-select-search ></ngx-mat-select-search>
-              </mat-option>
+
               <mat-option *ngFor="let com of pays" [value]=com>
                 {{com}}
               </mat-option>

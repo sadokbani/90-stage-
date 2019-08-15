@@ -112,15 +112,45 @@ router.get("/valide/tous", (req, res, next) =>{
 
 
 
-router.get("/commercant/:email/:pwd", (req, res, next) =>{
-  User.find({ email: req.params.email},function (err, doc) {
 
-   if(doc[0].isValid(req.params.pwd)) res.status(200).json(doc);
+router.get("/commercant/:email/:pwd", (req, res, next) =>{
+  User.findOne({ email: req.params.email},function (err, doc) {
+
+    console.log(doc)
+    if (doc){
+
+      if(doc.isValid(req.params.pwd)) res.status(200).json(doc);
+      else res.status(500).json("not found");
+    }
     else res.status(500).json("not found");
   });
 
 });
 
+
+
+router.get("/commercant/:email", (req, res, next) => {
+    User.findOne({ email: req.params.email},function (err, doc) {
+
+      if (doc){
+        res.status(200).json(doc);
+      }
+      else res.status(500).json("not found");
+    });
+
+
+});
+
+router.post("/social/add",(req,res,next)=>{
+  let user= new User(req.body);
+  user.save()
+      .then(user => {
+        res.status(200).json(user);
+      })
+      .catch(err => {
+        res.status(400).send("unable to save to database");
+      });
+});
 router.get("/archive/tous", (req, res, next) =>{
   User.find({valide: 0}).then(documents => {
     res.status(200).json({
@@ -228,9 +258,3 @@ router.delete('/:id', (req, res) => {
 
 
 module.exports = router;
-
-
-
-
-
-

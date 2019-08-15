@@ -20,6 +20,29 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular-6-social-login";
+
+
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider("2357186534334869")
+        },
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider("1029278348634-ev11k2skf40svekkf1cod14dosv4q47r.apps.googleusercontent.com")
+        }
+      ]
+  );
+  return config;
+}
 
 @NgModule({
   imports: [
@@ -30,9 +53,17 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
+    SocialLoginModule
+    ,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
   ],
   declarations: [
     NotFoundComponent,

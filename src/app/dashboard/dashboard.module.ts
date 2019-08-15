@@ -12,6 +12,7 @@ import {
   MatToolbarModule,
 } from '@angular/material';
 
+
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -64,6 +65,8 @@ import { CommentaireDesacComponent } from './commentaire/commentaire-desac/comme
 import { AjoutCommentaireComponent } from './commentaire/ajout-commentaire/ajout-commentaire.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import {PromotionComponent} from './promotions/promotion/promotion.component';
+
+
 @NgModule({
   imports: [
     MatSelectModule,
@@ -105,6 +108,7 @@ import {PromotionComponent} from './promotions/promotion/promotion.component';
     MatTabsModule, MatMenuModule,
     RouterModule.forChild(DashboardRoutes)
   ],
+
   declarations: [ DashboardComponent, ArchiveSouscategorieComponent, UsersComponent, ArchiveCategorieComponent, ClientComponent, CommercantComponent, ArchiveComponent, CategorieComponent,
     CreateCategorieComponent, UpdateCategorieComponent, SouscategorieComponent, HistoriqueAchatsComponent, CreateSouscategorieComponent,
     UpdateSouscategorieComponent,
@@ -123,3 +127,6 @@ import {PromotionComponent} from './promotions/promotion/promotion.component';
 
 })
 export class DashboardModule {}
+
+
+

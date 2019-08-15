@@ -11,4 +11,18 @@ export class ServiceService {
   isCommercant(email,pwd) {
     return this.http.get<any>(`http://localhost:3000/user/commercant/${email}/${pwd}`);
   }
+
+  isExist(email){
+    return this.http.get<any>(`http://localhost:3000/user/commercant/${email}`);
+  }
+
+  addSocial(nom,email,image,password){
+    return this.http.post("http://localhost:3000/user/social/add",{
+      imagePath:image,
+      email:email,
+      nom:nom,
+      password:password,
+      role:1
+    })
+  }
 }
