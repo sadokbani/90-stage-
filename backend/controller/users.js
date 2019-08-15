@@ -80,6 +80,9 @@ router.post(
   }
 );
 
+
+
+
 router.get("", (req, res, next) => {
 
   setTimeout(()=>{
@@ -114,13 +117,20 @@ router.put("/confirm/:email", (req, res, next) => {
     });
 });
 router.put("/restaurer/:id", (req, res, next) => {
-    User.finddAndUpdate({email: req.params.email}, {$set: {confirmed: 1}}, function (err, doc) {
+    User.finddAndUpdate({_id: req.params.id}, {$set: {confirmed: 1}}, function (err, doc) {
         if (err) return next(err);
         res.send(doc);
     });
 
 });
+router.put("/PVENTE/:id/:adresse", (req, res, next) => {
+    User.finddAndUpdate({_id: req.params.id}, {$set: {PTVENTE: req.params.adresse} }, function (err, doc) {
+        if (err) return next(err);
+        res.send(doc);
+        console.log('aaa');
+    });
 
+});
 router.get("/:id", (req, res, next) =>{
   User.findById(req.params.id, (err, doc) => {
     if (!err) { res.send(doc); }

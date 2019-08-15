@@ -67,6 +67,7 @@ import {PromoptionImage, PromotionsComponent} from './promotions/promotions.comp
 import {PromotionComponent} from './promotions/promotion/promotion.component';
 
 
+
 @NgModule({
   imports: [
     MatSelectModule,
@@ -122,8 +123,9 @@ import {PromotionComponent} from './promotions/promotion/promotion.component';
     AjoutCommentaireComponent,
     PromotionComponent,
     PromotionsComponent,
-    PromoptionImage],
-  entryComponents: [AjoutCommentaireComponent,PromoptionImage],
+    PromoptionImage,
+    ],
+  entryComponents: [AjoutCommentaireComponent, PromoptionImage],
 
 
 })

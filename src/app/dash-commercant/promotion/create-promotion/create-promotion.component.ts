@@ -10,6 +10,7 @@ import {isUndefined} from 'util';
 import {UserService} from '../../../dashboard/users/service/user.service';
 import swal from "sweetalert2";
 import {ServiceService} from '../service/service.service';
+import {PtvService} from '../points-vente/ptv.service';
 import {PromotionService} from '../../../dashboard/promotions/service/promotion.service';
 
 @Component({
@@ -26,9 +27,11 @@ export class CreatePromotionComponent implements OnInit {
 
   catecorieSelected = '';
   sousCategorieSelected = '';
+    PTVSelected='';
   commercants:any[];
   categories:any[];
   sousCategories:any[];
+  PTV:any[];
   id: number;
   hide = true;
   hide1 = true;
@@ -37,6 +40,7 @@ export class CreatePromotionComponent implements OnInit {
               private categorieService: CategorieService,
               private sousCatService: SouscategorieService,
               private promotionService: ServiceService,
+              private PTVService: PtvService,
               private datePipe: DatePipe) { }
 
   ngOnInit() {
@@ -49,28 +53,35 @@ export class CreatePromotionComponent implements OnInit {
       (data: any[])  =>{
         this.categories = data;
       });
+      const id = sessionStorage.getItem('commercantId');
+      this.PTVService.getPtv(id).subscribe(
+          (response: any[]) => {
+              this.PTV = response;
+          }
+      );
     this.id=this.route.snapshot.params['id'];
     if (this.id != -1){
       this.promotionService.retrivePromotin(this.id).subscribe(
         response =>{
           console.log(response);
-
           this.sousCatService.getSousCategorie_byCategorie(response.categorieNom).subscribe(
             (response: any[]) => {
               this.sousCategories = response;
             }
           );
+
           this.form.setValue({
 
-            categorieNom:response.categorieNom,
-            SousCategorieNom:response.SousCategorieNom,
-            promotionNom:response.promotionNom,
-            adresse:response.adresse,
-            description:response.description,
-            dateDebut:this.datePipe.transform(new Date(response.dateDebut),"yyyy-MM-ddTHH:mm"),
-            image:response.imagePath[0]
+            categorieNom: response.categorieNom,
+            SousCategorieNom: response.SousCategorieNom,
+            PTV: response.Nom,
+            promotionNom: response.promotionNom,
+            adresse: response.adresse,
+            description: response.description,
+            dateDebut: this.datePipe.transform(new Date(response.dateDebut),"yyyy-MM-ddTHH:mm"),
+            image: response.imagePath[0]
           });
-          this.urls= response.imagePath;
+          this.urls = response.imagePath;
         }
       );
     }
@@ -78,6 +89,7 @@ export class CreatePromotionComponent implements OnInit {
 
       categorieNom:new FormControl('', Validators.required),
       SousCategorieNom:new FormControl('', Validators.required),
+        PTV:new FormControl('', Validators.required),
       promotionNom:new FormControl('', Validators.required),
       adresse:new FormControl('', Validators.required),
       description:new FormControl('', Validators.required),
@@ -97,6 +109,16 @@ export class CreatePromotionComponent implements OnInit {
       }
     );
   }
+
+    refrechPTV() {
+        const id = sessionStorage.getItem('commercantId');
+        this.PTVService.getPtv(id).subscribe(
+            (response: any[]) => {
+                this.PTV = response;
+                console.log(response);
+            }
+        );
+    }
 
 
   onImagePicked(event) {
@@ -160,7 +182,10 @@ export class CreatePromotionComponent implements OnInit {
         } else {
           const commercant = sessionStorage.getItem('commercantNom');
           console.log(commercant);
-          this.promotionService.addPromotion(commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images,periode);
+          this.promotionService.addPromotion(commercant,
+              this.form.value.promotionNom, this.form.value.SousCategorieNom,
+          this.form.value.PTV , this.form.value.adresse, this.form.value.categorieNom,
+              this.form.value.dateDebut,this.form.value.description,this.images,periode);
 
         }
       }
