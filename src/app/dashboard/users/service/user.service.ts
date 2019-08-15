@@ -12,7 +12,7 @@ export class UserService {
 
 
     confirm(email) {
-        return this.http.put(`http://localhost:3000/user/confirm/${email}`,null);
+        return this.http.put(`http://localhost:3000/user/confirm/${email}`, null);
     }
     sendEmail(url, data) {
         return this.http.post(url, data);

@@ -27,7 +27,7 @@ async function sendMail(user, callback) {
     let mailOptions = {
         from: 'anes.temani@esprit.tn', // sender address
         to: user.email, // list of receivers
-        subject: "Wellcome to  WAZO LAB ",
+        subject: "réinitialisation du mot de passe",
         html: `<head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <meta content="width=device-width" name="viewport">

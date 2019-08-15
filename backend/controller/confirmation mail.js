@@ -27,7 +27,7 @@ async function sendMail(user, callback) {
     let mailOptions = {
         from: 'anes.temani@esprit.tn', // sender address
         to: user.email, // list of receivers
-        subject: "Wellcome to  WAZO LAB ",
+        subject: "Wellcome to WAZO LAB ",
         html: `<head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <meta content="width=device-width" name="viewport">
@@ -81,7 +81,7 @@ async function sendMail(user, callback) {
 </td>
 </tr>
 <tr>
-<td colspan="2" style="padding-top: 72px; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #000000; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 48px; font-smoothing: always; font-style: normal; font-weight: 600; letter-spacing: -2.6px; line-height: 52px; mso-line-height-rule: exactly; text-decoration: none;">réinitialisez votre mot de passe</td>
+<td colspan="2" style="padding-top: 72px; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #000000; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 48px; font-smoothing: always; font-style: normal; font-weight: 600; letter-spacing: -2.6px; line-height: 52px; mso-line-height-rule: exactly; text-decoration: none;">FÉLICITATION ! VOTRE INSCRIPTION EST VALIDÉE !!</td>
 </tr>
 <tr>
 <td style="padding-top: 48px; padding-bottom: 48px;">
@@ -94,17 +94,17 @@ async function sendMail(user, callback) {
 </tr>
 <tr>
 <td style="-ms-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #9095a2; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 16px; font-smoothing: always; font-style: normal; font-weight: 400; letter-spacing: -0.18px; line-height: 24px; mso-line-height-rule: exactly; text-decoration: none; vertical-align: top; width: 100%;">
-                                    Vous recevez cet email car vous avez demandé la réinitialisation du mot de passe de votre compte 90.
+                                    merci d'avoir choisi notre application , une derniere étape pour commencez 
                                     </td>
 </tr>
 <tr>
 <td style="padding-top: 24px; -ms-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #9095a2; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 16px; font-smoothing: always; font-style: normal; font-weight: 400; letter-spacing: -0.18px; line-height: 24px; mso-line-height-rule: exactly; text-decoration: none; vertical-align: top; width: 100%;">
-                                      S'il vous plaît appuyez sur le lien ci-dessous pour choisir un nouveau mot de passe.
+                                      S'il vous plaît appuyez sur le lien ci-dessous pour confirmer votre email.
                                     </td>
 </tr>
 <tr>
 <td>
-<h1  style="color: darkorchid" > <a href='http://localhost:3000/user/confirm/${user.email}' >réinitialiser le mot de passe </a> </h1>
+<h1  style="color: darkorchid" > <a href='http://localhost:3000/user/confirm/${user.email}' >confirmation</a> </h1>
 
 </td>
 </tr>
