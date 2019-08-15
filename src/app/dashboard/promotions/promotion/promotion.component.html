@@ -44,6 +44,8 @@
               <mat-label>Nom de sous catégorie</mat-label>
               <mat-select [(value)]="sousCategorieSelected"
                           formControlName="SousCategorieNom" multiple >
+                <button mat-button (click)="tous()">Tous</button>
+                <button mat-button (click)="None()">None</button>
 
                 <mat-option *ngFor="let cat of sousCategories" [value]=cat.SousCategorieNom>
                   {{cat.SousCategorieNom}}

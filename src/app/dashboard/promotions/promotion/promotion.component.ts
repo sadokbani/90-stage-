@@ -24,7 +24,7 @@ export class PromotionComponent implements OnInit {
   imagePreview: string;
   commercantSelected='';
   catecorieSelected = '';
-  sousCategorieSelected = '';
+  sousCategorieSelected ;
   commercants:any[];
   categories:any[];
   sousCategories:any[];
@@ -165,12 +165,10 @@ export class PromotionComponent implements OnInit {
       else {
 
         if (isUndefined(this.form.value.image.type)){
-          console.log('no image');
-          console.log(this.form.value);
+
           this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,[],this.form.value.quantite)
         }
         else {
-          console.log('image upd');
 
           this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images,this.form.value.quantite)
         }
@@ -180,6 +178,19 @@ export class PromotionComponent implements OnInit {
       console.log(this.form.value);
       this.openDialog();
     }
+
+  }
+  tous(){
+    let array= new Array();
+    for (let i=0;i<this.sousCategories.length;i++){
+      array.push(this.sousCategories[i].SousCategorieNom)
+    }
+    this.sousCategorieSelected=array;
+    this.form.value.SousCategorieNom=array;
+  }
+  None(){
+    this.sousCategorieSelected='';
+    this.form.value.SousCategorieNom=null;
 
   }
 }
