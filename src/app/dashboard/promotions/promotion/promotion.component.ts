@@ -187,6 +187,10 @@ export class PromotionComponent implements OnInit {
     }
     this.sousCategorieSelected=array;
     this.form.value.SousCategorieNom=array;
+    this.form.patchValue({ SousCategorieNom:array });
+    this.form.get("SousCategorieNom").updateValueAndValidity();
+
+
   }
   None(){
     this.sousCategorieSelected='';

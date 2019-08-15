@@ -21,6 +21,31 @@
     </mat-select>
   </mat-form-field>
 
+
+  <mat-form-field>
+    <mat-label>Selectionner categorie</mat-label>
+    <mat-select [(value)]="selectedCategorie" (valueChange)="selectCategorie()">
+      <!--<mat-option>None</mat-option>-->
+      <mat-option value="1">Tous les categories</mat-option>
+      <mat-option *ngFor="let cat of categories" [value]=cat.CategorieNom>
+        {{cat.CategorieNom}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field *ngIf="selectedCategorie != '1'" >
+    <mat-label>Selectionner sous catégorie</mat-label>
+    <mat-select [(value)]="sousCategorieSelected"
+                formControlName="SousCategorieNom" (valueChange)="selectSousCat()" >
+      <mat-option value="1">Tous les sous categories</mat-option>
+
+      <mat-option *ngFor="let cat of sousCategories" [value]=cat.SousCategorieNom>
+        {{cat.SousCategorieNom}}
+      </mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="promotionService.dataSource" matSort>
 

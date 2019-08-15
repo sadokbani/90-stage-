@@ -163,4 +163,40 @@ router.get("/commercant/:nom", (req, res, next) => {
   });
 });
 
+router.get("/categorie/:nom", (req, res, next) => {
+  Promotion.find({categorieNom:req.params.nom}).then(documents => {
+    res.status(200).json({
+      message: "promotion fetched successfully!",
+      promotions: documents //we can also use map methode
+    });
+  });
+});
+
+router.get("/mult/:nomcategorie/:nomcommercant", (req, res, next) => {
+  Promotion.find({categorieNom:req.params.nomcategorie,commercant:req.params.nomcommercant}).then(documents => {
+    res.status(200).json({
+      message: "promotion fetched successfully!",
+      promotions: documents //we can also use map methode
+    });
+  });
+});
+
+router.get("/mult/:nomcategorie/:nomcommercant/:nomsouscateg", (req, res, next) => {
+  Promotion.find({categorieNom:req.params.nomcategorie,commercant:req.params.nomcommercant,SousCategorieNom:req.params.nomsouscateg}).then(documents => {
+    res.status(200).json({
+      message: "promotion fetched successfully!",
+      promotions: documents //we can also use map methode
+    });
+  });
+});
+
+router.get("/multi/:nomcategorie/:nomsouscateg", (req, res, next) => {
+  Promotion.find({categorieNom:req.params.nomcategorie,SousCategorieNom:req.params.nomsouscateg}).then(documents => {
+    res.status(200).json({
+      message: "promotion fetched successfully!",
+      promotions: documents //we can also use map methode
+    });
+  });
+});
+
 module.exports = router;
