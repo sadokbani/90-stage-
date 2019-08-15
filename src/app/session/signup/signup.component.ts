@@ -60,6 +60,25 @@ export class SignupComponent implements OnInit {
     // this.router.navigate(['/dashboard']);
     if (this.form.valid) {
       this.userService.addCommercant(this.form.value.nom, this.form.value.email, this.form.value.password, this.form.value.image);
+        let user = {
+            email: this.form.value.email
+        }
+        this.userService.sendEmail("http://localhost:3000/confirmation", user).subscribe(
+            data => {
+                let res: any = data;
+                swal.fire({
+                    type: 'success',
+                    title: 'email de recupération est envoyé  ',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                this.router.navigate(['/session/signin']);
+            },
+            err => {
+                console.log(err);
+
+            },
+        );
     } else {
       this.openDialog();
     }

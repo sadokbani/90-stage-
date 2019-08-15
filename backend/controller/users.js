@@ -107,12 +107,18 @@ router.get("/exist/:email", (req, res, next) => {
 
 });
 
+router.put("/confirm/:email", (req, res, next) => {
+    User.updateOne({email: req.params.email}, {$set: {confirmed: 1}}, function (err, doc) {
+        if (err) return next(err);
+        res.send(doc);
+    });
+});
 
 
 router.get("/:id", (req, res, next) =>{
   User.findById(req.params.id, (err, doc) => {
     if (!err) { res.send(doc); }
-    else { console.log('Error in Retriving Employee :' + JSON.stringify(err, undefined, 2)); }
+    else { console.log('Error in Retriving users :' + JSON.stringify(err, undefined, 2)); }
   });
 });
 
@@ -130,7 +136,7 @@ router.get("/valide/tous", (req, res, next) =>{
 
 
 router.get("/commercant/:email/:pwd", (req, res, next) =>{
-  User.findOne({ email: req.params.email},function (err, doc) {
+  User.findOne({ email: req.params.email , confirmed: 1},function (err, doc) {
 
     console.log(doc)
     if (doc){
@@ -146,7 +152,7 @@ router.get("/commercant/:email/:pwd", (req, res, next) =>{
 
 
 router.get("/commercant/:email", (req, res, next) => {
-    User.findOne({ email: req.params.email},function (err, doc) {
+    User.findOne({ email: req.params.email },function (err, doc) {
 
       if (doc){
         res.status(200).json(doc);
