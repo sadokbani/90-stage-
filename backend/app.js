@@ -16,6 +16,7 @@ const commentairesRoute = require('./controller/commentaires');
 const promotionsRoute = require('./controller/promotions');
 const achatsRoute = require('./controller/Achats');
 const sendmailRoute= require('./controller/mail');
+const confirmationRoute= require('./controller/confirmation mail');
 const client_commercantRoute = require('./controller/client_commercant');
 const app = express();
 app.use(cors({ origin: "*" }));
@@ -62,6 +63,7 @@ app.use('/historique_commercant',historique_commercantRoute);
 app.use('/client_commercant',client_commercantRoute);
 app.use('/achats',achatsRoute);
 app.use('/mail',sendmailRoute);
+app.use('/confirmation',confirmationRoute);
 
 
 module.exports = app;

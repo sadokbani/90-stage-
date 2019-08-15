@@ -1,4 +1,4 @@
-<div class="session mat-indigo">
+<div class="session mat-purple-A400">
   <div class="session-content">
     <div class="session-wrapper">
       <mat-card>
@@ -6,7 +6,7 @@
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="text-xs-center pb-1">
               <img src="assets/90/9.png" alt="" />
-              <p class="mat-text-muted">Enter your email and we'll send you instructions on how to reset your password.</p>
+              <p class="mat-text-muted">Entrez votre email et nous vous enverrons des instructions pour réinitialiser votre mot de passe..</p>
             </div>
             <div fxLayout="column" fxLayoutAlign="space-around">
               <div class="pb-1">
@@ -18,11 +18,11 @@
                 <small *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched" class="mat-text-warn">You
                   must include a valid email address.</small>
               </div>
-              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Login</button>
+              <button mat-raised-button class="mat-purple-400" type="submit" >envoyer</button>
             </div>
             <div class="pt-1 pb-1 text-xs-center">
-              <a [routerLink]="['/session/signin']">Access your account</a>&nbsp;&nbsp;&nbsp;&nbsp;
-              <a [routerLink]="['/session/signup']">Sign up for a new account</a>
+              <a [routerLink]="['/session/signin']">Accéder à votre compte</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a [routerLink]="['/session/signup']">Inscrivez-vous</a>
             </div>
           </form>
         </mat-card-content>

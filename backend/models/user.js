@@ -13,6 +13,7 @@ const userSchema = new Schema({
   role:  Number,
   dateCreation: { type: Date, default: Date.now},
   valide: { type: Number, default: 1},
+    confirmed:{type:Number , default:0},
   imagePath: { type: String, required: true }
 });
 

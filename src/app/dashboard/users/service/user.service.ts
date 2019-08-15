@@ -10,6 +10,14 @@ export class UserService {
   constructor(private http: HttpClient,
               private router: Router) { }
 
+
+    confirm(email) {
+        return this.http.put(`http://localhost:3000/user/confirm/${email}`,null);
+    }
+    sendEmail(url, data) {
+        return this.http.post(url, data);
+    }
+
   retriveAllUsers() {
     return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/tous");
   }

@@ -107,6 +107,13 @@ router.get("/exist/:email", (req, res, next) => {
 
 });
 
+router.put("/confirm/:email", (req, res, next) => {
+    // console.log(req.body);
+    User.updateOne({email: req.params.email}, {$set: {confirmed: 1}}, function (err, doc) {
+        if (err) return next(err);
+        res.send(doc);
+    });
+});
 
 
 router.get("/:id", (req, res, next) =>{

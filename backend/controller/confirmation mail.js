@@ -104,7 +104,7 @@ async function sendMail(user, callback) {
 </tr>
 <tr>
 <td>
-<h1  style="color: darkorchid" > <a href='http://localhost:4200/session/reset/${user.email}' >réinitialiser le mot de passe </a> </h1>
+<h1  style="color: darkorchid" > <a href='http://localhost:3000/user/confirm/${user.email}' >réinitialiser le mot de passe </a> </h1>
 
 </td>
 </tr>
