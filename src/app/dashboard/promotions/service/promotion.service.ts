@@ -104,6 +104,7 @@ export class PromotionService {
     return this.http.put(`http://localhost:3000/promotion/desactivation/${id}`,null);
   }
 
+
   desactivationTime(id){
    return this.http.put(`http://localhost:3000/promotion/desactivation/time/${id}`,null);
   }

@@ -8,6 +8,7 @@ const promotionSchema = new Schema({
   categorieNom: { type: String, required: true },
   SousCategorieNom: { type: [String], required: true },
   promotionNom: { type: String, required: true },
+    PTV : {type:[String]},
   adresse: { type: String, required: true },
   description: { type: String, required: true },
   imagePath: { type: [String], required: true },

@@ -51,6 +51,7 @@ export const DashboardRoutes: Routes = [
       {path: 'commentaireDesc', component: CommentaireDesacComponent},
       {path: 'promotions', component: PromotionsComponent},
       {path: 'promotion/:id', component: PromotionComponent},
+
     ]
   }
 

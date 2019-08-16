@@ -61,6 +61,22 @@
             </mat-form-field>
 
           </div>
+          <div class="pb-1">
+            <mat-form-field style="width: 100%">
+              <mat-label>Points de vente</mat-label>
+              <mat-select [(value)]="PTVSelected"
+                          formControlName="PTV" multiple >
+
+                <mat-option *ngFor="let cat of PTV" [value]=cat.Nom>
+                  {{cat.Nom}}
+                </mat-option>
+
+              </mat-select>
+              <mat-error *ngIf="form.controls['PTV'].hasError('required') " class="mat-text-warn"> vous devez selectionner une point de vente</mat-error>
+
+            </mat-form-field>
+
+          </div>
 
           <div class="pb-1">
             <mat-form-field style="width: 100%">

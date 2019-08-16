@@ -39,6 +39,12 @@ const MENUITEMS = [
     type: 'link',
     icon: 'supervised_user_circle'
   },
+    {
+        state: 'pointsVente',
+        name: 'Points de vente',
+        type: 'link',
+        icon: 'add_location'
+    },
   {
     state: 'historique',
     name: 'Historique ',

@@ -18,6 +18,7 @@ const achatsRoute = require('./controller/Achats');
 const sendmailRoute= require('./controller/mail');
 const confirmationRoute= require('./controller/confirmation mail');
 const client_commercantRoute = require('./controller/client_commercant');
+const ptvRoute= require('./controller/points_ventes');
 const app = express();
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
@@ -64,6 +65,6 @@ app.use('/client_commercant',client_commercantRoute);
 app.use('/achats',achatsRoute);
 app.use('/mail',sendmailRoute);
 app.use('/confirmation',confirmationRoute);
-
+app.use('/ptv',ptvRoute);
 
 module.exports = app;
