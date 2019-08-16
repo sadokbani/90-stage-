@@ -22,7 +22,8 @@ export class ServiceService {
       email:email,
       nom:nom,
       password:password,
-      role:1
+      role:1,
+      confirmed:1,
     })
   }
 }
