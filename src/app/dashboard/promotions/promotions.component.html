@@ -77,7 +77,7 @@
 
       <ng-container matColumnDef="adresse">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </th>
-        <td style="width: 100px" mat-cell *matCellDef="let row" > <div *ngFor="let adresse of row.PTV">{{adresse}}</div> </td>
+        <td style="width: 100px" mat-cell *matCellDef="let row" > {{row.adresse}} </td>
       </ng-container>
 
       <ng-container matColumnDef="description">

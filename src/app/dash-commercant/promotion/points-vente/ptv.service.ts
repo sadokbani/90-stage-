@@ -23,7 +23,7 @@ export class PtvService {
         this.http.post(`${this.uri}/add`, obj)
             .subscribe(res => {
                 console.log('Done');
-                // this.router.navigate(['commer/promotions']);
+                this.router.navigate(['commer/pointsVente']);
             });
     }
 
