@@ -50,8 +50,9 @@ export class CreatePtvComponent implements OnInit {
     addPtv() {
         if (this.angForm.valid) {
             const id = sessionStorage.getItem('commercantId');
+            const nom = sessionStorage.getItem('commercantNom');
             console.log(id);
-            this.ptv.addPtv(this.angForm.value.Nom , this.angForm.value.Priority, id);
+            this.ptv.addPtv(this.angForm.value.Nom , this.angForm.value.Priority, id, nom);
         } else {
             this.openDialog();
         }

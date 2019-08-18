@@ -9,6 +9,7 @@ let PVT = new Schema({
             type: Number
         },
           ID_commercant: {type: String},
+        Nom_commercant: {type: String},
         valide: { type: Number, default: 1},
 
     },

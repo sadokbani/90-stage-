@@ -10,7 +10,7 @@ import {SouscategorieService} from '../../souscategorie/service/souscategorie.se
 import {PromotionService} from '../service/promotion.service';
 import {DatePipe} from '@angular/common';
 import {isUndefined} from 'util';
-
+import {PtvService} from '../../../dash-commercant/promotion/points-vente/ptv.service';
 @Component({
   selector: 'app-promotion',
   templateUrl: './promotion.component.html',
@@ -22,12 +22,14 @@ export class PromotionComponent implements OnInit {
   urls = new Array<string>();
   images = new Array<any>();
   imagePreview: string;
-  commercantSelected='';
+  commercantSelected = '';
   catecorieSelected = '';
   sousCategorieSelected ;
-  commercants:any[];
-  categories:any[];
-  sousCategories:any[];
+  commercants: any[];
+  categories: any[];
+  sousCategories: any[];
+    PTVSelected;
+    PTV: any[];
   id: number;
   hide = true;
   hide1 = true;
@@ -36,6 +38,7 @@ export class PromotionComponent implements OnInit {
               private categorieService: CategorieService,
               private sousCatService: SouscategorieService,
               private promotionService: PromotionService,
+              private PTVService: PtvService,
               private datePipe: DatePipe) { }
 
   ngOnInit() {
@@ -48,16 +51,23 @@ export class PromotionComponent implements OnInit {
       (data: any[])  =>{
         this.categories = data;
       });
+
     this.id=this.route.snapshot.params['id'];
     if (this.id != -1){
       this.promotionService.retrivePromotin(this.id).subscribe(
         response =>{
           console.log(response);
-
+            console.log(response.commercant);
             this.sousCatService.getSousCategorie_byCategorie(response.categorieNom).subscribe(
               (response: any[]) => {
                 this.sousCategories = response;
               }
+            );
+
+            this.promotionService.getPtvbyname(response.commercant).subscribe(
+                (response: any[]) => {
+                    this.PTV = response;
+                }
             );
           this.form.setValue({
             commercant: response.commercant,
@@ -66,6 +76,7 @@ export class PromotionComponent implements OnInit {
             promotionNom:response.promotionNom,
             quantite:response.nombreStock,
             adresse:response.adresse,
+              PTV: response.PTV,
             description:response.description,
             dateDebut:this.datePipe.transform(new Date(response.dateDebut),"yyyy-MM-ddTHH:mm"),
             image:response.imagePath[0]
@@ -77,10 +88,11 @@ export class PromotionComponent implements OnInit {
     this.form = this.fb.group({
       commercant:new FormControl('', Validators.required),
       categorieNom:new FormControl('', Validators.required),
-      quantite:new FormControl(''),
-      SousCategorieNom:new FormControl('', Validators.required),
-      promotionNom:new FormControl('', Validators.required),
-      adresse:new FormControl('', Validators.required),
+      quantite: new FormControl(''),
+      SousCategorieNom: new FormControl('', Validators.required),
+      promotionNom: new FormControl('', Validators.required),
+      adresse: new FormControl('', Validators.required),
+        PTV: new FormControl('', Validators.required),
       description:new FormControl('', Validators.required),
       dateDebut:new FormControl('', Validators.required),
       image: new FormControl(null, {
@@ -89,12 +101,20 @@ export class PromotionComponent implements OnInit {
       })
     });
   }
-
+    refrechPTV() {
+        this.promotionService.getPtvbyname(this.commercantSelected).subscribe(
+            (response: any[]) => {
+                this.PTV = response;
+                console.log(response);
+            }
+        );
+    }
   refrechSouscategorie_byCategorie() {
     this.sousCatService.getSousCategorie_byCategorie(this.catecorieSelected).subscribe(
       (response: any[]) => {
         this.sousCategories = response;
         console.log(response);
+
       }
     );
   }
@@ -158,7 +178,7 @@ export class PromotionComponent implements OnInit {
             confirmButtonText: 'ok'
           }) ;
         } else {
-          this.promotionService.addPromotion(this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom, this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images,periode);
+          this.promotionService.addPromotion(this.form.value.commercant, this.form.value.promotionNom,this.form.value.SousCategorieNom, this.form.value.adresse, this.form.value.ptv ,this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images,periode);
 
         }
       }
@@ -166,11 +186,11 @@ export class PromotionComponent implements OnInit {
 
         if (isUndefined(this.form.value.image.type)){
 
-          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,[],this.form.value.quantite)
+          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.ptv, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,[],this.form.value.quantite)
         }
         else {
 
-          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images,this.form.value.quantite)
+          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.ptv, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images,this.form.value.quantite)
         }
 
       }

@@ -29,6 +29,17 @@ ptvRoutes.route('/:id').get(function (req, res) {
     });
 });
 
+ptvRoutes.route('/:nom').get(function (req, res) {
+    PVT.find({valide: 1 , Nom_commercant : req.params.nom},function (err,pvt){
+        if(err){
+            console.log(err);
+        }
+        else {
+            res.json(pvt);
+            console.log(err);
+        }
+    });
+});
 ptvRoutes.route('/archive/:id').get(function (req, res) {
     PVT.find({valide: 0, ID_commercant : req.params.id},function (err,pvt){
         if(err){

@@ -14,7 +14,7 @@ export class PromotionService {
               private router: Router) { }
 
 
-  addPromotion(commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string, categorieNom:string, dateDebut, description:string,image:any[],time){
+  addPromotion(commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string, PTV:any[], categorieNom:string, dateDebut, description:string,image:any[],time){
     const promotionData = new FormData();
 
     promotionData.append('commercant', commercant);
@@ -29,6 +29,9 @@ export class PromotionService {
     for (let i=0;i<SousCategorieNom.length;i++){
       promotionData.append('SousCategorieNom', SousCategorieNom[i]);
     }
+for (let i=0;i<PTV.length;i++){
+    promotionData.append('PTV', PTV[i]);
+}
     this.http.post("http://localhost:3000/promotion",
       promotionData).subscribe(
       (responseData:any) =>{
@@ -116,8 +119,12 @@ export class PromotionService {
   retrivePromotin(id){
     return this.http.get<any>(`http://localhost:3000/promotion/${id}`);
   }
-
-  updatePromotion(id,commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string, categorieNom:string, dateDebut, description:string,image:any[],quantite:string){
+    getPtvbyname(nom) {
+        return this
+            .http
+            .get(`http://localhost:3000/ptv/${nom}`);
+    }
+  updatePromotion(id,commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string,PTV:any[], categorieNom:string, dateDebut, description:string,image:any[],quantite:string){
     const date= new Date(dateDebut);
     const dateNow= new Date();
     const periode=date.getTime()-dateNow.getTime();
@@ -133,11 +140,13 @@ export class PromotionService {
     for (let i=0;i<SousCategorieNom.length;i++){
       promotionData.append('SousCategorieNom', SousCategorieNom[i]);
     }
-
+      for (let i=0;i<PTV.length;i++){
+          promotionData.append('PTV', PTV[i]);
+      }
     if (image.length == 0){
       this.http.put(`http://localhost:3000/promotion/${id}`,
         {
-          commercant:commercant, promotionNom:promotionNom, SousCategorieNom:SousCategorieNom, adresse:adresse, categorieNom:categorieNom, dateDebut:dateDebut, description:description
+          commercant:commercant, promotionNom:promotionNom, SousCategorieNom:SousCategorieNom, adresse:adresse,  ptv:PTV, categorieNom:categorieNom, dateDebut:dateDebut, description:description
         }).subscribe(
         responseData =>{
           console.log(responseData);

@@ -13,11 +13,12 @@ export class PtvService {
                 private  router: Router) {
     }
 
-    addPtv(Nom, Priority, ID_commercant) {
+    addPtv(Nom, Priority, ID_commercant, Nom_commercant ) {
         const obj = {
             Nom,
             Priority,
             ID_commercant,
+            Nom_commercant
         };
         console.log(obj);
         this.http.post(`${this.uri}/add`, obj)
@@ -31,6 +32,11 @@ export class PtvService {
         return this
             .http
             .get(`${this.uri}/${id}`);
+    }
+    getPtvbyname(nom) {
+        return this
+            .http
+            .get(`${this.uri}/${nom}`);
     }
 
     getPtvarchive(id) {

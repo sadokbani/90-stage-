@@ -74,7 +74,7 @@ export class CreatePromotionComponent implements OnInit {
 
             categorieNom: response.categorieNom,
             SousCategorieNom: response.SousCategorieNom,
-            PTV: response.Nom,
+            PTV: response.PTV,
             promotionNom: response.promotionNom,
             adresse: response.adresse,
             description: response.description,
@@ -194,12 +194,12 @@ export class CreatePromotionComponent implements OnInit {
         if (isUndefined(this.form.value.image.type)){
           console.log('no image');
           console.log(this.form.value);
-          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,[])
+          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse,this.form.value.PTV ,this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,[])
         }
         else {
           console.log('image upd');
 
-          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images)
+          this.promotionService.updatePromotion(this.id,this.form.value.commercant,this.form.value.promotionNom,this.form.value.SousCategorieNom,this.form.value.adresse, this.form.value.PTV , this.form.value.categorieNom,this.form.value.dateDebut,this.form.value.description,this.images)
         }
 
       }

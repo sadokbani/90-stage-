@@ -90,7 +90,7 @@ export class ServiceService {
     return this.http.get<any>(`http://localhost:3000/promotion/${id}`);
   }
 
-  updatePromotion(id,commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string, categorieNom:string, dateDebut, description:string,image:any[]){
+  updatePromotion(id,commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string, PTV:any[], categorieNom:string, dateDebut, description:string,image:any[]){
     const date= new Date(dateDebut);
     const dateNow= new Date();
     const periode=date.getTime()-dateNow.getTime();
@@ -105,11 +105,13 @@ export class ServiceService {
     for (let i=0;i<SousCategorieNom.length;i++){
       promotionData.append('SousCategorieNom', SousCategorieNom[i]);
     }
-
+      for (let i=0;i<PTV.length;i++){
+          promotionData.append('PTV', PTV[i]);
+      }
     if (image.length == 0){
       this.http.put(`http://localhost:3000/promotion/${id}`,
         {
-          commercant:commercant, promotionNom:promotionNom, SousCategorieNom:SousCategorieNom, adresse:adresse, categorieNom:categorieNom, dateDebut:dateDebut, description:description
+          commercant:commercant, promotionNom:promotionNom, SousCategorieNom:SousCategorieNom, adresse:adresse, ptv:PTV, categorieNom:categorieNom, dateDebut:dateDebut, description:description
         }).subscribe(
         responseData =>{
           console.log(responseData);
