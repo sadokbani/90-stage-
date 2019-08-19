@@ -10,6 +10,8 @@ let historique = require('../models/historique');
 historiqueRoutes.route('/add').post(function (req, res) {
   console.log(req.body);
   let Historique = new historique();
+    Historique.NOM_commercant=req.body.nom_commercant;
+    Historique.NOM_Utilisateur=req.body.nom_Utilisateur;
   Historique.ID_Utilisateur=req.body.Utilisateur;
   Historique.ID_commercant=req.body.commercant;
 

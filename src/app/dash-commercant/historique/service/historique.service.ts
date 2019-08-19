@@ -9,9 +9,12 @@ export class HistoriqueService {
   constructor(private http: HttpClient,
               private router: Router) { }
 
-  addhistorique( Utilisateur, Promotion, Coupon , Date, Remise, Etat) {
+  addhistorique( Utilisateur, Commercant, NomUtlisateur, NomCommercant, Promotion, Coupon , Date, Remise, Etat) {
     const obj = new FormData();
     obj.append('Utilisateur', Utilisateur);
+      obj.append('Commercant', Commercant);
+      obj.append('NomUtilisateur', NomUtlisateur);
+      obj.append('NomCommercant', NomCommercant);
     obj.append('Promotion', Promotion);
     obj.append('Coupon', Coupon);
     obj.append('Date', Date);

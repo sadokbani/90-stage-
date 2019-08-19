@@ -62,7 +62,8 @@
               <mat-label>Points de vente</mat-label>
               <mat-select [(value)]="PTVSelected"
                           formControlName="PTV" multiple  >
-
+                <button mat-button (click)="tous_ptv()">Tous</button>
+                <button mat-button (click)="None_ptv()">None</button>
                 <mat-option *ngFor="let pt of PTV" [value]=pt.Nom>
                   {{pt.Nom}}
                 </mat-option>

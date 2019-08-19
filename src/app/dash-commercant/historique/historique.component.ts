@@ -32,7 +32,7 @@ export class Historique {
   styleUrls: ['./historique.component.scss']
 })
 export class HistoriqueComponent implements OnInit {
-  displayedColumns: string[] = ['Client', 'Commercant', 'Promotion', 'Coupon', 'Remise', 'Date' , 'Etat'];
+  displayedColumns: string[] = ['Client', 'Promotion', 'Coupon', 'Remise', 'Date' , 'Etat'];
   dataSource = new MatTableDataSource<Historique>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

@@ -8,9 +8,17 @@ let historique = new Schema({
     ID_Utilisateur: {
       type: String
     },
+
+        NOM_Utilisateur: {
+            type: String
+        },
   ID_commercant: {
     type: String
   },
+        NOM_commercant: {
+            type: String
+        },
+
     Promotion: {
       type: String
     },

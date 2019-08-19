@@ -209,4 +209,38 @@ export class CreatePromotionComponent implements OnInit {
     }
 
   }
+    tous_ptv(){
+        let array= new Array();
+        for (let i=0;i<this.PTV.length;i++){
+            array.push(this.PTV[i].Nom)
+        }
+        this.PTVSelected=array;
+        this.form.value.PTV=array;
+        this.form.patchValue({ Nom:array });
+        this.form.get("PTV").updateValueAndValidity();
+
+
+    }
+    None_ptv() {
+        this.PTVSelected= '';
+        this.form.value.PTV= null;
+
+    }
+    tous(){
+        let array= new Array();
+        for (let i=0;i<this.sousCategories.length;i++){
+            array.push(this.sousCategories[i].SousCategorieNom)
+        }
+        this.sousCategorieSelected=array;
+        this.form.value.SousCategorieNom=array;
+        this.form.patchValue({ SousCategorieNom:array });
+        this.form.get("SousCategorieNom").updateValueAndValidity();
+
+
+    }
+    None(){
+        this.sousCategorieSelected='';
+        this.form.value.SousCategorieNom=null;
+
+    }
 }

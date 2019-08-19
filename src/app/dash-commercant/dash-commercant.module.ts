@@ -37,6 +37,7 @@ import { CreatePtvComponent } from './promotion/points-vente/create-ptv/create-p
 import { UpdatePtvComponent } from './promotion/points-vente/update-ptv/update-ptv.component';
 import { ArchivePtvComponent } from './promotion/points-vente/archive-ptv/archive-ptv.component';
 
+
 @NgModule({
   imports: [
     CommonModule,

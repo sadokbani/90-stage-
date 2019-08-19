@@ -3,7 +3,7 @@
 <div style="margin-left: 20%; margin-right: 20%; margin-top: 5%">
   <mat-card>
     <mat-card-content>
-      <button routerLink="/admin/promotions" style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon></button>
+      <button routerLink="/commer/promotion" style="margin-left:5px ; float: right"  mat-raised-button><mat-icon>undo</mat-icon></button>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div fxLayout="column" fxLayoutAlign="space-around">
 
@@ -30,7 +30,8 @@
               <mat-label>Nom de sous catégorie</mat-label>
               <mat-select [(value)]="sousCategorieSelected"
                           formControlName="SousCategorieNom" multiple >
-
+                <button mat-button (click)="tous()">Tous</button>
+                <button mat-button (click)="None()">None</button>
                 <mat-option *ngFor="let cat of sousCategories" [value]=cat.SousCategorieNom>
                   {{cat.SousCategorieNom}}
                 </mat-option>
@@ -66,7 +67,8 @@
               <mat-label>Points de vente</mat-label>
               <mat-select [(value)]="PTVSelected"
                           formControlName="PTV" multiple >
-
+                <button mat-button (click)="tous_ptv()">Tous</button>
+                <button mat-button (click)="None_ptv()">None</button>
                 <mat-option *ngFor="let cat of PTV" [value]=cat.Nom>
                   {{cat.Nom}}
                 </mat-option>

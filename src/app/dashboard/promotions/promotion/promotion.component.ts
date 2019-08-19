@@ -219,4 +219,22 @@ export class PromotionComponent implements OnInit {
     this.form.value.SousCategorieNom=null;
 
   }
+
+    tous_ptv(){
+        let array= new Array();
+        for (let i=0;i<this.PTV.length;i++){
+            array.push(this.PTV[i].Nom)
+        }
+        this.PTVSelected=array;
+        this.form.value.PTV=array;
+        this.form.patchValue({ Nom:array });
+        this.form.get("PTV").updateValueAndValidity();
+
+
+    }
+    None_ptv() {
+        this.PTVSelected= '';
+        this.form.value.PTV= null;
+
+    }
 }

@@ -13,6 +13,8 @@ historiqueRoutes.route('/add').post(function (req, res) {
   let Historique = new historique();
   Historique.ID_Utilisateur=req.body.Utilisateur;
   Historique.ID_commercant=req.body.commercant;
+    Historique.NOM_commercant=req.body.nom_commercant;
+    Historique.NOM_Utilisateur=req.body.nom_Utilisateur;
   Historique.Coupon=req.body.Coupon;
   Historique.Promotion=req.body.Promotion;
   Historique.Remise=req.body.Remise;

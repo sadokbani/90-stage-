@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class PtvService {
-    uri = 'http://localhost:3000/ptv';
+    uri = 'http://localhost:8000/ptv';
 
     constructor(private http: HttpClient,
                 private  router: Router) {
