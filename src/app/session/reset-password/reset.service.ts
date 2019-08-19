@@ -12,7 +12,7 @@ export class ResetService {
 
   update(email, password) {
 
-    this.http.put(`http://localhost:3000/user/reset/${email}`,
+    this.http.put(`http://localhost:8000/user/reset/${email}`,
       {
         password: password
       }).subscribe(

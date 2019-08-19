@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class PaysService {
-  uri = 'http://localhost:3000/pays';
+  uri = 'http://localhost:8000/pays';
 
   constructor(private http: HttpClient,
               private  router: Router) {

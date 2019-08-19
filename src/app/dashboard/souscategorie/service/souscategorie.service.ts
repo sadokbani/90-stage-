@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class SouscategorieService {
-  uri = 'http://localhost:3000/souscategorie';
+  uri = 'http://localhost:8000/souscategorie';
   constructor(private http: HttpClient,
               private  router: Router) { }
   addSousCategorie( SousCategorieNom, CategorieNom,  Priority ) {

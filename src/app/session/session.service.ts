@@ -18,7 +18,7 @@ export class SessionService {
     commercantData.append('email', email);
     commercantData.append('password', password);
     commercantData.append('image', image, nom);
-    this.http.post<{ message: string; commercant: Commercant }>("http://localhost:3000/commercant",
+    this.http.post<{ message: string; commercant: Commercant }>("http://localhost:8000/commercant",
       commercantData).subscribe(
         responseData =>{
           console.log(responseData);
@@ -28,7 +28,7 @@ export class SessionService {
   }
 
   loginCommercant(commercant:{email:string, password:string}){
-    return this.http.post("http://localhost:3000/commercant/login",
+    return this.http.post("http://localhost:8000/commercant/login",
       commercant)
   }
 }
