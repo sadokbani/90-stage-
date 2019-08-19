@@ -6,7 +6,7 @@ import {email} from 'ng2-validation/dist/email';
   providedIn: 'root'
 })
 export class EmailService {
-    uri = 'http://localhost:3000/user';
+    uri = 'http://localhost:8000/user';
   constructor(private http: HttpClient) { }
   sendEmail(url, data) {
     return this.http.post(url, data);

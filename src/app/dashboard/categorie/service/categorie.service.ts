@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class CategorieService {
-  uri = 'http://localhost:3000/categorie';
+  uri = 'http://localhost:8000/categorie';
 
   constructor(private http: HttpClient,
               private router: Router) { }
@@ -63,7 +63,7 @@ export class CategorieService {
     clientData.append('CategorieDescription', CategorieDescription);
     clientData.append('CategoriePriority', CategoriePriority);
     clientData.append('image', image, CategorieNom);
-    this.http.put(`http://localhost:3000/categorie/image/${id}`,
+    this.http.put(`http://localhost:8000/categorie/image/${id}`,
       clientData).subscribe(
       responseData =>{
         console.log(responseData);
@@ -74,7 +74,7 @@ export class CategorieService {
 
   updateCategorie(CategorieNom, CategorieDescription, CategoriePriority , id){
 
-    this.http.put(`http://localhost:3000/categorie/${id}`,
+    this.http.put(`http://localhost:8000/categorie/${id}`,
       {
         CategorieNom:CategorieNom,
         CategorieDescription:CategorieDescription,

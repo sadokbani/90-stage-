@@ -16,49 +16,49 @@ export class UserService {
     }
 
   retriveAllUsers() {
-    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/tous");
+    return this.http.get<{message:string, users:any}>("http://localhost:8000/user/valide/tous");
   }
 
   retriveAllUsersNV(){
-    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/archive/tous");
+    return this.http.get<{message:string, users:any}>("http://localhost:8000/user/archive/tous");
   }
 
 
   retriveAllClient(){
-    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/client");
+    return this.http.get<{message:string, users:any}>("http://localhost:8000/user/valide/client");
   }
 
   retriveAllClientNV(){
-    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/archive/client");
+    return this.http.get<{message:string, users:any}>("http://localhost:8000/user/archive/client");
   }
 
   retriveAllCommercant(){
-    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/valide/commercant");
+    return this.http.get<{message:string, users:any}>("http://localhost:8000/user/valide/commercant");
   }
 
   retriveAllCommercantNV(){
-    return this.http.get<{message:string, users:any}>("http://localhost:3000/user/archive/commercant");
+    return this.http.get<{message:string, users:any}>("http://localhost:8000/user/archive/commercant");
   }
 
 
   retriveUser(id){
-    return this.http.get<{nom:string,prenom:string,password:string,imagePath:string,email:string}>(`http://localhost:3000/user/${id}`);
+    return this.http.get<{nom:string,prenom:string,password:string,imagePath:string,email:string}>(`http://localhost:8000/user/${id}`);
   }
 
 
   archiveUser(id) {
-    return this.http.put(`http://localhost:3000/user/archive/${id}`,null);
+    return this.http.put(`http://localhost:8000/user/archive/${id}`,null);
   }
 
     confirm(email) {
-        return this.http.put(`http://localhost:3000/user/confirm/${email}`, null);
+        return this.http.put(`http://localhost:8000/user/confirm/${email}`, null);
     }
   restaurerUser(id) {
-      return this.http.put(`http://localhost:3000/user/restaurer/${id}`, null);
+      return this.http.put(`http://localhost:8000/user/restaurer/${id}`, null);
     }
 
   deleteUser(id) {
-      return this.http.delete(`http://localhost:3000/user/${id}`);
+      return this.http.delete(`http://localhost:8000/user/${id}`);
     }
 
   addCommercant(nom:string, email:string, password:string, image:File){
@@ -67,7 +67,7 @@ export class UserService {
     commercantData.append('email', email);
     commercantData.append('password', password);
     commercantData.append('image', image, nom);
-    this.http.post<{ message: string; user: any }>("http://localhost:3000/user/1",
+    this.http.post<{ message: string; user: any }>("http://localhost:8000/user/1",
       commercantData).subscribe(
       responseData =>{
         console.log(responseData);
@@ -83,7 +83,7 @@ export class UserService {
     clientData.append('email', email);
     clientData.append('password', password);
     clientData.append('image', image, nom);
-    this.http.post<{ message: string; user: any }>("http://localhost:3000/user/2",
+    this.http.post<{ message: string; user: any }>("http://localhost:8000/user/2",
       clientData).subscribe(
       responseData =>{
         console.log(responseData);
@@ -100,7 +100,7 @@ export class UserService {
     clientData.append('email', email);
     clientData.append('password', password);
     clientData.append('image', image, nom);
-    this.http.put(`http://localhost:3000/user/image/${id}`,
+    this.http.put(`http://localhost:8000/user/image/${id}`,
       clientData).subscribe(
       responseData =>{
         console.log(responseData);
@@ -110,7 +110,7 @@ export class UserService {
   }
 
   updateClient(id,nom:string, prenom:string, email:string, password:string){
-    this.http.put(`http://localhost:3000/user/${id}`,
+    this.http.put(`http://localhost:8000/user/${id}`,
       {
         nom:nom,
         prenom: prenom,
@@ -130,7 +130,7 @@ export class UserService {
     clientData.append('email', email);
     clientData.append('password', password);
     clientData.append('image', image, nom);
-    this.http.put(`http://localhost:3000/user/image/${id}`,
+    this.http.put(`http://localhost:8000/user/image/${id}`,
       clientData).subscribe(
       responseData =>{
         console.log(responseData);
@@ -140,7 +140,7 @@ export class UserService {
   }
 
   updateCommercant(id,nom:string, email:string, password:string){
-    this.http.put(`http://localhost:3000/user/${id}`,
+    this.http.put(`http://localhost:8000/user/${id}`,
       {
         nom:nom,
         email: email,

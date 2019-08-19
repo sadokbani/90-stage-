@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class HistoriqueServiceService {
-  uri = 'http://localhost:3000/historique';
+  uri = 'http://localhost:8000/historique';
 
   constructor(private http: HttpClient,
               private router: Router) { }
@@ -43,7 +43,7 @@ export class HistoriqueServiceService {
 
   updatehistorique( Utilisateur, Promotion, Coupon , Remise, Date, Etat , id){
 
-    this.http.put(`http://localhost:3000/historique/${id}`,
+    this.http.put(`http://localhost:8000/historique/${id}`,
       {
         Utilisateur: Utilisateur,
         Promotion: Promotion,

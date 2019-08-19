@@ -32,11 +32,11 @@ export class PromotionService {
 for (let i=0;i<PTV.length;i++){
     promotionData.append('PTV', PTV[i]);
 }
-    this.http.post("http://localhost:3000/promotion",
+    this.http.post("http://localhost:8000/promotion",
       promotionData).subscribe(
       (responseData:any) =>{
         console.log(responseData);
-        this.http.put(`http://localhost:3000/promotion/activation/${time}/${responseData.promotion.createdPromo._id}`,null).subscribe(
+        this.http.put(`http://localhost:8000/promotion/activation/${time}/${responseData.promotion.createdPromo._id}`,null).subscribe(
           response=>{
             this.retriveAllpromotion();
             this.desactivationTime(responseData.promotion.createdPromo._id).subscribe(
@@ -53,7 +53,7 @@ for (let i=0;i<PTV.length;i++){
 
 
   retriveAllpromotion(){
-     this.http.get<{message:string, promotions:any}>("http://localhost:3000/promotion").subscribe(
+     this.http.get<{message:string, promotions:any}>("http://localhost:8000/promotion").subscribe(
       response => {
         this.dataSource.data = response.promotions as any[];
       }
@@ -61,7 +61,7 @@ for (let i=0;i<PTV.length;i++){
   }
 
   retrivePromotionsByCommercant(nom){
-       this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/commercant/${nom}`).subscribe(
+       this.http.get<{message:string, promotions:any}>(`http://localhost:8000/promotion/commercant/${nom}`).subscribe(
         response => {
           this.dataSource.data = response.promotions as any[];
         }
@@ -69,7 +69,7 @@ for (let i=0;i<PTV.length;i++){
     }
 
   retrivePromotionsByCategorie(nom){
-       this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/categorie/${nom}`).subscribe(
+       this.http.get<{message:string, promotions:any}>(`http://localhost:8000/promotion/categorie/${nom}`).subscribe(
         response => {
           this.dataSource.data = response.promotions as any[];
         }
@@ -77,7 +77,7 @@ for (let i=0;i<PTV.length;i++){
     }
 
   retrivePromotionsByCategorieAndCommercant(commer,cat){
-       this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/mult/${cat}/${commer}`).subscribe(
+       this.http.get<{message:string, promotions:any}>(`http://localhost:8000/promotion/mult/${cat}/${commer}`).subscribe(
         response => {
           this.dataSource.data = response.promotions as any[];
         }
@@ -85,7 +85,7 @@ for (let i=0;i<PTV.length;i++){
     }
 
     retrivePromotionsByCategorieAndCommercantAndSouscat(commer,cat,souscat){
-        this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/mult/${cat}/${commer}/${souscat}`).subscribe(
+        this.http.get<{message:string, promotions:any}>(`http://localhost:8000/promotion/mult/${cat}/${commer}/${souscat}`).subscribe(
             response => {
                 this.dataSource.data = response.promotions as any[];
             }
@@ -93,36 +93,36 @@ for (let i=0;i<PTV.length;i++){
     }
 
     retrivePromotionsByCategorieAndSouscateg(sousCat,cat){
-        this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/multi/${cat}/${sousCat}`).subscribe(
+        this.http.get<{message:string, promotions:any}>(`http://localhost:8000/promotion/multi/${cat}/${sousCat}`).subscribe(
             response => {
                 this.dataSource.data = response.promotions as any[];
             }
         );
     }
   activation(id){
-    return this.http.put(`http://localhost:3000/promotion/activation/${id}`,null);
+    return this.http.put(`http://localhost:8000/promotion/activation/${id}`,null);
   }
 
   desactivation(id){
-    return this.http.put(`http://localhost:3000/promotion/desactivation/${id}`,null);
+    return this.http.put(`http://localhost:8000/promotion/desactivation/${id}`,null);
   }
 
 
   desactivationTime(id){
-   return this.http.put(`http://localhost:3000/promotion/desactivation/time/${id}`,null);
+   return this.http.put(`http://localhost:8000/promotion/desactivation/time/${id}`,null);
   }
 
   deletePromotion(id) {
-    return this.http.delete(`http://localhost:3000/promotion/${id}`);
+    return this.http.delete(`http://localhost:8000/promotion/${id}`);
   }
 
   retrivePromotin(id){
-    return this.http.get<any>(`http://localhost:3000/promotion/${id}`);
+    return this.http.get<any>(`http://localhost:8000/promotion/${id}`);
   }
     getPtvbyname(nom) {
         return this
             .http
-            .get(`http://localhost:3000/ptv/${nom}`);
+            .get(`http://localhost:8000/ptv/${nom}`);
     }
   updatePromotion(id,commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string,PTV:any[], categorieNom:string, dateDebut, description:string,image:any[],quantite:string){
     const date= new Date(dateDebut);
@@ -144,7 +144,7 @@ for (let i=0;i<PTV.length;i++){
           promotionData.append('PTV', PTV[i]);
       }
     if (image.length == 0){
-      this.http.put(`http://localhost:3000/promotion/${id}`,
+      this.http.put(`http://localhost:8000/promotion/${id}`,
         {
           commercant:commercant, promotionNom:promotionNom, SousCategorieNom:SousCategorieNom, adresse:adresse,  ptv:PTV, categorieNom:categorieNom, dateDebut:dateDebut, description:description
         }).subscribe(
@@ -152,7 +152,7 @@ for (let i=0;i<PTV.length;i++){
           console.log(responseData);
           this.router.navigate(['/admin/promotions']);
           if (periode > 0){
-            this.http.put(`http://localhost:3000/promotion/activation/${periode}/${id}`,null).subscribe(
+            this.http.put(`http://localhost:8000/promotion/activation/${periode}/${id}`,null).subscribe(
               response=>{
                 this.retriveAllpromotion();
                 this.desactivationTime(id).subscribe(
@@ -171,12 +171,12 @@ for (let i=0;i<PTV.length;i++){
       for (let i=0;i<image.length;i++){
         promotionData.append('image', image[i], promotionNom);
       }
-      this.http.put(`http://localhost:3000/promotion/image/${id}`,
+      this.http.put(`http://localhost:8000/promotion/image/${id}`,
         promotionData).subscribe(
         responseData =>{
           console.log(responseData);
           if (periode > 0){
-            this.http.put(`http://localhost:3000/promotion/activation/${periode}/${id}`,null).subscribe(
+            this.http.put(`http://localhost:8000/promotion/activation/${periode}/${id}`,null).subscribe(
               response=>{
                 this.retriveAllpromotion();
                 this.desactivationTime(id).subscribe(

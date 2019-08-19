@@ -33,11 +33,11 @@ export class ServiceService {
       for (let i=0;i<PTV.length;i++){
           promotionData.append('PTV', PTV[i]);
       }
-    this.http.post("http://localhost:3000/promotion",
+    this.http.post("http://localhost:8000/promotion",
       promotionData).subscribe(
       (responseData:any) =>{
         console.log(responseData);
-        this.http.put(`http://localhost:3000/promotion/activation/${time}/${responseData.promotion.createdPromo._id}`,null).subscribe(
+        this.http.put(`http://localhost:8000/promotion/activation/${time}/${responseData.promotion.createdPromo._id}`,null).subscribe(
           response=>{
             const id = sessionStorage.getItem('commercantId');
             console.log(id);
@@ -55,10 +55,10 @@ export class ServiceService {
   }
 
     addPTV(id, ptv) {
-        return this.http.put(`http://localhost:3000/user/PVENTE/${id}/${ptv}`, null );
+        return this.http.put(`http://localhost:8000/user/PVENTE/${id}/${ptv}`, null );
     }
   retriveAllpromotion(nom){
-    this.http.get<{message:string, promotions:any}>(`http://localhost:3000/promotion/commercant/${nom}`).subscribe(
+    this.http.get<{message:string, promotions:any}>(`http://localhost:8000/promotion/commercant/${nom}`).subscribe(
       response => {
          console.log(response.promotions);
         // this.promotionService.promotionData = response.promotions ;
@@ -71,23 +71,23 @@ export class ServiceService {
   }
 
   activation(id){
-    return this.http.put(`http://localhost:3000/promotion/activation/${id}`,null);
+    return this.http.put(`http://localhost:8000/promotion/activation/${id}`,null);
   }
 
   desactivation(id){
-    return this.http.put(`http://localhost:3000/promotion/desactivation/${id}`,null);
+    return this.http.put(`http://localhost:8000/promotion/desactivation/${id}`,null);
   }
 
   desactivationTime(id){
-    return this.http.put(`http://localhost:3000/promotion/desactivation/time/${id}`,null);
+    return this.http.put(`http://localhost:8000/promotion/desactivation/time/${id}`,null);
   }
 
   deletePromotion(id) {
-    return this.http.delete(`http://localhost:3000/promotion/${id}`);
+    return this.http.delete(`http://localhost:8000/promotion/${id}`);
   }
 
   retrivePromotin(id){
-    return this.http.get<any>(`http://localhost:3000/promotion/${id}`);
+    return this.http.get<any>(`http://localhost:8000/promotion/${id}`);
   }
 
   updatePromotion(id,commercant:string, promotionNom:string, SousCategorieNom:any[], adresse:string, PTV:any[], categorieNom:string, dateDebut, description:string,image:any[]){
@@ -109,7 +109,7 @@ export class ServiceService {
           promotionData.append('PTV', PTV[i]);
       }
     if (image.length == 0){
-      this.http.put(`http://localhost:3000/promotion/${id}`,
+      this.http.put(`http://localhost:8000/promotion/${id}`,
         {
           commercant:commercant, promotionNom:promotionNom, SousCategorieNom:SousCategorieNom, adresse:adresse, ptv:PTV, categorieNom:categorieNom, dateDebut:dateDebut, description:description
         }).subscribe(
@@ -117,7 +117,7 @@ export class ServiceService {
           console.log(responseData);
           this.router.navigate(['/admin/promotions']);
           if (periode > 0){
-            this.http.put(`http://localhost:3000/promotion/activation/${periode}/${id}`,null).subscribe(
+            this.http.put(`http://localhost:8000/promotion/activation/${periode}/${id}`,null).subscribe(
               response=>{
                 const nom = sessionStorage.getItem('commercantNom');
                 console.log(nom);
@@ -138,12 +138,12 @@ export class ServiceService {
       for (let i=0;i<image.length;i++){
         promotionData.append('image', image[i], promotionNom);
       }
-      this.http.put(`http://localhost:3000/promotion/image/${id}`,
+      this.http.put(`http://localhost:8000/promotion/image/${id}`,
         promotionData).subscribe(
         responseData =>{
           console.log(responseData);
           if (periode > 0){
-            this.http.put(`http://localhost:3000/promotion/activation/${periode}/${id}`,null).subscribe(
+            this.http.put(`http://localhost:8000/promotion/activation/${periode}/${id}`,null).subscribe(
               response=>{
                 const id = sessionStorage.getItem('commercantId');
                 console.log(id);
