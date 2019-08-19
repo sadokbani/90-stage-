@@ -4,13 +4,13 @@ const multer = require("multer");
 
 const router = express.Router();
 
-
+//types de fichiers autorisés pour upload
 const MIME_TYPE_MAP = {
   "image/png": "png",
   "image/jpeg": "jpg",
   "image/jpg": "jpg"
 };
-
+// upload image
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const isValid = MIME_TYPE_MAP[file.mimetype];
@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
     cb(null, name + "-" + Date.now() + "." + ext);
   }
 });
-
+// ajouter une promotions
 router.post(
   "",
   multer({ storage: storage }).array("image",12),
@@ -54,7 +54,7 @@ router.post(
     });
   }
 );
-
+//récuperer toutes les promotions
 router.get("", (req, res, next) => {
   Promotion.find().then(documents => {
     res.status(200).json({
@@ -65,7 +65,7 @@ router.get("", (req, res, next) => {
 });
 
 
-
+//récupérer des promotions d'un commerçant , recherche par ID
 router.get("/:id", (req, res, next) =>{
   Promotion.findById(req.params.id, (err, doc) => {
     if (!err) { res.send(doc); }
@@ -80,7 +80,7 @@ router.get("", (req, res, next) => {
 
 });
 
-
+//activer une promotion
 router.put("/activation/:time/:id", (req, res, next) => {
   setTimeout(()=>{
     Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, doc) {
@@ -91,6 +91,7 @@ router.put("/activation/:time/:id", (req, res, next) => {
 
 
 });
+//déactiver une promotion
 router.put("/desactivation/time/:id", (req, res, next) => {
   setTimeout(()=>{
     Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
@@ -118,7 +119,7 @@ router.put("/desactivation/:id", (req, res, next) => {
     res.send(doc);
   });
 });
-
+//supprimer une promotion
 router.delete('/:id', (req, res) => {
 
   Promotion.findByIdAndRemove(req.params.id, (err, doc) => {
@@ -127,7 +128,7 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-
+//modifier une promotion avec modification des images
 router.put("/image/:id",multer({ storage: storage }).array("image",12), (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   const imageArray= new Array();
@@ -144,7 +145,7 @@ router.put("/image/:id",multer({ storage: storage }).array("image",12), (req, re
 
 });
 
-
+// modifier une promotion sans modification d'image
 router.put("/:id", (req, res, next) => {
   Promotion.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, doc) {
     if (err) return next(err);
@@ -153,7 +154,7 @@ router.put("/:id", (req, res, next) => {
 
 });
 
-
+//récupérer les promotions d'un commerçant (recherche par nom )
 router.get("/commercant/:nom", (req, res, next) => {
   Promotion.find({commercant:req.params.nom}).then(documents => {
     res.status(200).json({

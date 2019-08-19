@@ -5,13 +5,13 @@ const User = require("../models/user");
 
 
 const router = express.Router();
-
+//types des fichiers autorisés pour upload
 const MIME_TYPE_MAP = {
   "image/png": "png",
   "image/jpeg": "jpg",
   "image/jpg": "jpg"
 };
-
+//upload image
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const isValid = MIME_TYPE_MAP[file.mimetype];
@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
     cb(null, name + "-" + Date.now() + "." + ext);
   }
 });
-
+//ajouter un client ou un commercant
 router.post(
   "/:role",
   multer({ storage: storage }).single("image"),
@@ -82,7 +82,7 @@ router.post(
 
 
 
-
+// récupérer la listes des clients et des commercants
 router.get("", (req, res, next) => {
 
   setTimeout(()=>{
@@ -95,13 +95,13 @@ router.get("", (req, res, next) => {
   }, 10000);
 
 });
-
+//vérification de l'existence de l'email lors de connexion
 router.get("/exist/:email", (req, res, next) => {
 
 
         User.find({"email" : req.params.email}).count().then(documents => {
             res.status(200).json({
-                message: "users fetched successfully!",
+                message: "email fetched successfully!",
                 users: documents //we can also use map methode
             });
             console.log(res.users);
@@ -109,20 +109,22 @@ router.get("/exist/:email", (req, res, next) => {
 
 
 });
-
+// confirmer le compte de l'utilisateur
 router.put("/confirm/:email", (req, res, next) => {
     User.updateOne({email: req.params.email}, {$set: {confirmed: 1}}, function (err, doc) {
         if (err) return next(err);
         res.send(doc);
     });
 });
+//re
 router.put("/restaurer/:id", (req, res, next) => {
-    User.finddAndUpdate({_id: req.params.id}, {$set: {confirmed: 1}}, function (err, doc) {
+    User.finddAndUpdate({_id: req.params.id}, {$set: {valide: 1}}, function (err, doc) {
         if (err) return next(err);
         res.send(doc);
     });
 
 });
+
 router.put("/PVENTE/:id/:adresse", (req, res, next) => {
     User.finddAndUpdate({_id: req.params.id}, {$set: {PTVENTE: req.params.adresse} }, function (err, doc) {
         if (err) return next(err);
@@ -131,6 +133,7 @@ router.put("/PVENTE/:id/:adresse", (req, res, next) => {
     });
 
 });
+//recupérer un utilisateur par ID
 router.get("/:id", (req, res, next) =>{
   User.findById(req.params.id, (err, doc) => {
     if (!err) { res.send(doc); }
@@ -138,7 +141,7 @@ router.get("/:id", (req, res, next) =>{
   });
 });
 
-
+// récupérer tous les clients non archivés
 router.get("/valide/tous", (req, res, next) =>{
   User.find({valide: 1}).then(documents => {
     res.status(200).json({
@@ -191,6 +194,7 @@ router.post("/social/add",(req,res,next)=>{
         res.status(400).send("unable to save to database");
       });
 });
+// récuperer les clients et les commercants archivés
 router.get("/archive/tous", (req, res, next) =>{
   User.find({valide: 0}).then(documents => {
     res.status(200).json({
@@ -200,7 +204,7 @@ router.get("/archive/tous", (req, res, next) =>{
   });
 });
 
-
+//récupérer les clients non archivés
 router.get("/valide/client", (req, res, next) =>{
   User.find({valide: 1, role:2}).then(documents => {
     res.status(200).json({
@@ -209,7 +213,7 @@ router.get("/valide/client", (req, res, next) =>{
     });
   });
 });
-
+//récupérer les clients archivés
 router.get("/archive/client", (req, res, next) =>{
   User.find({valide: 0, role:2}).then(documents => {
     res.status(200).json({
@@ -219,7 +223,7 @@ router.get("/archive/client", (req, res, next) =>{
   });
 });
 
-
+//récupérer les commercants non archivés
 router.get("/valide/commercant", (req, res, next) =>{
   User.find({valide: 1, role:1}).then(documents => {
     res.status(200).json({
@@ -228,7 +232,7 @@ router.get("/valide/commercant", (req, res, next) =>{
     });
   });
 });
-
+//récupérer les commercants archivés
 router.get("/archive/commercant", (req, res, next) =>{
   User.find({valide: 0, role:1}).then(documents => {
     res.status(200).json({
@@ -237,7 +241,7 @@ router.get("/archive/commercant", (req, res, next) =>{
     });
   });
 });
-
+// modification d'un client avec modification d'image
 router.put("/image/:id",multer({ storage: storage }).single("image"), (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
 
@@ -252,7 +256,7 @@ router.put("/image/:id",multer({ storage: storage }).single("image"), (req, res,
 
 });
 
-
+//modification des information d'un client sans modifier son image
 router.put("/:id", (req, res, next) => {
   User.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, doc) {
     if (err) return next(err);
@@ -260,6 +264,7 @@ router.put("/:id", (req, res, next) => {
   });
 
 });
+//modification de mot de passe
 router.put("/reset/:email", (req, res, next) => {
   console.log(req.params.email, req.params.password);
   User.updateOne({email: req.params.email}, {$set:{password:  User.hashPassword(req.body.password)}} , function (err, doc) {
@@ -268,7 +273,7 @@ router.put("/reset/:email", (req, res, next) => {
   });
 
 });
-
+//archiver un client
 router.put("/archive/:id", (req, res, next) => {
   // console.log(req.body);
   User.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
@@ -277,7 +282,7 @@ router.put("/archive/:id", (req, res, next) => {
   });
 
 });
-
+//restaurer un client
 router.put("/restaurer/:id", (req, res, next) => {
   // console.log(req.body);
   User.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, doc) {
@@ -286,7 +291,7 @@ router.put("/restaurer/:id", (req, res, next) => {
   });
 
 });
-
+//supprimer un client
 router.delete('/:id', (req, res) => {
 
   User.findByIdAndRemove(req.params.id, (err, doc) => {

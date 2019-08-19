@@ -3,14 +3,14 @@ const Promotion = require("../models/promotion");
 const multer = require("multer");
 
 const router = express.Router();
-
+//types des fichier autorisés pour upload
 
 const MIME_TYPE_MAP = {
   "image/png": "png",
   "image/jpeg": "jpg",
   "image/jpg": "jpg"
 };
-
+//upload image
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const isValid = MIME_TYPE_MAP[file.mimetype];
@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
     cb(null, name + "-" + Date.now() + "." + ext);
   }
 });
-
+// ajouter une promotion
 router.post(
   "",
   multer({ storage: storage }).array("image",12),
@@ -54,7 +54,7 @@ router.post(
     });
   }
 );
-
+//récupérer toutes les promotions
 router.get("", (req, res, next) => {
   Promotion.find().then(documents => {
     res.status(200).json({
@@ -65,7 +65,7 @@ router.get("", (req, res, next) => {
 });
 
 
-
+//récupérer les promotion d'un commercant , recherche par ID
 router.get("/:id", (req, res, next) =>{
   Promotion.findById(req.params.id, (err, doc) => {
     if (!err) { res.send(doc); }
@@ -80,7 +80,7 @@ router.get("", (req, res, next) => {
 
 });
 
-
+//activer une promotion
 router.put("/activation/:time/:id", (req, res, next) => {
   setTimeout(()=>{
     Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, doc) {
@@ -91,6 +91,7 @@ router.put("/activation/:time/:id", (req, res, next) => {
 
 
 });
+// déactiver une promotion
 router.put("/desactivation/time/:id", (req, res, next) => {
   setTimeout(()=>{
     Promotion.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
@@ -118,7 +119,7 @@ router.put("/desactivation/:id", (req, res, next) => {
       res.send(doc);
     });
 });
-
+//supprimer une promotion
 router.delete('/:id', (req, res) => {
 
   Promotion.findByIdAndRemove(req.params.id, (err, doc) => {
@@ -127,7 +128,7 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-
+//modification d'une promotion avec modification des images
 router.put("/image/:id",multer({ storage: storage }).array("image",12), (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   const imageArray= new Array();
@@ -144,7 +145,7 @@ router.put("/image/:id",multer({ storage: storage }).array("image",12), (req, re
 
 });
 
-
+//modification d'une promotion sans modification d'image
 router.put("/:id", (req, res, next) => {
   Promotion.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, doc) {
     if (err) return next(err);
@@ -153,16 +154,16 @@ router.put("/:id", (req, res, next) => {
 
 });
 
-
+//récupération des promotions d'un commercant , recherche par nom
 router.get("/commercant/:nom", (req, res, next) => {
   Promotion.find({commercant:req.params.nom}).then(documents => {
     res.status(200).json({
       message: "promotion fetched successfully!",
-      promotions: documents //we can also use map methode
+      promotions: documents
     });
   });
 });
-
+// récupérer les promotions par catégories
 router.get("/categorie/:nom", (req, res, next) => {
   Promotion.find({categorieNom:req.params.nom}).then(documents => {
     res.status(200).json({
@@ -171,7 +172,7 @@ router.get("/categorie/:nom", (req, res, next) => {
     });
   });
 });
-
+//récupérer les promotions par catégorie et nom de commercant
 router.get("/mult/:nomcategorie/:nomcommercant", (req, res, next) => {
   Promotion.find({categorieNom:req.params.nomcategorie,commercant:req.params.nomcommercant}).then(documents => {
     res.status(200).json({
@@ -180,7 +181,7 @@ router.get("/mult/:nomcategorie/:nomcommercant", (req, res, next) => {
     });
   });
 });
-
+//récuperer les promotions par nom de commercant , nom de catégorie et de sous catégorie
 router.get("/mult/:nomcategorie/:nomcommercant/:nomsouscateg", (req, res, next) => {
   Promotion.find({categorieNom:req.params.nomcategorie,commercant:req.params.nomcommercant,SousCategorieNom:req.params.nomsouscateg}).then(documents => {
     res.status(200).json({
@@ -189,7 +190,7 @@ router.get("/mult/:nomcategorie/:nomcommercant/:nomsouscateg", (req, res, next) 
     });
   });
 });
-
+//récupération des promotions par nom de catégorie et sous catégorie
 router.get("/multi/:nomcategorie/:nomsouscateg", (req, res, next) => {
   Promotion.find({categorieNom:req.params.nomcategorie,SousCategorieNom:req.params.nomsouscateg}).then(documents => {
     res.status(200).json({
