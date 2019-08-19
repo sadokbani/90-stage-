@@ -36,7 +36,7 @@ export class PtvService {
     getPtvbyname(nom) {
         return this
             .http
-            .get(`${this.uri}/${nom}`);
+            .get(`${this.uri}/byname/${nom}`);
     }
 
     getPtvarchive(id) {
