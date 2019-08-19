@@ -10,7 +10,7 @@
             <mat-form-field style="width: 100%">
               <mat-label>Nom de commerçant</mat-label>
               <mat-select [(value)]="commercantSelected"
-                          formControlName="commercant">
+                          formControlName="commercant" (valueChange)="refrechPTV()">
 
                 <mat-option *ngFor="let com of commercants" [value]=com.nom>
                   {{com.nom}}
@@ -61,7 +61,7 @@
             <mat-form-field style="width: 100%">
               <mat-label>Points de vente</mat-label>
               <mat-select [(value)]="PTVSelected"
-                          formControlName="PTV" multiple >
+                          formControlName="PTV" multiple  >
 
                 <mat-option *ngFor="let pt of PTV" [value]=pt.Nom>
                   {{pt.Nom}}

@@ -24,20 +24,22 @@ ptvRoutes.route('/:id').get(function (req, res) {
         }
         else {
             res.json(pvt);
-            console.log(err);
+
         }
     });
 });
-
 ptvRoutes.route('/:nom').get(function (req, res) {
-    PVT.find({valide: 1 , Nom_commercant : req.params.nom},function (err,pvt){
-        if(err){
-            console.log(err);
-        }
-        else {
-            res.json(pvt);
-            console.log(err);
-        }
+    PVT.find({
+        valide: 1, Nom_commercant: req.params.nom, function(err, pvt) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.json(pvt);
+
+
+            }
+        },
     });
 });
 ptvRoutes.route('/archive/:id').get(function (req, res) {

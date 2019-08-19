@@ -63,10 +63,11 @@ export class PromotionComponent implements OnInit {
                 this.sousCategories = response;
               }
             );
-
-            this.promotionService.getPtvbyname(response.commercant).subscribe(
+            console.log(response.commercant);
+            this.PTVService.getPtvbyname(response.commercant).subscribe(
                 (response: any[]) => {
                     this.PTV = response;
+
                 }
             );
           this.form.setValue({
@@ -102,10 +103,11 @@ export class PromotionComponent implements OnInit {
     });
   }
     refrechPTV() {
-        this.promotionService.getPtvbyname(this.commercantSelected).subscribe(
+        this.PTVService.getPtvbyname(this.commercantSelected).subscribe(
             (response: any[]) => {
                 this.PTV = response;
                 console.log(response);
+                console.log(this.commercantSelected);
             }
         );
     }
