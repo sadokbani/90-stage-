@@ -1,4 +1,4 @@
-
+//envoi d'un mail de récupération de mot de passe
 const express = require('express');
 const app = express();
 const sendmailRoutes = express.Router();

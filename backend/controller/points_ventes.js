@@ -4,7 +4,7 @@ const ptvRoutes = express.Router();
 
 let PVT = require('../models/pvt');
 
-
+// ajouter un point de vente
 ptvRoutes.route('/add').post(function (req, res) {
     console.log(req.body);
     let pvt = new PVT(req.body);
@@ -16,7 +16,7 @@ ptvRoutes.route('/add').post(function (req, res) {
             res.status(400).send("unable to save to database");
         });
 });
-
+//récuperer les points de vente d'un commercant avec ID
 ptvRoutes.route('/:id').get(function (req, res) {
     PVT.find({valide: 1 , ID_commercant : req.params.id},function (err,pvt){
         if(err){
@@ -28,6 +28,7 @@ ptvRoutes.route('/:id').get(function (req, res) {
         }
     });
 });
+//recupérer la liste des points de vente avec le nom de commercant
 ptvRoutes.route('/byname/:nom').get(function (req, res) {
     PVT.find({valide: 1 , Nom_commercant : req.params.nom},function (err,pvt){
         if(err){
@@ -39,7 +40,7 @@ ptvRoutes.route('/byname/:nom').get(function (req, res) {
         }
     });
 });
-
+//récupérer l'archive des points de vente
 ptvRoutes.route('/archive/:id').get(function (req, res) {
     PVT.find({valide: 0, ID_commercant : req.params.id},function (err,pvt){
         if(err){
@@ -51,7 +52,7 @@ ptvRoutes.route('/archive/:id').get(function (req, res) {
     });
 });
 
-
+// restaurer un point de vente
 ptvRoutes.put("/restaurer_ptv/:id", (req, res, next) => {
 
     PVT.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, pvt) {
@@ -65,7 +66,7 @@ ptvRoutes.put("/restaurer_ptv/:id", (req, res, next) => {
 });
 
 
-
+//archiver un point de vente
 ptvRoutes.put("/archiver_ptv/:id", (req, res, next) => {
 
     PVT.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, pvt) {
@@ -78,14 +79,14 @@ ptvRoutes.put("/archiver_ptv/:id", (req, res, next) => {
     });
 });
 
-
+//récupérer les informations de point de vente  à modifier
 ptvRoutes.route('/edit/:id').get(function (req, res) {
     let id = req.params.id;
     PVT.findById(id, function (err, pvt){
         res.json(pvt);
     });
 });
-
+// modifier un point de vente
 ptvRoutes.route('/update/:id').put(function (req, res) {
     console.log(req.body);
     PVT.findById(req.params.id, function(err, pvt) {
@@ -105,7 +106,7 @@ ptvRoutes.route('/update/:id').put(function (req, res) {
         }
     });
 });
-
+// supprimer un point de vente
 ptvRoutes.route('/delete/:id').delete(function (req, res) {
     PVT.findByIdAndRemove({_id: req.params.id}, function(err, pvt){
         if(err) res.json(err);

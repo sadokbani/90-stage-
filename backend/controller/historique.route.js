@@ -7,7 +7,7 @@ const historiqueRoutes = express.Router();
 let historique = require('../models/historique');
 
 
-
+//ajouter dans l'historique
 historiqueRoutes.route('/add').post(function (req, res) {
   console.log(req.body);
   let Historique = new historique();
@@ -26,7 +26,7 @@ historiqueRoutes.route('/add').post(function (req, res) {
       res.status(400).send("unable to save to database");
     });
 });
-
+// récupérer l'historique
 historiqueRoutes.route('/').get(function (req, res) {
   historique.find(function (err,historique){
     if(err){
@@ -38,39 +38,7 @@ historiqueRoutes.route('/').get(function (req, res) {
   });
 });
 
-historiqueRoutes.route('/edit/:id').get(function (req, res) {
-  let id = req.params.id;
-  historique.findById(id, function (err, historique){
-    res.json(historique);
-  });
-});
-
-historiqueRoutes.route('/update/:id').put(function (req, res) {
-  console.log(req.body);
-  historique.findById(req.params.id, function(err, historique) {
-    if (!historique)
-      res.status(404).send("Record not found");
-    else {
-
-      historique.ID_Utilisateur = req.body.Utilisateur;
-      historique.ID_commercant = req.body.commercant;
-
-      historique.Promotion = req.body.Promotion;
-      historique.Coupon = req.body.Coupon;
-      historique.Remise = req.body.Remise;
-      historique.Date = req.body.Date;
-      historique.Etat = req.body.Etat;
-
-      historique.save().then(historique=> {
-        res.json('Update complete');
-      })
-        .catch(err => {
-          res.status(400).send("unable to update the database");
-        });
-    }
-  });
-});
-
+//supprimer l'un des historiques
 historiqueRoutes.route('/delete/:id').delete(function (req, res) {
   historique.findByIdAndRemove({_id: req.params.id}, function(err, historique){
     if(err) res.json(err);

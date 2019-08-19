@@ -1,4 +1,4 @@
-
+// envoi d'un mail de confirmation de l'adresse email lors de l'inscription
 const express = require('express');
 const app = express();
 const sendmailRoutes = express.Router();

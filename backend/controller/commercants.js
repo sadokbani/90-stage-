@@ -4,13 +4,13 @@ const jwt = require('jsonwebtoken');
 const Commercant = require("../models/commercant");
 
 const router = express.Router();
-
+//types des fichiers autorisés pour upload
 const MIME_TYPE_MAP = {
   "image/png": "png",
   "image/jpeg": "jpg",
   "image/jpg": "jpg"
 };
-
+//// upload image
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const isValid = MIME_TYPE_MAP[file.mimetype];
@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
     cb(null, name + "-" + Date.now() + "." + ext);
   }
 });
-
+//ajouter un commercant
 router.post(
   "",
   multer({ storage: storage }).single("image"),
@@ -52,7 +52,7 @@ router.post(
     });
   }
 );
-
+// validation de connexion pour commercant ( verification des informations)
 router.post('/login', function(req,res,next){
   let promise = Commercant.findOne({email:req.body.email}).exec();
 

@@ -4,7 +4,7 @@ const Commentaire = require("../models/commentaire");
 const router = express.Router();
 
 
-
+//récupérer  les commentaires actives
 router.get("/active", (req, res, next) => {
   Commentaire.find({valide: 1}).then(documents => {
     res.status(200).json({
@@ -13,7 +13,7 @@ router.get("/active", (req, res, next) => {
     });
   });
 });
-
+//récupérer les commentaires déactivés
 router.get("/desac", (req, res, next) => {
   Commentaire.find({valide: 0}).then(documents => {
     res.status(200).json({
@@ -25,7 +25,7 @@ router.get("/desac", (req, res, next) => {
 
 
 
-
+//ajouter un commentaire
 router.post("", (req, res, next)=>{
   commentaire = new Commentaire(req.body);
   console.log(commentaire);
@@ -35,7 +35,7 @@ router.post("", (req, res, next)=>{
     });
   });
 });
-
+//déactiver un commentaire
 router.put("/desactiver/:id", (req, res, next) => {
   // console.log(req.body);
   Commentaire.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, doc) {
@@ -44,7 +44,7 @@ router.put("/desactiver/:id", (req, res, next) => {
   });
 
 });
-
+// reactiver un commentaire
 router.put("/activer/:id", (req, res, next) => {
   // console.log(req.body);
   Commentaire.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, doc) {
@@ -54,7 +54,7 @@ router.put("/activer/:id", (req, res, next) => {
 
 });
 
-
+//supprimer un commentaire
 router.delete('/:id', (req, res) => {
 
   Commentaire.findByIdAndRemove(req.params.id, (err, doc) => {

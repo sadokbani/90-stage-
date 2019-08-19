@@ -7,7 +7,7 @@ var TJO = require('translate-json-object')();
 const Countries = require('countries-api');
 let Pays = require('../models/pays');
 
-
+//ajouter un pays
 paysRoutes.route('/add').post(function (req, res) {
   console.log(req.body);
   let pays = new Pays(req.body);
@@ -19,7 +19,7 @@ paysRoutes.route('/add').post(function (req, res) {
       res.status(400).send("unable to save to database");
     });
 });
-
+//récupérer tous les pays
 paysRoutes.route('/').get(function (req, res) {
   Pays.find({valide: 1},function (err,pays){
     if(err){
@@ -35,14 +35,14 @@ paysRoutes.route('/').get(function (req, res) {
 
 
 
-
+// récupération de la liste des pays disponible
 paysRoutes.get("/aaaa/:lat/:long", (req, res, next) =>{
   console.log(req.params.lat.toString());
   console.log(req.params.long);
 
   res.json(Countries.findByLatLong([parseFloat(req.params.lat), parseFloat(req.params.long)]).data);
 });
-
+//récupérer l'archive des pays
 paysRoutes.route('/archive').get(function (req, res) {
   Pays.find({valide: 0},function (err,pays){
     if(err){
@@ -54,7 +54,7 @@ paysRoutes.route('/archive').get(function (req, res) {
   });
 });
 
-
+// restaurer un pays
 paysRoutes.put("/restaurer_pays/:id", (req, res, next) => {
 
   Pays.findByIdAndUpdate(req.params.id, {$set: {valide: 1}}, function (err, pays) {
@@ -68,7 +68,7 @@ paysRoutes.put("/restaurer_pays/:id", (req, res, next) => {
 });
 
 
-
+// archiver un pays
 paysRoutes.put("/archiver_pays/:id", (req, res, next) => {
 
   Pays.findByIdAndUpdate(req.params.id, {$set: {valide: 0}}, function (err, pays) {
@@ -81,14 +81,14 @@ paysRoutes.put("/archiver_pays/:id", (req, res, next) => {
   });
 });
 
-
+//récupérer l'information d'un pays à modifier
 paysRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   Pays.findById(id, function (err, pays){
     res.json(pays);
   });
 });
-
+// modifier un pays
 paysRoutes.route('/update/:id').put(function (req, res) {
   console.log(req.body);
   Pays.findById(req.params.id, function(err, pays) {
@@ -108,7 +108,7 @@ paysRoutes.route('/update/:id').put(function (req, res) {
     }
   });
 });
-
+//supprimer un pays
 paysRoutes.route('/delete/:id').delete(function (req, res) {
   Pays.findByIdAndRemove({_id: req.params.id}, function(err, pays){
     if(err) res.json(err);
@@ -117,6 +117,8 @@ paysRoutes.route('/delete/:id').delete(function (req, res) {
 });
 
 
+
+// récupération de la liste des pays disponible
 paysRoutes.get("/list", (req, res, next) =>{
   TJO.init({
     yandexApiKey: 'trnsl.1.1.20190807T153824Z.bd5725d6afafb6d3.8596bd15ce68477004c92ee2a2f6cd38836b5cea'

@@ -6,7 +6,7 @@ const historiqueRoutes = express.Router();
 let historique = require('../models/historique');
 
 
-
+//ajouter a l'historique de commercant
 historiqueRoutes.route('/add').post(function (req, res) {
   console.log(req.body);
   let Historique = new historique();
@@ -27,7 +27,7 @@ historiqueRoutes.route('/add').post(function (req, res) {
       res.status(400).send("unable to save to database");
     });
 });
-
+//récupérer l'historique d'un commercant
 historiqueRoutes.route('/:id').get(function (req, res) {
   historique.find({ID_commercant: req.params.id},function (err,historique){
     if(err){
