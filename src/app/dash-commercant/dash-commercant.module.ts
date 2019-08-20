@@ -36,6 +36,8 @@ import { PointsVenteComponent } from './promotion/points-vente/points-vente.comp
 import { CreatePtvComponent } from './promotion/points-vente/create-ptv/create-ptv.component';
 import { UpdatePtvComponent } from './promotion/points-vente/update-ptv/update-ptv.component';
 import { ArchivePtvComponent } from './promotion/points-vente/archive-ptv/archive-ptv.component';
+import {PromoptionImage} from '../dashboard/promotions/promotions.component';
+import {AjoutCommentaireComponent} from '../dashboard/commentaire/ajout-commentaire/ajout-commentaire.component';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import { ArchivePtvComponent } from './promotion/points-vente/archive-ptv/archiv
     MatTabsModule, MatMenuModule,
     RouterModule.forChild(DashCommercantRoutes)
   ],
-  declarations: [DashCommercantComponent, ClientComponent, HistoriqueComponent, PromotionComponent, ArchiveClientsComponent, CreatePromotionComponent, PointsVenteComponent, CreatePtvComponent, UpdatePtvComponent, ArchivePtvComponent]
+  declarations: [DashCommercantComponent, ClientComponent, HistoriqueComponent, PromotionComponent, ArchiveClientsComponent, CreatePromotionComponent, PointsVenteComponent, CreatePtvComponent, UpdatePtvComponent, ArchivePtvComponent, PromoptionImage
+  ],
+  entryComponents: [PromoptionImage]
 })
 export class DashCommercantModule {}

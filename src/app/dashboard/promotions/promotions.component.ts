@@ -18,7 +18,7 @@ export class PromotionsComponent implements OnInit {
   selectedCategorie='1';
   value = '';
   deletev = false;
-  displayedColumns: string[] = ['commercant', 'categorieNom', 'SousCategorieNom', 'promotionNom', 'adresse','description','statut', 'image','actions'];
+  displayedColumns: string[] = ['commercant', 'categorieNom', 'SousCategorieNom', 'promotionNom', 'adresse','description','quantite','statut', 'image','actions'];
   selected = '1';
   name: string;
   commercants:any[];

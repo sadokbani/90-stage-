@@ -1,5 +1,5 @@
-import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {AfterViewChecked, Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {UserService} from '../../dashboard/users/service/user.service';
 import swal from "sweetalert2";
@@ -13,7 +13,7 @@ import {ServiceService} from './service/service.service';
 export class PromotionComponent implements OnInit {
   value = '';
   deletev = false;
-  displayedColumns: string[] = ['commercant', 'categorieNom', 'SousCategorieNom', 'promotionNom', 'adresse','description', 'image','actions'];
+  displayedColumns: string[] = ['commercant', 'categorieNom', 'SousCategorieNom', 'promotionNom', 'adresse','quantite','statut','description', 'image','actions'];
   selected = '1';
   name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -107,5 +107,39 @@ export class PromotionComponent implements OnInit {
     }) ;
   }
 
+  openDialog(image:[string]): void {
+    const dialogRef = this.dialog.open(PromoptionImage, {
+      // width: (image.length*210).toString()+'px' ,
+      minWidth:'150px',
+      maxWidth:'80%',
+      maxHeight:'70%',
+      minHeight:'150px',
+      data: image
+    });
+
+
+  }
+}
+
+
+
+@Component({
+  selector: 'promoptionImage',
+  templateUrl: 'promotionImage.html',
+})
+
+
+export class PromoptionImage  implements OnInit {
+
+  constructor(
+      public dialogRef: MatDialogRef<PromoptionImage>,
+      @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  ngOnInit() {
+    console.log(this.data)
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 }
